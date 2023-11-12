@@ -1,18 +1,18 @@
 module.exports = {
-  publicPath: process.env.NODE_ENV === 'production' ? '/dashboard' : '/',
-
+  publicPath: process.env.NODE_ENV === "production" ? "/dashboard" : "/",
+  lintOnSave: false,
   pluginOptions: {
     i18n: {
-      locale: 'ar',
-      fallbackLocale: 'ar',
-      localeDir: 'locales',
+      locale: "ar",
+      fallbackLocale: "ar",
+      localeDir: "locales",
       enableInSFC: true,
       includeLocales: false,
       // enableBridge: true,
     },
   },
 
-  transpileDependencies: ['vuetify'],
+  transpileDependencies: ["vuetify"],
   // transpileDependencies: true,
 
   css: {
@@ -25,4 +25,4 @@ module.exports = {
       },
     },
   },
-}
+};
