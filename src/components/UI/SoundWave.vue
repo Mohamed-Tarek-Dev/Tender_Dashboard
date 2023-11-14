@@ -1,17 +1,13 @@
 <template>
   <div class="sound_wave_wrapper">
-    <div 
-      class="wave-bar"
-      v-for="item in 25"
-      :key="item"
-    ></div>
+    <div class="wave-bar" v-for="item in 25" :key="item"></div>
   </div>
 </template>
 
 <script>
 export default {
   name: "SoundWave",
-}
+};
 </script>
 
 <style lang="scss" scoped>

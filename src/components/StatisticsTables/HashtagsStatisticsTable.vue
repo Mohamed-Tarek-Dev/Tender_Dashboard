@@ -2,7 +2,7 @@
   <div class="wrraper">
     <!-- divider  -->
     <div class="divider_new">
-      <span>{{ $t('hashtag') }}</span>
+      <span>{{ $t("hashtag") }}</span>
     </div>
     <!-- End:: Table Title -->
 
@@ -19,7 +19,7 @@
         <!-- ================== You Can use any slots you want ================== -->
         <!-- Select no data State -->
         <template v-slot:no-data>
-          {{ $t('table.noData') }}
+          {{ $t("table.noData") }}
         </template>
 
         <!-- Link -->
@@ -48,15 +48,15 @@
           <v-dialog v-model="dialogDelete" max-width="500px">
             <v-card>
               <v-card-title class="text-h5 justify-center">
-                {{ $t('table.deletedialog.areYouSure') }}
+                {{ $t("table.deletedialog.areYouSure") }}
               </v-card-title>
               <v-card-actions>
                 <v-spacer></v-spacer>
                 <v-btn color="#1B5E20" @click="deleteItemConfirm">
-                  {{ $t('table.deletedialog.ok') }}
+                  {{ $t("table.deletedialog.ok") }}
                 </v-btn>
                 <v-btn color="#F44336" @click="dialogDelete = false">
-                  {{ $t('table.deletedialog.cancel') }}
+                  {{ $t("table.deletedialog.cancel") }}
                 </v-btn>
                 <v-spacer></v-spacer>
               </v-card-actions>
@@ -71,12 +71,12 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters } from "vuex";
 
 export default {
-  name: 'HashtagsStatisticsTable',
+  name: "HashtagsStatisticsTable",
 
-  emits: ['getDataAgain'],
+  emits: ["getDataAgain"],
 
   props: {
     tableRows: {
@@ -89,57 +89,57 @@ export default {
       // ========== dialog Status
       dialogDelete: false,
       itemtoDelete: null,
-    }
+    };
   },
 
   computed: {
     ...mapGetters({
-      lang: 'lang_module/lang',
+      lang: "lang_module/lang",
     }),
 
     headers() {
-      if (this.lang == 'ar') {
+      if (this.lang == "ar") {
         return [
           {
-            text: '#',
-            align: 'center',
-            value: 'id',
+            text: "#",
+            align: "center",
+            value: "id",
             sortable: true,
           },
           {
-            text: 'الإسم',
-            align: 'center',
-            value: 'name',
+            text: "الإسم",
+            align: "center",
+            value: "name",
             sortable: false,
           },
           {
-            text: 'التحكم',
-            value: 'actions',
+            text: "التحكم",
+            value: "actions",
             sortable: false,
-            align: 'center',
+            align: "center",
           },
-        ]
+        ];
       } else {
         return [
           {
-            text: '#',
-            align: 'center',
-            value: 'id',
+            text: "#",
+            align: "center",
+            value: "id",
             sortable: true,
           },
           {
-            text: 'Name',
-            align: 'center',
-            value: 'name',
+            text: "Name",
+            align: "center",
+            value: "name",
             sortable: false,
           },
           {
-            text: 'Action',
-            value: 'actions',
+            text: "Action",
+            value: "actions",
             sortable: false,
-            align: 'center',
+            align: "center",
           },
-        ]
+        ];
       }
     },
   },
@@ -147,45 +147,45 @@ export default {
   methods: {
     // ==================== Start CRUD ====================
     addItem() {
-      this.$router.push({ path: '/hashtags/add' })
+      this.$router.push({ path: "/hashtags/add" });
     },
     showItem(item) {
-      this.$router.push({ path: '/hashtags/show/' + item.id })
+      this.$router.push({ path: "/hashtags/show/" + item.id });
     },
     editItem(item) {
-      this.$router.push({ path: '/hashtags/edit/' + item.id })
+      this.$router.push({ path: "/hashtags/edit/" + item.id });
     },
     // ===== Delete
     deleteItem(item) {
-      this.dialogDelete = true
-      this.itemtoDelete = item
+      this.dialogDelete = true;
+      this.itemtoDelete = item;
     },
     deleteItemConfirm() {
       this.$axios({
-        method: 'DELETE',
+        method: "DELETE",
         url: `hashtags/${this.itemtoDelete.id}`,
       })
         .then(() => {
-          this.$emit('getDataAgain')
-          this.dialogDelete = false
+          this.$emit("getDataAgain");
+          this.dialogDelete = false;
           this.$iziToast.success({
             timeout: 2000,
-            message: this.$t('deleteSuccess'),
-            position: 'bottomRight',
-          })
+            message: this.$t("deleteSuccess"),
+            position: "bottomRight",
+          });
         })
         .catch((err) => {
-          this.dialogDelete = false
+          this.dialogDelete = false;
           this.$iziToast.error({
             timeout: 2000,
             message: err.response.data.message,
-            position: 'bottomRight',
-          })
-        })
+            position: "bottomRight",
+          });
+        });
     },
     // ==================== End CRUD ====================
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>

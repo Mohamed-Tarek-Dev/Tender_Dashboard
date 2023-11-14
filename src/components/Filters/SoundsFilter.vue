@@ -2,7 +2,7 @@
   <div class="main_filter_content_wrapper">
     <!-- Start:: Filter Divider -->
     <div class="divider">
-      <h4>{{ $t('searchAt', { filterTitle: title }) }}</h4>
+      <h4>{{ $t("searchAt", { filterTitle: title }) }}</h4>
       <hr
         role="separator"
         aria-orientation="horizontal"
@@ -16,11 +16,7 @@
       <!-- ********** Start:: Sound Name Input ********** -->
       <div class="col-12 py-0">
         <div class="input_wrapper top_label">
-          <input
-            type="text"
-            class="form-control"
-            v-model="filterKeys.name"
-          />
+          <input type="text" class="form-control" v-model="filterKeys.name" />
           <label for="name_input" class="form-label">{{
             $t("forms.labels.name")
           }}</label>
@@ -30,11 +26,8 @@
 
       <!-- ********** Start:: Submit Button ********** -->
       <div class="buttons_wrapper my-2">
-        <button
-          class="button_style_1"
-          @click="$emit('filterData', filterKeys)"
-        >
-          {{$t("table.search")}}
+        <button class="button_style_1" @click="$emit('filterData', filterKeys)">
+          {{ $t("table.search") }}
         </button>
       </div>
       <!-- ********** End:: Submit Button ********** -->
@@ -61,9 +54,9 @@ export default {
         name: null,
       },
       //  ====== End:: Filter Keys
-    }
+    };
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -86,7 +79,7 @@ export default {
       @include flexCenterAlignment;
     }
     .v-divider {
-      border-color:  var(--mainColor-2_2);
+      border-color: var(--mainColor-2_2);
       opacity: 1;
     }
   }

@@ -11,8 +11,8 @@
       <div class="media_cards_wrapper">
         <div class="row">
           <!-- Start:: Media Card -->
-          <div 
-            class="col-md-3  d-flex justify-content-center my-3"
+          <div
+            class="col-md-3 d-flex justify-content-center my-3"
             v-for="item in tableRows"
             :key="item.id"
           >

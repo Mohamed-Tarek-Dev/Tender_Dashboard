@@ -31,7 +31,7 @@
 
         <!-- Select no data State -->
         <template v-slot:no-data>
-          {{ $t('table.noData') }}
+          {{ $t("table.noData") }}
         </template>
 
         <!-- IsActive -->
@@ -61,15 +61,15 @@
           <v-dialog v-model="dialogDelete" max-width="500px">
             <v-card>
               <v-card-title class="text-h5 justify-center">
-                {{ $t('table.deletedialog.areYouSure') }}
+                {{ $t("table.deletedialog.areYouSure") }}
               </v-card-title>
               <v-card-actions>
                 <v-spacer></v-spacer>
                 <v-btn color="#1B5E20" @click="deleteItemConfirm">
-                  {{ $t('table.deletedialog.ok') }}
+                  {{ $t("table.deletedialog.ok") }}
                 </v-btn>
                 <v-btn color="#F44336" @click="dialogDelete = false">
-                  {{ $t('table.deletedialog.cancel') }}
+                  {{ $t("table.deletedialog.cancel") }}
                 </v-btn>
                 <v-spacer></v-spacer>
               </v-card-actions>
@@ -104,12 +104,12 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters } from "vuex";
 
 export default {
-  name: 'UsersStatisticsTable',
+  name: "UsersStatisticsTable",
 
-  emits: ['getDataAgain'],
+  emits: ["getDataAgain"],
 
   props: {
     tableRows: {
@@ -126,80 +126,80 @@ export default {
       // ========== Model
       model_1: {
         show_model: false,
-        model_img_src: '',
+        model_img_src: "",
       },
-    }
+    };
   },
 
   computed: {
     ...mapGetters({
-      lang: 'lang_module/lang',
+      lang: "lang_module/lang",
     }),
 
     headers() {
-      if (this.lang == 'ar') {
+      if (this.lang == "ar") {
         return [
           {
-            text: '#',
-            align: 'center',
-            value: 'id',
+            text: "#",
+            align: "center",
+            value: "id",
             sortable: true,
-            width: '70px',
+            width: "70px",
           },
           {
-            text: 'الصورة',
-            value: 'user.image',
-            align: 'center',
-            width: '120px',
+            text: "الصورة",
+            value: "user.image",
+            align: "center",
+            width: "120px",
           },
           {
-            text: 'المستخدم',
-            value: 'user.fullname',
-            align: 'center',
-            width: '110px',
+            text: "المستخدم",
+            value: "user.fullname",
+            align: "center",
+            width: "110px",
           },
           {
-            text: 'النقاط',
-            value: 'points',
-            align: 'center',
-            width: '120px',
+            text: "النقاط",
+            value: "points",
+            align: "center",
+            width: "120px",
           },
-        ]
+        ];
       } else {
         return [
           {
-            text: '#',
-            align: 'center',
-            value: 'id',
+            text: "#",
+            align: "center",
+            value: "id",
             sortable: true,
           },
           {
-            text: 'image',
-            align: 'center',
-            value: 'image',
+            text: "image",
+            align: "center",
+            value: "image",
             sortable: false,
           },
-          { text: 'Name', value: 'fullname', align: 'center' },
-          { text: 'Videos', value: 'videos_count', align: 'center' },
-          { text: 'Followers', value: 'followers_count', align: 'center' },
-          { text: 'Following', value: 'followings_count', align: 'center' },
+          { text: "Name", value: "fullname", align: "center" },
+          { text: "Videos", value: "videos_count", align: "center" },
+          { text: "Followers", value: "followers_count", align: "center" },
+          { text: "Following", value: "followings_count", align: "center" },
           {
-            text: 'Active',
-            value: 'is_active',
-            align: 'center',
+            text: "Active",
+            value: "is_active",
+            align: "center",
           },
           {
-            text: 'Permission',
-            value: 'role',
-            align: 'center',
+            text: "Permission",
+            value: "role",
+            align: "center",
           },
           {
-            text: 'control',
-            value: 'actions',
-            align: 'center',
+            text: "control",
+            value: "actions",
+            align: "center",
             sortable: false,
           },
-        ]
+        ];
       }
     },
   },
@@ -207,52 +207,52 @@ export default {
   methods: {
     // img Model
     show_model_1(e) {
-      this.model_1.model_img_src = e.target.src
-      this.model_1.show_model = true
+      this.model_1.model_img_src = e.target.src;
+      this.model_1.show_model = true;
     },
 
     // ==================== Start CRUD ====================
     addItem() {
-      this.$router.push({ path: '/users/add' })
+      this.$router.push({ path: "/users/add" });
     },
     showItem(item) {
-      this.$router.push({ path: '/users/show/' + item.id })
+      this.$router.push({ path: "/users/show/" + item.id });
     },
     editItem(item) {
-      this.$router.push({ path: '/users/edit/' + item.id })
+      this.$router.push({ path: "/users/edit/" + item.id });
     },
 
     // ===== Delete
     deleteItem(item) {
-      this.dialogDelete = true
-      this.itemtoDelete = item
+      this.dialogDelete = true;
+      this.itemtoDelete = item;
     },
     deleteItemConfirm() {
       this.$axios({
-        method: 'DELETE',
+        method: "DELETE",
         url: `clients/${this.itemtoDelete.id}`,
       })
         .then(() => {
-          this.dialogDelete = false
-          this.$emit('getDataAgain')
+          this.dialogDelete = false;
+          this.$emit("getDataAgain");
           this.$iziToast.success({
             timeout: 2000,
-            message: this.$t('deleteSuccess'),
-            position: 'bottomRight',
-          })
+            message: this.$t("deleteSuccess"),
+            position: "bottomRight",
+          });
         })
         .catch((err) => {
-          this.dialogDelete = false
+          this.dialogDelete = false;
           this.$iziToast.error({
             timeout: 2000,
             message: err.response.data.message,
-            position: 'bottomRight',
-          })
-        })
+            position: "bottomRight",
+          });
+        });
     },
     // ==================== End CRUD ====================
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>

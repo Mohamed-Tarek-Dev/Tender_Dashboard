@@ -39,7 +39,7 @@
           <div class="select-wrapper">
             <div class="input_wrapper top_label">
               <label for="" class="form-label">
-                {{ startAt ? 'تاريخ البدء' : ' التاريخ' }}
+                {{ startAt ? "تاريخ البدء" : " التاريخ" }}
               </label>
               <v-menu
                 ref="dateStartModal"
@@ -64,9 +64,9 @@
                 <!-- multiple -->
                 <v-date-picker
                   @input="
-                    getResult()
-                    dateStartModal = false
-                    $refs.dateStartModal.save(frmData.dateStart)
+                    getResult();
+                    dateStartModal = false;
+                    $refs.dateStartModal.save(frmData.dateStart);
                   "
                   v-model="frmData.dateStart"
                   no-title
@@ -76,10 +76,10 @@
                     text
                     color="primary"
                     @click="
-                      frmData.dateStart = ''
-                      $refs.dateStartModal.save(frmData.dateStart)
-                      dateStartModal = false
-                      getResult()
+                      frmData.dateStart = '';
+                      $refs.dateStartModal.save(frmData.dateStart);
+                      dateStartModal = false;
+                      getResult();
                     "
                   >
                     الغاء
@@ -92,9 +92,7 @@
         <div class="date col-sm-6 col-md-4 col-xxl-3" v-if="dateEnd">
           <div class="select-wrapper">
             <div class="input_wrapper top_label">
-              <label for="" class="form-label">
-                تاريخ الانتهاء
-              </label>
+              <label for="" class="form-label"> تاريخ الانتهاء </label>
               <v-menu
                 ref="dateEndModal"
                 v-model="dateEndModal"
@@ -117,9 +115,9 @@
                 <!-- multiple -->
                 <v-date-picker
                   @input="
-                    getResult()
-                    dateEndModal = false
-                    $refs.dateEndModal.save(frmData.dateEnd)
+                    getResult();
+                    dateEndModal = false;
+                    $refs.dateEndModal.save(frmData.dateEnd);
                   "
                   v-model="frmData.dateEnd"
                   no-title
@@ -129,10 +127,10 @@
                     text
                     color="primary"
                     @click="
-                      frmData.dateEnd = ''
-                      $refs.dateEndModal.save(frmData.dateEnd)
-                      dateEndModal = false
-                      getResult()
+                      frmData.dateEnd = '';
+                      $refs.dateEndModal.save(frmData.dateEnd);
+                      dateEndModal = false;
+                      getResult();
                     "
                   >
                     الغاء
@@ -163,13 +161,11 @@
         </div> -->
         <div
           class="categories col-sm-6 col-md-4 col-xxl-3"
-          v-if="(users && clients)"
+          v-if="users && clients"
         >
           <div class="select-wrapper">
             <div class="input_wrapper top_label auto_complete">
-              <label for="" class="form-label">
-                المستخدمين
-              </label>
+              <label for="" class="form-label"> المستخدمين </label>
 
               <v-autocomplete
                 v-model="frmData.user"
@@ -191,7 +187,7 @@
 </template>
 
 <script>
-import _ from 'lodash'
+import _ from "lodash";
 export default {
   props: {
     type: {
@@ -231,49 +227,49 @@ export default {
         user: null,
       },
       userKey: {
-        input: '',
-        keyword: '',
+        input: "",
+        keyword: "",
       },
-    }
+    };
   },
   watch: {
-    ['userKey.input'](newVal) {
+    ["userKey.input"](newVal) {
       if (newVal) {
-        this.userKey.keyword = newVal
+        this.userKey.keyword = newVal;
 
-        this.get_filterd_users()
+        this.get_filterd_users();
       }
     },
-    ['frmData.dateStart'](newVal) {
+    ["frmData.dateStart"](newVal) {
       if (newVal) {
-        this.getResult()
+        this.getResult();
       }
     },
-    ['frmData.dateEnd'](newVal) {
+    ["frmData.dateEnd"](newVal) {
       if (newVal) {
-        this.getResult()
+        this.getResult();
       }
     },
   },
   mounted() {
     if (this.$route.query.keyword) {
-      this.frmData.searchInput = this.$route.query.keyword
+      this.frmData.searchInput = this.$route.query.keyword;
       // this.getResult()
     }
   },
   methods: {
     getResult() {
-      this.$emit('getResult', this.frmData)
+      this.$emit("getResult", this.frmData);
     },
 
     setKeyWord(e) {
-      this.$router.replace(`?keyword=${e}`).catch(() => {})
+      this.$router.replace(`?keyword=${e}`).catch(() => {});
     },
   },
   watch: {
-    ['$route.query.keyword'](newVal) {
-      this.frmData.searchInput = newVal
-      this.getResult()
+    ["$route.query.keyword"](newVal) {
+      this.frmData.searchInput = newVal;
+      this.getResult();
     },
   },
 
@@ -281,17 +277,17 @@ export default {
     leaguesTypes() {
       return [
         {
-          name: 'دوري محلي',
-          value: 'league',
+          name: "دوري محلي",
+          value: "league",
         },
         {
-          name: 'دوري ابطال',
-          value: 'championship',
+          name: "دوري ابطال",
+          value: "championship",
         },
-      ]
+      ];
     },
   },
-}
+};
 </script>
 
 <style lang="scss">

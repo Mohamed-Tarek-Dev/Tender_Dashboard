@@ -62,10 +62,8 @@
             class="read_more_btn"
             v-if="item.text.length > 80"
           >
-          <span key="show_less" v-if="readMoreToggle">عرض اقل</span>
-          <span  key="show_more" v-else>عرض المزيد ...</span>
-          
-
+            <span key="show_less" v-if="readMoreToggle">عرض اقل</span>
+            <span key="show_more" v-else>عرض المزيد ...</span>
           </button>
 
           <div class="likes_shares_comments_wrapper">

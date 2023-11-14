@@ -60,7 +60,7 @@
                         </div>
                         <div class="info">
                           <h5 class="title">
-                            {{ $t('forms.labels.job_title') }}
+                            {{ $t("forms.labels.job_title") }}
                           </h5>
                           <p>
                             {{ allData.job_title }}
@@ -77,7 +77,7 @@
                         </div>
                         <div class="info">
                           <h5 class="title">
-                            {{ $t('forms.labels.desc') }}
+                            {{ $t("forms.labels.desc") }}
                           </h5>
                           <p>
                             {{ allData.desc }}
@@ -95,7 +95,7 @@
                         </div>
                         <div class="info">
                           <h5 class="title">
-                            {{ $t('forms.labels.company_name') }}
+                            {{ $t("forms.labels.company_name") }}
                           </h5>
                           <p>
                             {{ allData.company_name }}
@@ -111,9 +111,7 @@
                           <i class="fal fa-globe"></i>
                         </div>
                         <div class="info">
-                          <h5 class="title">
-                            الدولة
-                          </h5>
+                          <h5 class="title">الدولة</h5>
                           <p>
                             {{ allData.country.ar.name }}
                           </p>
@@ -128,9 +126,7 @@
                           <i class="fal fa-globe"></i>
                         </div>
                         <div class="info">
-                          <h5 class="title">
-                            المدينة
-                          </h5>
+                          <h5 class="title">المدينة</h5>
                           <p>
                             {{ allData.city.ar.name }}
                           </p>
@@ -151,11 +147,11 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-import RatingStars from '@/components/UI/RatingStars.vue'
-import UserRate from '@/components/Global/UserRate.vue'
+import { mapGetters } from "vuex";
+import RatingStars from "@/components/UI/RatingStars.vue";
+import UserRate from "@/components/Global/UserRate.vue";
 export default {
-  props: ['id'],
+  props: ["id"],
   components: {
     RatingStars,
     UserRate,
@@ -167,25 +163,25 @@ export default {
       // ========== Breadcrumbs
       items: [
         {
-          text: this.$t('breadcrumb.mainPage'),
+          text: this.$t("breadcrumb.mainPage"),
           disabled: false,
-          href: '/',
+          href: "/",
         },
         {
-          text: this.$t('breadcrumb.jobs.title'),
+          text: this.$t("breadcrumb.jobs.title"),
           disabled: false,
-          href: '/jobs/show-all',
+          href: "/jobs/show-all",
         },
         {
-          text: this.$t('breadcrumb.jobs.all'),
+          text: this.$t("breadcrumb.jobs.all"),
           disabled: true,
-          href: '',
+          href: "",
         },
       ],
       // ========== Model
       model_1: {
         show_model: false,
-        model_img_src: '',
+        model_img_src: "",
       },
       //Data
       allData: null,
@@ -197,144 +193,144 @@ export default {
 
       orderStatusItems: [
         {
-          text: 'قبول',
-          value: 'admin_accept',
+          text: "قبول",
+          value: "admin_accept",
         },
-        { text: 'رفض', value: 'admin_reject' },
+        { text: "رفض", value: "admin_reject" },
       ],
-    }
+    };
   },
   watch: {
     [`paginations.current_page`]() {},
   },
   computed: {
     ...mapGetters({
-      lang: 'lang_module/lang',
+      lang: "lang_module/lang",
     }),
     headers() {
       return [
         {
-          text: '#',
-          align: 'center',
-          value: 'id',
+          text: "#",
+          align: "center",
+          value: "id",
           sortable: true,
         },
         {
-          text: 'صوره',
-          align: 'center',
-          value: 'tender_images',
+          text: "صوره",
+          align: "center",
+          value: "tender_images",
           sortable: false,
         },
         {
-          text: 'الاسم',
-          align: 'center',
-          value: 'title',
+          text: "الاسم",
+          align: "center",
+          value: "title",
           sortable: false,
         },
         {
-          text: 'الوصف',
-          align: 'center',
-          value: 'desc',
+          text: "الوصف",
+          align: "center",
+          value: "desc",
           sortable: false,
         },
         {
-          text: 'منتهي؟',
-          align: 'center',
-          value: 'is_expired',
+          text: "منتهي؟",
+          align: "center",
+          value: "is_expired",
           sortable: false,
         },
 
         {
-          text: 'الحالة',
-          align: 'center',
-          value: 'status',
+          text: "الحالة",
+          align: "center",
+          value: "status",
           sortable: false,
         },
-      ]
+      ];
     },
   },
   methods: {
     changeStatus(currStatus) {
-      this.btnIsLoading = true
-      let submit_data = new FormData()
-      submit_data.append('_method', 'PUT')
-      submit_data.append('status', currStatus)
+      this.btnIsLoading = true;
+      let submit_data = new FormData();
+      submit_data.append("_method", "PUT");
+      submit_data.append("status", currStatus);
       this.$axios({
-        method: 'POST',
+        method: "POST",
         url: `job/${this.allData.id}/change_status`,
         data: submit_data,
       })
         .then(() => {
           this.$iziToast.success({
             timeout: 2000,
-            message: this.$t('sendSuccess'),
-            position: 'bottomRight',
-          })
+            message: this.$t("sendSuccess"),
+            position: "bottomRight",
+          });
           // this.$router.push({ path: "/transactions/all-transactions" });
-          this.btnIsLoading = false
-          this.setRows()
+          this.btnIsLoading = false;
+          this.setRows();
         })
         .catch((err) => {
           // console.log(err)
-          if (err.response.data.status == 'fail') {
+          if (err.response.data.status == "fail") {
             this.$iziToast.error({
               timeout: 2000,
               message: err.response.data.message,
-              position: 'bottomRight',
-            })
+              position: "bottomRight",
+            });
           }
-          this.setRows()
-          this.btnIsLoading = false
-        })
+          this.setRows();
+          this.btnIsLoading = false;
+        });
     },
 
     orderStatus(status) {
-      if (status == 'pending') {
-        return 'جاري التنفيذ'
-      } else if (status == 'admin_accept') {
-        return 'تم القبول'
-      } else if (status == 'admin_reject') {
-        return 'تم الرفض '
+      if (status == "pending") {
+        return "جاري التنفيذ";
+      } else if (status == "admin_accept") {
+        return "تم القبول";
+      } else if (status == "admin_reject") {
+        return "تم الرفض ";
       }
     },
     // ===== Search Method =====
     filterClick(word) {
       if (!this.loading) {
-        this.search = word
-        this.helper_filterSearch()
+        this.search = word;
+        this.helper_filterSearch();
       }
     },
     // img Model
     show_model_1(e) {
-      this.model_1.model_img_src = e.target.src
-      this.model_1.show_model = true
+      this.model_1.model_img_src = e.target.src;
+      this.model_1.show_model = true;
     },
     //Get Prosuct
     getJobs() {
-      this.loading = true
+      this.loading = true;
       this.$axios({
-        method: 'GET',
+        method: "GET",
         url: `jobs/${this.id}`,
       }).then((res) => {
-        this.loading = false
-        this.allData = res.data.data
-      })
+        this.loading = false;
+        this.allData = res.data.data;
+      });
     },
 
     // Start:: Sync Slider Behavior Method
     syncSliderBehavior(_, nextPosition) {
-      this.$refs.c1.goTo(nextPosition)
-      this.$refs.c2.goTo(nextPosition)
+      this.$refs.c1.goTo(nextPosition);
+      this.$refs.c2.goTo(nextPosition);
     },
     // End:: Sync Slider Behavior Method
   },
   // ======= hooks
   mounted() {
-    this.c1 = this.$refs.c1
-    this.c2 = this.$refs.c2
-    this.getJobs()
+    this.c1 = this.$refs.c1;
+    this.c2 = this.$refs.c2;
+    this.getJobs();
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>

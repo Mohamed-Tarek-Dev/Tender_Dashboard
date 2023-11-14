@@ -17,7 +17,7 @@
                       </div>
                       <div class="info">
                         <h5 class="title">
-                          {{ $t('forms.labels.name') }}
+                          {{ $t("forms.labels.name") }}
                         </h5>
                         <p>
                           {{ userInfo.name }}
@@ -34,10 +34,10 @@
                       </div>
                       <div class="info">
                         <h5 class="title">
-                          {{ $t('forms.labels.gender') }}
+                          {{ $t("forms.labels.gender") }}
                         </h5>
                         <p>
-                          {{ userInfo.gender == 'male' ? 'مذكر' : 'مؤنث' }}
+                          {{ userInfo.gender == "male" ? "مذكر" : "مؤنث" }}
                         </p>
                       </div>
                     </div>
@@ -51,7 +51,7 @@
                       </div>
                       <div class="info">
                         <h5 class="title">
-                          {{ $t('forms.labels.phone') }}
+                          {{ $t("forms.labels.phone") }}
                         </h5>
                         <p>
                           {{ userInfo.phone }}
@@ -68,7 +68,7 @@
                       </div>
                       <div class="info">
                         <h5 class="title">
-                          {{ $t('forms.labels.email') }}
+                          {{ $t("forms.labels.email") }}
                         </h5>
                         <p>
                           {{ userInfo.email }}
@@ -85,7 +85,7 @@
                       </div>
                       <div class="info">
                         <h5 class="title">
-                          {{ $t('forms.labels.country') }}
+                          {{ $t("forms.labels.country") }}
                         </h5>
                         <p>
                           {{ userInfo.country.name }}
@@ -102,7 +102,7 @@
                       </div>
                       <div class="info">
                         <h5 class="title">
-                          {{ $t('forms.labels.city') }}
+                          {{ $t("forms.labels.city") }}
                         </h5>
                         <p>
                           {{ userInfo.city.name }}
@@ -124,7 +124,7 @@
                             userInfo.is_active ? 'color:green' : 'color:red'
                           "
                         >
-                          {{ userInfo.is_active ? 'مفعل' : 'غير مفعل' }}
+                          {{ userInfo.is_active ? "مفعل" : "غير مفعل" }}
                         </p>
                       </div>
                     </div>
@@ -143,7 +143,7 @@
                             !userInfo.is_ban ? 'color:green' : 'color:red'
                           "
                         >
-                          {{ !userInfo.is_ban ? 'غير محظور' : 'محظور' }}
+                          {{ !userInfo.is_ban ? "غير محظور" : "محظور" }}
                         </p>
                       </div>
                     </div>
@@ -157,7 +157,7 @@
                       </div>
                       <div class="info">
                         <h5 class="title">
-                          {{ $t('forms.labels.ban_reason') }}
+                          {{ $t("forms.labels.ban_reason") }}
                         </h5>
                         <p>
                           {{ userInfo.ban_reason }}
@@ -176,29 +176,29 @@
 </template>
 <script>
 export default {
-  props: ['userInfo'],
+  props: ["userInfo"],
 
   data() {
     return {
       data: {},
-    }
+    };
   },
 
   computed: {
     isActive() {
-      return this.userInfo.is_active ? this.$t('active') : this.$t('inactive')
+      return this.userInfo.is_active ? this.$t("active") : this.$t("inactive");
     },
 
     isBan() {
-      return this.userInfo.is_ban ? this.$t('ban') : this.$t('inban')
+      return this.userInfo.is_ban ? this.$t("ban") : this.$t("inban");
     },
     isActiveManager() {
-      return this.userInfo.is_ban ? 'غير مفعل' : ' مفعل'
+      return this.userInfo.is_ban ? "غير مفعل" : " مفعل";
     },
   },
 
   methods: {},
-}
+};
 </script>
 
 <style>

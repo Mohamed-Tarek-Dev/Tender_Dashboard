@@ -98,9 +98,7 @@
 
             <!-- ======================== Start Top Section ======================== -->
             <template v-slot:top>
-              <h3 class="title table-title">
-                الاشعارات
-              </h3>
+              <h3 class="title table-title">الاشعارات</h3>
               <!-- Delete dialog -->
               <v-dialog v-model="dialogDelete" max-width="500px">
                 <v-card>

@@ -26,9 +26,9 @@
 
 <script>
 export default {
-  name: 'DonutChart',
+  name: "DonutChart",
 
-  props: ['ChartLabels', 'ChartData'],
+  props: ["ChartLabels", "ChartData"],
 
   data() {
     return {
@@ -41,7 +41,7 @@ export default {
           pie: {
             customScale: 0.8,
             donut: {
-              size: '80%',
+              size: "80%",
               labels: {
                 show: true,
                 name: {
@@ -52,8 +52,8 @@ export default {
                 },
                 total: {
                   show: true,
-                  label: 'الطلبات',
-                  color: '#29479A',
+                  label: "الطلبات",
+                  color: "#29479A",
                   //   formatter: function (w) {
                   //     return w.globals.seriesTotals.reduce((a, b) => {
                   //       return a + b;
@@ -69,17 +69,17 @@ export default {
           },
         },
         colors: [
-          '#4EF2A0',
-          '#29479A',
-          '#249AD5',
-          '#FF4560',
-          '#11324D',
-          '#7D5A50',
-          '#F76E11',
+          "#4EF2A0",
+          "#29479A",
+          "#249AD5",
+          "#FF4560",
+          "#11324D",
+          "#7D5A50",
+          "#F76E11",
         ],
         labels: this.ChartLabels,
         legend: {
-          position: 'bottom',
+          position: "bottom",
           offsetY: 0,
           offsetX: 0,
         },
@@ -87,7 +87,7 @@ export default {
 
       donutChartSeries: this.ChartData,
       // END:: DONUT CHART DATA
-    }
+    };
   },
-}
+};
 </script>

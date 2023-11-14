@@ -23,30 +23,30 @@
 </template>
 <script>
 export default {
-  props: ['data', 'categoryId'],
+  props: ["data", "categoryId"],
   data() {
     return {
       open: false,
-    }
+    };
   },
   computed: {
     icon() {
       return {
-        'fa-plus': !this.open,
-        'fa-minus': this.open,
-      }
+        "fa-plus": !this.open,
+        "fa-minus": this.open,
+      };
     },
     isFolder() {
-      return this.data.children && this.data.children.length
+      return this.data.children && this.data.children.length;
     },
     isShow() {
-      return this.open ? 'show' : 'hide'
+      return this.open ? "show" : "hide";
     },
   },
   methods: {
     toggle() {
-      this.open = !this.open
+      this.open = !this.open;
     },
   },
-}
+};
 </script>

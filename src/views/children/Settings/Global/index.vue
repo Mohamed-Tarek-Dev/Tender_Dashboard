@@ -2,7 +2,7 @@
   <div class="create_wrapper custom_card">
     <!-- START:: CARD TITLE -->
     <div class="card-header">
-      <h4 class="card-title">{{ $t('CRUD.Update.main_title') }}</h4>
+      <h4 class="card-title">{{ $t("CRUD.Update.main_title") }}</h4>
     </div>
     <!-- END:: CARD TITLE -->
 
@@ -48,7 +48,7 @@
                 v-model.trim="updateData.phone"
               />
               <label class="form-label">
-                {{ $t('settings.contactData.phone') }}
+                {{ $t("settings.contactData.phone") }}
               </label>
             </div>
           </div>
@@ -65,7 +65,7 @@
                 v-model.trim="updateData.email"
               />
               <label class="form-label">
-                {{ $t('settings.contactData.email') }}
+                {{ $t("settings.contactData.email") }}
               </label>
             </div>
           </div>
@@ -82,7 +82,7 @@
                 v-model.trim="updateData.whatsapp"
               />
               <label class="form-label">
-                {{ $t('settings.contactData.whatsapp') }}
+                {{ $t("settings.contactData.whatsapp") }}
               </label>
             </div>
           </div>
@@ -99,7 +99,7 @@
                 v-model.trim="updateData.facebook"
               />
               <label class="form-label">
-                {{ $t('settings.contactData.facebook') }}
+                {{ $t("settings.contactData.facebook") }}
               </label>
             </div>
           </div>
@@ -114,9 +114,7 @@
                 @input="checkIfInputIsEmpty"
                 v-model.trim="updateData.messenger"
               />
-              <label class="form-label">
-                رابط الماسنجر
-              </label>
+              <label class="form-label"> رابط الماسنجر </label>
             </div>
           </div>
           <!-- END:: INPUT WRAPPER -->
@@ -132,7 +130,7 @@
                 v-model.trim="updateData.twitter"
               />
               <label class="form-label">
-                {{ $t('settings.contactData.twitter') }}
+                {{ $t("settings.contactData.twitter") }}
               </label>
             </div>
           </div>
@@ -149,7 +147,7 @@
                 v-model.trim="updateData.youtube"
               />
               <label class="form-label">
-                {{ $t('settings.contactData.youtube') }}
+                {{ $t("settings.contactData.youtube") }}
               </label>
             </div>
           </div>
@@ -166,7 +164,7 @@
                 v-model.trim="updateData.instagram"
               />
               <label class="form-label">
-                {{ $t('settings.contactData.instagram') }}
+                {{ $t("settings.contactData.instagram") }}
               </label>
             </div>
           </div>
@@ -338,7 +336,7 @@
                 :center="center"
                 :zoom="12"
                 map-type-id="terrain"
-                style="width: 100%; height: 600px;"
+                style="width: 100%; height: 600px"
               >
                 <GmapMarker
                   v-for="(m, index) in markers"
@@ -359,7 +357,7 @@
       <div class="buttons_wrapper">
         <!-- START:: BUTTON -->
         <button class="button_style_1" :class="btnIsLoading ? 'disabled' : ''">
-          {{ $t('forms.submit') }}
+          {{ $t("forms.submit") }}
           <span class="btn_loader" v-if="btnIsLoading"></span>
         </button>
         <!-- END:: BUTTON -->
@@ -371,7 +369,7 @@
 
 <script>
 export default {
-  name: 'Update',
+  name: "Update",
   data() {
     return {
       // START:: BUTTON LOADER HANDLING DATA
@@ -407,17 +405,17 @@ export default {
       },
       // END:: CREATE DATA
       accepted: [
-        { value: 'automatic', name: 'اوتوماتيك' },
-        { value: 'manually', name: 'يدوي' },
+        { value: "automatic", name: "اوتوماتيك" },
+        { value: "manually", name: "يدوي" },
       ],
       smsStatus: [
-        { name: 'مفعل', value: 'enable' },
-        { name: 'غير مفعل', value: 'disable' },
+        { name: "مفعل", value: "enable" },
+        { name: "غير مفعل", value: "disable" },
       ],
       smsProviders: [
-        { name: 'HISMS', value: 'hisms' },
-        { name: 'Net powers', value: 'net_powers' },
-        { name: 'SMS Gateway', value: 'sms_gateway' },
+        { name: "HISMS", value: "hisms" },
+        { name: "Net powers", value: "net_powers" },
+        { name: "SMS Gateway", value: "sms_gateway" },
       ],
       // START:: MAP
       center: {
@@ -428,7 +426,7 @@ export default {
       markers: [],
       coordinates_to_edit: { lat: 0, lng: 0 },
       // END:: MAP
-    }
+    };
   },
   methods: {
     // START:: UPDATE LOCATION
@@ -436,11 +434,11 @@ export default {
       this.updateData = {
         lat: location.latLng.lat(),
         lng: location.latLng.lng(),
-      }
+      };
     },
 
     clickMethod(m) {
-      this.center = m.position
+      this.center = m.position;
     },
     // END:: UPDATE LOCATION
 
@@ -455,50 +453,50 @@ export default {
                 lng: position.coords.longitude,
               },
             },
-          ]
-          this.center = this.markers[0].position
-          this.updateData.lat = this.center.lat
-          this.updateData.lng = this.center.lng
-        })
+          ];
+          this.center = this.markers[0].position;
+          this.updateData.lat = this.center.lat;
+          this.updateData.lng = this.center.lng;
+        });
       }
     },
 
     // START:: G-MAP GET ADDRESS
     getAddressAr() {
-      var self = this
-      var input = document.getElementById('autocomplete_ar')
-      var searchBox = new google.maps.places.SearchBox(input)
-      searchBox.addListener('places_changed', function () {
-        var places = searchBox.getPlaces()
+      var self = this;
+      var input = document.getElementById("autocomplete_ar");
+      var searchBox = new google.maps.places.SearchBox(input);
+      searchBox.addListener("places_changed", function () {
+        var places = searchBox.getPlaces();
         if (places.length == 0) {
-          return
+          return;
         }
-        var bounds = new google.maps.LatLngBounds()
+        var bounds = new google.maps.LatLngBounds();
         places.forEach(function (place) {
-          bounds.extend(place.geometry.location)
-          place.geometry.location.lat()
-          place.geometry.location.lng()
-          place.formatted_address
-          self.updateData.address = place.formatted_address
-          self.center.lat = place.geometry.location.lat()
-          self.center.lng = place.geometry.location.lng()
-          self.updateData.lat = place.geometry.location.lat()
-          self.updateData.lng = place.geometry.location.lng()
-          self.markers[0].position.lat = place.geometry.location.lat()
-          self.markers[0].position.lng = place.geometry.location.lat()
-        })
-      })
+          bounds.extend(place.geometry.location);
+          place.geometry.location.lat();
+          place.geometry.location.lng();
+          place.formatted_address;
+          self.updateData.address = place.formatted_address;
+          self.center.lat = place.geometry.location.lat();
+          self.center.lng = place.geometry.location.lng();
+          self.updateData.lat = place.geometry.location.lat();
+          self.updateData.lng = place.geometry.location.lng();
+          self.markers[0].position.lat = place.geometry.location.lat();
+          self.markers[0].position.lng = place.geometry.location.lat();
+        });
+      });
     },
 
     // START:: G-MAP GET ADDRESS
 
     // START:: CHECK IF INPUT IS EMPTY (SPECIFIC TO ANIMATED PLACEHOLDER INPUTS)
     checkIfInputIsEmpty(e) {
-      let inputElement = e.currentTarget
+      let inputElement = e.currentTarget;
       if (inputElement.value.length > 0) {
-        inputElement.classList.add('not_empty')
+        inputElement.classList.add("not_empty");
       } else {
-        inputElement.classList.remove('not_empty')
+        inputElement.classList.remove("not_empty");
       }
     },
     // END:: CHECK IF INPUT IS EMPTY (SPECIFIC TO ANIMATED PLACEHOLDER INPUTS)
@@ -506,29 +504,29 @@ export default {
     //START:: GET DATA
     getData() {
       this.$axios({
-        method: 'GET',
-        url: 'settings',
+        method: "GET",
+        url: "settings",
       }).then((res) => {
-        const result = res.data.data
+        const result = res.data.data;
         for (let [key, value] of Object.entries(result)) {
           if (this.updateData.hasOwnProperty(key)) {
-            this.updateData[key] = value
+            this.updateData[key] = value;
           }
         }
         if (res.data.data.sms_provider) {
           this.updateData.sms_provider = this.smsProviders.find(
-            (el) => el.value == res.data.data.sms_provider,
-          )
+            (el) => el.value == res.data.data.sms_provider
+          );
         }
         if (res.data.data.use_sms_service) {
           this.updateData.use_sms_service = this.smsStatus.find(
-            (el) => el.value == res.data.data.use_sms_service,
-          )
+            (el) => el.value == res.data.data.use_sms_service
+          );
         }
         if (res.data.data.accepted) {
           this.updateData.accepted = this.accepted.find(
-            (el) => el.value == res.data.data.accepted,
-          )
+            (el) => el.value == res.data.data.accepted
+          );
         }
 
         this.markers = [
@@ -538,15 +536,15 @@ export default {
               lng: +res.data.data.lng,
             },
           },
-        ]
-        this.center = this.markers[0].position
-      })
+        ];
+        this.center = this.markers[0].position;
+      });
     },
     //END:: GET DATA
 
     // START:: VALIDATE CREATE FORM
     validateCreateForm() {
-      this.btnIsLoading = true
+      this.btnIsLoading = true;
       // if (!this.updateData.phone) {
       //   this.$iziToast.error({
       //     timeout: 2000,
@@ -556,38 +554,38 @@ export default {
       //   this.btnIsLoading = false
       //   return
       // } else {
-      const data = new FormData()
+      const data = new FormData();
       for (const [key, value] of Object.entries(this.updateData)) {
         if (value) {
-          if (typeof value == 'object') {
-            data.append(key, value.value)
+          if (typeof value == "object") {
+            data.append(key, value.value);
           } else {
-            data.append(key, value)
+            data.append(key, value);
           }
         }
       }
       this.$axios({
-        method: 'post',
-        url: 'settings',
+        method: "post",
+        url: "settings",
         data: data,
       })
         .then(() => {
           this.$iziToast.success({
             timeout: 2000,
-            message: this.$t('editSuccess'),
-            position: 'bottomRight',
-          })
-          this.btnIsLoading = false
-          this.$router.push({ path: '/' })
+            message: this.$t("editSuccess"),
+            position: "bottomRight",
+          });
+          this.btnIsLoading = false;
+          this.$router.push({ path: "/" });
         })
         .catch((err) => {
           this.$iziToast.error({
             timeout: 2000,
             message: err.response.data.message,
-            position: 'bottomRight',
-          })
-          this.btnIsLoading = false
-        })
+            position: "bottomRight",
+          });
+          this.btnIsLoading = false;
+        });
     },
     // END:: VALIDATE CREATE FORM
   },
@@ -595,21 +593,21 @@ export default {
     shipping_on() {
       return [
         {
-          id: 'city',
-          name: 'مدينة',
+          id: "city",
+          name: "مدينة",
         },
         {
-          id: 'distance',
-          name: 'مسافة',
+          id: "distance",
+          name: "مسافة",
         },
-      ]
+      ];
     },
   },
   mounted() {
-    this.getData()
+    this.getData();
   },
   created() {
-    this.getLocation()
+    this.getLocation();
   },
-}
+};
 </script>

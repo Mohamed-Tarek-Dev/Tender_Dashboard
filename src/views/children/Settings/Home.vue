@@ -34,15 +34,15 @@ export default {
   data() {
     return {
       navs_link: [
-        { name: 'global', path: '/settings' },
-        { name: 'about', path: '/settings/about' },
-        { name: 'terms', path: '/settings/terms' },
-        { name: 'policy', path: '/settings/policy' },
-        { name: 'whyus', path: '/settings/whyus' },
+        { name: "global", path: "/settings" },
+        { name: "about", path: "/settings/about" },
+        { name: "terms", path: "/settings/terms" },
+        { name: "policy", path: "/settings/policy" },
+        { name: "whyus", path: "/settings/whyus" },
       ],
-    }
+    };
   },
-}
+};
 </script>
 <style lang="scss">
 .v-sheet.settings-tab {

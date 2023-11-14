@@ -6,26 +6,23 @@
       <!-- (data-wave_id) A Custom Attribute To Select Sound Wave To Handling Play Audio While Other Audio Is Playing -->
       <!-- (data-play_btn_id) A Custom Attribute To Select Play Button To Handling Play Audio While Other Audio Is Playing -->
       <!-- (data-paus_btn_id) A Custom Attribute To Select Pause Button To Handling Play Audio While Other Audio Is Playing -->
-      <audio 
-        class="audio_tag" 
-        :ref="`sound_tag_${item.id}`" 
-        :id="`sound_tag_${item.id}`"  
-        :data-wave_id="`sound_wave_${item.id}`" 
-        :data-play_btn_id="`play_btn_${item.id}`"  
-        :data-paus_btn_id="`paus_btn_${item.id}`"  
+      <audio
+        class="audio_tag"
+        :ref="`sound_tag_${item.id}`"
+        :id="`sound_tag_${item.id}`"
+        :data-wave_id="`sound_wave_${item.id}`"
+        :data-play_btn_id="`play_btn_${item.id}`"
+        :data-paus_btn_id="`paus_btn_${item.id}`"
         controls
       >
-        <source :src="item.sound" type="audio/mpeg">
-        <source :src="item.sound" type="audio/wav">
+        <source :src="item.sound" type="audio/mpeg" />
+        <source :src="item.sound" type="audio/wav" />
         Your browser does not support the audio tag.
       </audio>
       <!-- ********** End:: Audio Tag ********** -->
 
       <!-- ********** Start:: Media Card Image ********** -->
-      <img
-        class="media_image"
-        :src="item.image"
-      />
+      <img class="media_image" :src="item.image" />
       <!-- ********** End:: Media Card Image ********** -->
 
       <!-- ********** Start:: Controle Media Buttons ********** -->
@@ -34,13 +31,16 @@
         <div class="add_by_content_wrapper">
           <div class="wrapper" v-if="item.added_by">
             <div class="videos_count">
-              <span> {{item.videos_count}} </span>
+              <span> {{ item.videos_count }} </span>
               <i class="fal fa-video"></i>
             </div>
 
-            <router-link :to="`/users/show/${item.added_by.id}`" class="user_content_wrapper">
+            <router-link
+              :to="`/users/show/${item.added_by.id}`"
+              class="user_content_wrapper"
+            >
               <div class="name">
-                {{item.added_by.username}}
+                {{ item.added_by.username }}
               </div>
 
               <div class="avatar">
@@ -54,32 +54,44 @@
             </router-link>
           </div>
 
-          <p class="track_name"> {{item.name}} </p>
+          <p class="track_name">{{ item.name }}</p>
         </div>
         <!-- End:: Added By User Section -->
 
         <transition-group name="fadeInUp" mode="out-in">
-          <button 
+          <button
             class="play_btn"
             :id="`play_btn_${item.id}`"
-            :key="`play_btn_${item.id}`" 
-            @click="palyAudioTrack($event, `sound_tag_${item.id}`, `sound_wave_${item.id}`)"
-          > 
-            <i class="fal fa-play"></i> 
+            :key="`play_btn_${item.id}`"
+            @click="
+              palyAudioTrack(
+                $event,
+                `sound_tag_${item.id}`,
+                `sound_wave_${item.id}`
+              )
+            "
+          >
+            <i class="fal fa-play"></i>
           </button>
 
-          <button 
-            class="paus_btn" 
+          <button
+            class="paus_btn"
             :id="`paus_btn_${item.id}`"
-            :key="`paus_btn_${item.id}`" 
-            @click="pausAudioTrack($event, `sound_tag_${item.id}`, `sound_wave_${item.id}`)"
-          > 
-            <i class="fal fa-pause"></i> 
+            :key="`paus_btn_${item.id}`"
+            @click="
+              pausAudioTrack(
+                $event,
+                `sound_tag_${item.id}`,
+                `sound_wave_${item.id}`
+              )
+            "
+          >
+            <i class="fal fa-pause"></i>
           </button>
 
           <SoundWave
-            :key="`sound_wave_${item.id}`" 
-            :id="`sound_wave_${item.id}`" 
+            :key="`sound_wave_${item.id}`"
+            :id="`sound_wave_${item.id}`"
           />
         </transition-group>
       </div>
@@ -93,7 +105,7 @@
       <div class="action_buttons">
         <button class="edit" @click="editItem(item)">
           <i class="fal fa-edit"></i>
-        </button>   
+        </button>
 
         <button class="delete" @click="deleteItem(item)">
           <i class="fal fa-trash-alt"></i>
@@ -106,7 +118,6 @@
 
 <script>
 import SoundWave from "@/components/UI/SoundWave.vue";
-
 
 export default {
   name: "SoundMediaCard",
@@ -121,12 +132,11 @@ export default {
     item: {
       type: Object,
       required: true,
-    }
+    },
   },
 
   data() {
-    return {
-    }
+    return {};
   },
 
   methods: {
@@ -156,23 +166,33 @@ export default {
       let allAudioElements = document.querySelectorAll(".audio_tag");
 
       // Convert (allAudioElements) To An Array Filter It To Remove The Current Playing Audio
-      let allAudioElementsExceptTargetAudioElement = [...allAudioElements].filter(element => element.id != this.$refs[targetElement].id);
+      let allAudioElementsExceptTargetAudioElement = [
+        ...allAudioElements,
+      ].filter((element) => element.id != this.$refs[targetElement].id);
 
       // Convert (allAudioElementsExceptTargetAudioElement) To An Array And Loop On It To Get Access To Any Other Audio Except The Playing One
-      [...allAudioElementsExceptTargetAudioElement].forEach(singleAudioElement => {
-        singleAudioElement.pause(); // Pause All Other Audio Elements
-        singleAudioElement.currentTime = 0; // Set All Other Audios Time To Start Time "Simulate Stop The Track"
-        document.getElementById(singleAudioElement.dataset.wave_id).style.display = "none"; // Remove All Other Sound Waves
-        document.getElementById(singleAudioElement.dataset.play_btn_id).style.display = "block"; // Display All Play Buttons Except The Playing Audio One
-        document.getElementById(singleAudioElement.dataset.paus_btn_id).style.display = "none"; // Remove All Other Pause Buttons
-      });
+      [...allAudioElementsExceptTargetAudioElement].forEach(
+        (singleAudioElement) => {
+          singleAudioElement.pause(); // Pause All Other Audio Elements
+          singleAudioElement.currentTime = 0; // Set All Other Audios Time To Start Time "Simulate Stop The Track"
+          document.getElementById(
+            singleAudioElement.dataset.wave_id
+          ).style.display = "none"; // Remove All Other Sound Waves
+          document.getElementById(
+            singleAudioElement.dataset.play_btn_id
+          ).style.display = "block"; // Display All Play Buttons Except The Playing Audio One
+          document.getElementById(
+            singleAudioElement.dataset.paus_btn_id
+          ).style.display = "none"; // Remove All Other Pause Buttons
+        }
+      );
       // ********** End:: Stop All Other Audios
 
       setTimeout(() => {
         pausButton.style.display = "none";
         soundWave.style.display = "none";
         playButton.style.display = "block";
-      }, (Math.round(trackDuration)*1000)+1000);
+      }, Math.round(trackDuration) * 1000 + 1000);
     },
     // End:: Play The Track
 
@@ -191,5 +211,5 @@ export default {
     },
     // End:: Paus The Track
   },
-}
+};
 </script>

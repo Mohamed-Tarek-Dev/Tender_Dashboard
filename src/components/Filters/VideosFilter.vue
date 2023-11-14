@@ -2,19 +2,23 @@
   <div class="main_filter_content_wrapper">
     <!-- Start:: Filter Divider -->
     <div class="divider">
-      <h4>{{ $t('searchAt', { filterTitle: title }) }}</h4>
-      <hr role="separator" aria-orientation="horizontal" class="v-divider theme--dark" />
+      <h4>{{ $t("searchAt", { filterTitle: title }) }}</h4>
+      <hr
+        role="separator"
+        aria-orientation="horizontal"
+        class="v-divider theme--dark"
+      />
     </div>
     <!-- End:: Filter Divider -->
 
     <!-- Start:: Filter Row -->
     <div class="row">
       <!-- ********** Start:: Video Name Input ********** -->
-      <div class="py-0" :class="{ 'col-lg-4': !type , 'col-lg-6': type}">
+      <div class="py-0" :class="{ 'col-lg-4': !type, 'col-lg-6': type }">
         <div class="input_wrapper top_label">
           <input type="text" class="form-control" v-model="filterKeys.text" />
           <label for="name_input" class="form-label">{{
-              $t("forms.labels.video_name")
+            $t("forms.labels.video_name")
           }}</label>
         </div>
       </div>
@@ -24,9 +28,16 @@
       <div class="col-lg-4 py-0" v-if="!type">
         <div class="input_wrapper top_label auto_complete">
           <label class="form-label">{{ $t("username") }}</label>
-          <v-autocomplete v-model="filterKeys.user" :search-input.sync="filterKeyWords.user"
-            :items="selectLists.users" item-text="fullname" return-object @input="addUserData(filterKeys.user)"
-            :hide-no-data="!selectLists.users" dense></v-autocomplete>
+          <v-autocomplete
+            v-model="filterKeys.user"
+            :search-input.sync="filterKeyWords.user"
+            :items="selectLists.users"
+            item-text="fullname"
+            return-object
+            @input="addUserData(filterKeys.user)"
+            :hide-no-data="!selectLists.users"
+            dense
+          ></v-autocomplete>
           <button class="button_style_1 load_inline" v-if="isGettingUsers">
             <span class="btn_loader"></span>
           </button>
@@ -35,12 +46,19 @@
       <!-- ********** End:: Users Input ********** -->
 
       <!-- ********** Start:: Hashtag Input ********** -->
-      <div class="py-0" :class="{ 'col-lg-4': !type , 'col-lg-6': type}">
+      <div class="py-0" :class="{ 'col-lg-4': !type, 'col-lg-6': type }">
         <div class="input_wrapper top_label auto_complete">
           <label class="form-label">{{ $t("hashtag") }}</label>
-          <v-autocomplete v-model="filterKeys.hashtag" :search-input.sync="filterKeyWords.hashtag"
-            :items="selectLists.hashtags" item-text="name" return-object @input="addHashtagData(filterKeys.hashtag)"
-            :hide-no-data="!selectLists.hashtags" dense></v-autocomplete>
+          <v-autocomplete
+            v-model="filterKeys.hashtag"
+            :search-input.sync="filterKeyWords.hashtag"
+            :items="selectLists.hashtags"
+            item-text="name"
+            return-object
+            @input="addHashtagData(filterKeys.hashtag)"
+            :hide-no-data="!selectLists.hashtags"
+            dense
+          ></v-autocomplete>
           <button class="button_style_1 load_inline" v-if="isGettingHashtags">
             <span class="btn_loader"></span>
           </button>
@@ -107,7 +125,7 @@ export default {
         hashtag_name: null,
       },
       //  ====== End:: Filter Keys
-    }
+    };
   },
 
   watch: {
@@ -142,12 +160,11 @@ export default {
   methods: {
     // Start:: Users Filter
     addUserData(item) {
-      console.log(item)
+      console.log(item);
       if (this.filterKeys.user) {
         this.filterKeys.user_id = item.id;
         this.filterKeys.user_name = item.fullname;
-      }
-      else {
+      } else {
         this.filterKeys.user_id = null;
         this.filterKeys.user_name = null;
       }
@@ -173,8 +190,7 @@ export default {
       if (this.filterKeys.hashtag) {
         this.filterKeys.hashtag_id = item.id;
         this.filterKeys.hashtag_name = item.name;
-      }
-      else {
+      } else {
         this.filterKeys.hashtag_id = null;
         this.filterKeys.hashtag_name = null;
       }
@@ -195,7 +211,7 @@ export default {
     },
     // End:: Hashtag Filter
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -227,7 +243,6 @@ export default {
   }
 
   .input_wrapper {
-
     input,
     .form-label {
       background-color: var(--mainBgColor);

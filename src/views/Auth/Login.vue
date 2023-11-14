@@ -6,8 +6,8 @@
           <div class="log-img mb-5">
             <img src="@/assets/images/icons/logo.png" width="250" height="80" />
           </div>
-          <h4 class="mt-4">{{ $t('auth.title') }}</h4>
-          <p>{{ $t('auth.desc') }}</p>
+          <h4 class="mt-4">{{ $t("auth.title") }}</h4>
+          <p>{{ $t("auth.desc") }}</p>
         </div>
 
         <form class="form form-horizontal" @submit.prevent="validateLoginForm">
@@ -24,7 +24,7 @@
                     @input="helper_checkIfInputIsEmpty"
                   />
                   <label for="login_email" class="form-label">
-                    {{ $t('forms.labels.email') }}
+                    {{ $t("forms.labels.email") }}
                   </label>
                 </div>
                 <!-- END:: EMAIL INPUT -->
@@ -47,7 +47,7 @@
                     @input="helper_checkIfInputIsEmpty"
                   />
                   <label for="login_pass" class="form-label">
-                    {{ $t('forms.labels.password') }}
+                    {{ $t("forms.labels.password") }}
                   </label>
                 </div>
                 <!-- END:: PASSWORD INPUT -->
@@ -57,7 +57,7 @@
 
           <div class="buttons_wrapper">
             <button class="button_style_1">
-              {{ $t('forms.login') }}
+              {{ $t("forms.login") }}
               <span class="btn_loader" v-if="btnIsLoading"></span>
             </button>
           </div>
@@ -83,87 +83,87 @@ export default {
         email: null,
         password: null,
       },
-    }
+    };
   },
 
   methods: {
     launch_resize_dispatch() {
-      this.$store.dispatch('sideNav_module/onResize')
+      this.$store.dispatch("sideNav_module/onResize");
     },
 
     validateLoginForm() {
-      this.btnIsLoading = true
+      this.btnIsLoading = true;
 
       if (!this.data.email) {
         this.$iziToast.error({
           timeout: 2000,
-          message: this.$t('forms.validation.email'),
-          position: 'bottomCenter',
-        })
-        this.btnIsLoading = false
-        return
+          message: this.$t("forms.validation.email"),
+          position: "bottomCenter",
+        });
+        this.btnIsLoading = false;
+        return;
       } else if (!this.data.password) {
         this.$iziToast.error({
           timeout: 2000,
-          message: this.$t('forms.validation.password'),
-          position: 'bottomCenter',
-        })
-        this.btnIsLoading = false
-        return
+          message: this.$t("forms.validation.password"),
+          position: "bottomCenter",
+        });
+        this.btnIsLoading = false;
+        return;
       } else {
-        this.submitLoginForm()
+        this.submitLoginForm();
       }
     },
 
     submitLoginForm() {
-      const submit_data = new FormData()
-      submit_data.append('email', this.data.email)
-      submit_data.append('password', this.data.password)
+      const submit_data = new FormData();
+      submit_data.append("email", this.data.email);
+      submit_data.append("password", this.data.password);
 
       this.$axios({
-        method: 'post',
-        url: 'login',
+        method: "post",
+        url: "login",
         data: submit_data,
       })
         .then((res) => {
-          console.log(res)
+          console.log(res);
           const data = {
             userId: res.data.data.id,
             token: res.data.data.token,
             userImage: res.data.data.avatar,
             userPhone: res.data.data.phone,
             // userType: res.data.data.user_type,
-          }
+          };
 
-          this.$store.dispatch('auth_module/logIn', data)
+          this.$store.dispatch("auth_module/logIn", data);
 
           this.$iziToast.success({
             timeout: 2000,
             message: res.response.data.message,
-            position: 'bottomRight',
-          })
+            position: "bottomRight",
+          });
 
-          this.btnIsLoading = false
+          this.btnIsLoading = false;
         })
         .catch((err) => {
           this.$iziToast.error({
             timeout: 2000,
             message: err.response?.data.message,
-            position: 'bottomRight',
-          })
+            position: "bottomRight",
+          });
 
-          this.btnIsLoading = false
-        })
+          this.btnIsLoading = false;
+        });
     },
   },
 
   mounted() {
     if (this.$store.getters.resizeEventExisit == true) {
-      window.removeEventListener('resize', this.launch_resize_dispatch, true)
-      this.$store.commit('changeRessizeEvent')
+      window.removeEventListener("resize", this.launch_resize_dispatch, true);
+      this.$store.commit("changeRessizeEvent");
     }
 
-    document.querySelector('body').style.padding = '0 !important'
+    document.querySelector("body").style.padding = "0 !important";
   },
-}
+};
 </script>

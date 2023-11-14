@@ -13,7 +13,7 @@
             <div class="col-lg-4">
               <div class="input_wrapper top_label only_read my-2">
                 <label class="form-label">
-                  {{ $t('forms.labels.chats_count') }}
+                  {{ $t("forms.labels.chats_count") }}
                 </label>
                 <input
                   type="text"
@@ -67,9 +67,9 @@
 </template>
 
 <script>
-import UsersFilter from '@/components/Filters/UsersFilter.vue'
+import UsersFilter from "@/components/Filters/UsersFilter.vue";
 export default {
-  props: ['id'],
+  props: ["id"],
 
   components: {
     UsersFilter,
@@ -90,14 +90,14 @@ export default {
       statisticsItem: {},
 
       loading: false,
-    }
+    };
   },
 
   computed: {},
 
   watch: {
     [`paginations.current_page`]() {
-      this.getData()
+      this.getData();
     },
   },
 
@@ -105,35 +105,35 @@ export default {
     // ===== Search Method =====
     filterClick(word) {
       if (!this.loading) {
-        this.search = word
-        this.helper_filterSearch()
+        this.search = word;
+        this.helper_filterSearch();
       }
     },
     // Filter Table
     filterTable(items) {
-      this.rows = []
-      this.filterItems = items
-      this.getData()
+      this.rows = [];
+      this.filterItems = items;
+      this.getData();
     },
     getData() {
       this.$axios({
-        method: 'GET',
+        method: "GET",
         url: `client/${this.id}/conversions`,
         params: {
           text: this.filterItems ? this.filterItems.text : null,
           username: this.filterItems ? this.filterItems.username : null,
         },
       }).then((res) => {
-        this.chatsData = res.data.data
+        this.chatsData = res.data.data;
 
-        console.log('chatData', this.chatsData)
-      })
+        console.log("chatData", this.chatsData);
+      });
     },
   },
   mounted() {
-    this.getData()
+    this.getData();
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>

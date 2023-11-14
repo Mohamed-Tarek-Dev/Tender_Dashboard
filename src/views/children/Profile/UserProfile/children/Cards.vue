@@ -20,14 +20,14 @@
 
 <script>
 export default {
-  props: ['userInfo'],
+  props: ["userInfo"],
 
   data() {
-    return {}
+    return {};
   },
 
   methods: {},
-}
+};
 </script>
 
 <style></style>

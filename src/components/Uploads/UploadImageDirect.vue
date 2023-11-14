@@ -31,7 +31,7 @@
 
 <script>
 export default {
-  emits: ['inputChanged'],
+  emits: ["inputChanged"],
   props: {
     data_src: {
       type: String,
@@ -40,7 +40,7 @@ export default {
     },
     postUrl: {
       type: String,
-      default: 'https://wasselna.phpv8.aait-d.com/api/general/attachment',
+      default: "https://wasselna.phpv8.aait-d.com/api/general/attachment",
       required: false,
     },
     model: {
@@ -48,7 +48,7 @@ export default {
       required: true,
     },
     title: {
-      default: 'الصوره الاساسيه',
+      default: "الصوره الاساسيه",
       required: false,
     },
   },
@@ -58,50 +58,50 @@ export default {
       loading: false,
       image: {
         img_file: null,
-        img_src: '',
+        img_src: "",
       },
       showModel: false,
-    }
+    };
   },
   methods: {
     chooseImage(e) {
-      this.image.img_file = e.target.files[0]
+      this.image.img_file = e.target.files[0];
       if (this.image.img_file) {
-        const imgSrc = URL.createObjectURL(this.image.img_file)
-        this.sentImage(imgSrc)
+        const imgSrc = URL.createObjectURL(this.image.img_file);
+        this.sentImage(imgSrc);
       }
-      e.target.value = null
+      e.target.value = null;
     },
     sentImage(src) {
-      this.loading = true
-      this.$emit('loading', true)
-      const data = new FormData()
-      data.append('file', this.image.img_file)
-      data.append('attachment_type', 'image')
-      data.append('model', this.model)
+      this.loading = true;
+      this.$emit("loading", true);
+      const data = new FormData();
+      data.append("file", this.image.img_file);
+      data.append("attachment_type", "image");
+      data.append("model", this.model);
       this.$axios({
-        method: 'POST',
+        method: "POST",
         url: this.postUrl,
         data: data,
       })
         .then((res) => {
-          this.image.img_src = src
-          this.$emit('inputChanged', res.data.data)
-          this.loading = false
-          this.$emit('loading', false)
+          this.image.img_src = src;
+          this.$emit("inputChanged", res.data.data);
+          this.loading = false;
+          this.$emit("loading", false);
         })
         .catch((err) => {
           this.$iziToast.error({
-            title: this.$t('validation.error'),
+            title: this.$t("validation.error"),
             message: err.response.data.message,
-          })
-          this.$emit('inputChanged', 'LinkTEST')
-          this.$emit('loading', false)
-          this.loading = false
-        })
+          });
+          this.$emit("inputChanged", "LinkTEST");
+          this.$emit("loading", false);
+          this.loading = false;
+        });
     },
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>

@@ -26,7 +26,7 @@
 
 <script>
 export default {
-  emits: ['inputChanged'],
+  emits: ["inputChanged"],
 
   props: {
     image_src: {
@@ -47,36 +47,36 @@ export default {
     return {
       image: {
         img_file: null,
-        img_src: '',
+        img_src: "",
       },
-    }
+    };
   },
   mounted() {
     if (this.image_src) {
-      this.image.img_src = this.image_src
+      this.image.img_src = this.image_src;
     }
   },
 
   watch: {
     image_src(newVal) {
-      this.image.img_src = newVal
+      this.image.img_src = newVal;
     },
   },
 
   methods: {
     chooseImage(e) {
-      this.image.img_file = e.target.files[0]
+      this.image.img_file = e.target.files[0];
 
       if (this.image.img_file) {
-        this.image.img_src = URL.createObjectURL(this.image.img_file)
-        this.uplodeDisabled = false
+        this.image.img_src = URL.createObjectURL(this.image.img_file);
+        this.uplodeDisabled = false;
       }
 
-      this.$emit('inputChanged', this.image)
-      e.target.value = null
+      this.$emit("inputChanged", this.image);
+      e.target.value = null;
     },
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>

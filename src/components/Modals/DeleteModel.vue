@@ -11,7 +11,7 @@
       <div class="my_input">
         <div class="input_wrapper top_label">
           <label for="textarea_1" class="form-label">
-            {{ $t('forms.labels.reject_reason') }}
+            {{ $t("forms.labels.reject_reason") }}
           </label>
           <textarea
             class="form-control"
@@ -23,11 +23,11 @@
       <v-card-actions>
         <v-spacer></v-spacer>
         <v-btn color="#1B5E20" @click="submitConfirmForm">
-          {{ $t('table.deletedialog.ok') }}
+          {{ $t("table.deletedialog.ok") }}
           <span class="btn_loader_model" v-if="btnIsLoading"></span>
         </v-btn>
         <v-btn color="#F44336" @click="toggleModal">
-          {{ $t('table.deletedialog.cancel') }}
+          {{ $t("table.deletedialog.cancel") }}
         </v-btn>
         <v-spacer></v-spacer>
       </v-card-actions>
@@ -37,9 +37,9 @@
 
 <script>
 export default {
-  name: 'TheDeleteModal',
+  name: "TheDeleteModal",
 
-  emits: ['toggleModal, getProjectInfo'],
+  emits: ["toggleModal, getProjectInfo"],
 
   props: {
     modalIsActive: {
@@ -58,61 +58,61 @@ export default {
       data: {
         reject_reason: null,
       },
-    }
+    };
   },
 
   methods: {
     toggleModal() {
-      this.$emit('toggleModal')
+      this.$emit("toggleModal");
     },
     submitConfirmForm() {
-      let newStatus = ''
-      if (this.elementIdToGet.status == 'rejected') {
-        newStatus = 'rejected'
+      let newStatus = "";
+      if (this.elementIdToGet.status == "rejected") {
+        newStatus = "rejected";
       } else {
         newStatus =
-          this.elementIdToGet.status == 'pending'
-            ? 'admin_rejected'
-            : 'admin_cancel'
+          this.elementIdToGet.status == "pending"
+            ? "admin_rejected"
+            : "admin_cancel";
       }
 
-      this.btnIsLoading = true
+      this.btnIsLoading = true;
 
-      let submit_data = new FormData()
-      submit_data.append('_method', 'PUT')
-      submit_data.append('status', newStatus)
+      let submit_data = new FormData();
+      submit_data.append("_method", "PUT");
+      submit_data.append("status", newStatus);
       if (this.data.reject_reason) {
-        submit_data.append('rejected_reason', this.data.reject_reason)
+        submit_data.append("rejected_reason", this.data.reject_reason);
       }
       this.$axios({
-        method: 'POST',
+        method: "POST",
         url: `order/${this.elementIdToGet.id}/change_status`,
         data: submit_data,
       })
         .then(() => {
-          this.btnIsLoading = false
+          this.btnIsLoading = false;
           this.$iziToast.success({
             timeout: 2000,
-            message: this.$t('global.confirmSuccess'),
-            position: 'topRight',
-          })
+            message: this.$t("global.confirmSuccess"),
+            position: "topRight",
+          });
           // this.modalIsActive = false;
-          this.$emit('getProjectInfo')
-          this.$emit('toggleModal')
-          this.$router.push('/orders/all-orders')
+          this.$emit("getProjectInfo");
+          this.$emit("toggleModal");
+          this.$router.push("/orders/all-orders");
         })
         .catch((err) => {
-          this.btnIsLoading = false
+          this.btnIsLoading = false;
           this.$iziToast.error({
             timeout: 2000,
             message: err.response.data.message,
-            position: 'topRight',
-          })
-        })
+            position: "topRight",
+          });
+        });
     },
   },
   mounted() {},
-}
+};
 </script>
 
 <style scoped>

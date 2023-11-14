@@ -44,7 +44,7 @@
             <!-- ================== You Can use any slots you want ================== -->
             <!-- Select no data State -->
             <template v-slot:no-data>
-              {{ $t('table.noData') }}
+              {{ $t("table.noData") }}
             </template>
 
             <!-- avatar -->
@@ -62,7 +62,7 @@
                 class="status"
                 :class="item.is_expired ? 'success' : 'canceled'"
               >
-                {{ item.is_expired ? $t('yes') : $t('no') }}
+                {{ item.is_expired ? $t("yes") : $t("no") }}
               </span>
             </template>
 
@@ -89,15 +89,15 @@
               <v-dialog v-model="dialogDelete" max-width="500px">
                 <v-card>
                   <v-card-title class="text-h5 justify-center">
-                    {{ $t('table.deletedialog.areYouSure') }}
+                    {{ $t("table.deletedialog.areYouSure") }}
                   </v-card-title>
                   <v-card-actions>
                     <v-spacer></v-spacer>
                     <v-btn color="#1B5E20" @click="deleteItemConfirm">
-                      {{ $t('table.deletedialog.ok') }}
+                      {{ $t("table.deletedialog.ok") }}
                     </v-btn>
                     <v-btn color="#F44336" @click="dialogDelete = false">
-                      {{ $t('table.deletedialog.cancel') }}
+                      {{ $t("table.deletedialog.cancel") }}
                     </v-btn>
                     <v-spacer></v-spacer>
                   </v-card-actions>
@@ -149,7 +149,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters } from "vuex";
 
 export default {
   data() {
@@ -159,19 +159,19 @@ export default {
       // ========== Breadcrumbs
       items: [
         {
-          text: this.$t('breadcrumb.mainPage'),
+          text: this.$t("breadcrumb.mainPage"),
           disabled: false,
-          href: '/',
+          href: "/",
         },
         {
-          text: this.$t('breadcrumb.jobs.title'),
+          text: this.$t("breadcrumb.jobs.title"),
           disabled: false,
-          href: '/jobs/show-all',
+          href: "/jobs/show-all",
         },
         {
-          text: this.$t('breadcrumb.jobs.all'),
+          text: this.$t("breadcrumb.jobs.all"),
           disabled: true,
-          href: '',
+          href: "",
         },
       ],
 
@@ -179,7 +179,7 @@ export default {
       statisticsItem: {},
 
       // ========== Top Section
-      search: '',
+      search: "",
 
       // ========== dialog Status
       dialogDelete: false,
@@ -188,11 +188,11 @@ export default {
       // ========== Model
       model_1: {
         show_model: false,
-        model_img_src: '',
+        model_img_src: "",
       },
 
       // ========== Body Section
-      calories: '',
+      calories: "",
 
       // ========== Your Data
       rows: [], // injected in created
@@ -206,120 +206,120 @@ export default {
 
       // ========== Loding
       loading: false,
-    }
+    };
   },
 
   computed: {
     ...mapGetters({
-      lang: 'lang_module/lang',
+      lang: "lang_module/lang",
     }),
 
     headers() {
-      if (this.lang == 'ar') {
+      if (this.lang == "ar") {
         return [
           {
-            text: '#',
-            align: 'center',
-            value: 'id',
+            text: "#",
+            align: "center",
+            value: "id",
             sortable: true,
           },
 
           {
-            text: 'المستخدم',
-            align: 'center',
-            value: 'user.name',
+            text: "المستخدم",
+            align: "center",
+            value: "user.name",
             sortable: false,
           },
           {
-            text: 'مسمي الوظيفة',
-            align: 'center',
-            value: 'job_title',
+            text: "مسمي الوظيفة",
+            align: "center",
+            value: "job_title",
             sortable: false,
           },
           {
-            text: 'الوصف',
-            align: 'center',
-            value: 'desc',
+            text: "الوصف",
+            align: "center",
+            value: "desc",
             sortable: false,
           },
           {
-            text: 'اسم الشركة',
-            align: 'center',
-            value: 'company_name',
+            text: "اسم الشركة",
+            align: "center",
+            value: "company_name",
             sortable: false,
           },
 
           {
-            text: 'الحالة',
-            align: 'center',
-            value: 'status',
+            text: "الحالة",
+            align: "center",
+            value: "status",
             sortable: false,
           },
 
           {
-            text: 'التحكم',
-            value: 'actions',
+            text: "التحكم",
+            value: "actions",
             sortable: false,
-            align: 'center',
+            align: "center",
           },
-        ]
+        ];
       } else {
         return [
           {
-            text: '#',
-            align: 'center',
-            value: 'id',
+            text: "#",
+            align: "center",
+            value: "id",
             sortable: true,
           },
           {
-            text: 'Flag',
-            align: 'center',
-            value: 'image',
+            text: "Flag",
+            align: "center",
+            value: "image",
             sortable: false,
           },
           {
-            text: 'Name',
-            align: 'center',
-            value: 'ar.name',
+            text: "Name",
+            align: "center",
+            value: "ar.name",
             sortable: false,
           },
           {
-            text: 'Name (En)',
-            align: 'center',
-            value: 'en.name',
+            text: "Name (En)",
+            align: "center",
+            value: "en.name",
             sortable: false,
           },
           {
-            text: 'Short Name',
-            align: 'center',
-            value: 'short_name',
+            text: "Short Name",
+            align: "center",
+            value: "short_name",
             sortable: false,
           },
           {
-            text: 'Phone Code',
-            align: 'center',
-            value: 'phonecode',
+            text: "Phone Code",
+            align: "center",
+            value: "phonecode",
             sortable: false,
           },
           {
-            text: 'Currency (Ar)',
-            align: 'center',
-            value: 'ar.currency',
+            text: "Currency (Ar)",
+            align: "center",
+            value: "ar.currency",
             sortable: false,
           },
           {
-            text: 'Currency (En)',
-            align: 'center',
-            value: 'en.currency',
+            text: "Currency (En)",
+            align: "center",
+            value: "en.currency",
             sortable: false,
           },
           {
-            text: 'Actions',
-            value: 'actions',
+            text: "Actions",
+            value: "actions",
             sortable: false,
-            align: 'center',
+            align: "center",
           },
-        ]
+        ];
       }
     },
   },
@@ -328,98 +328,98 @@ export default {
     // ===== Search Method =====
     filterClick(word) {
       if (!this.loading) {
-        this.search = word
-        this.helper_filterSearch()
+        this.search = word;
+        this.helper_filterSearch();
       }
     },
 
     // img Model
     show_model_1(e) {
-      this.model_1.model_img_src = e.target.src
-      this.model_1.show_model = true
+      this.model_1.model_img_src = e.target.src;
+      this.model_1.show_model = true;
     },
 
     // ==================== Start CRUD ====================
     addItem() {
-      this.$router.push({ path: '/jobs/add' })
+      this.$router.push({ path: "/jobs/add" });
     },
     showItem(item) {
-      this.$router.push({ path: '/jobs/show/' + item.id })
+      this.$router.push({ path: "/jobs/show/" + item.id });
     },
     editItem(item) {
-      this.$router.push({ path: '/jobs/edit/' + item.id })
+      this.$router.push({ path: "/jobs/edit/" + item.id });
     },
     // ===== Delete
     deleteItem(item) {
-      this.dialogDelete = true
-      this.itemtoDelete = item
+      this.dialogDelete = true;
+      this.itemtoDelete = item;
     },
     deleteItemConfirm() {
       this.$axios({
-        method: 'DELETE',
+        method: "DELETE",
         url: `jobs/${this.itemtoDelete.id}`,
       })
         .then(() => {
           this.rows = this.rows.filter((item) => {
-            return item.id != this.itemtoDelete.id
-          })
-          this.dialogDelete = false
+            return item.id != this.itemtoDelete.id;
+          });
+          this.dialogDelete = false;
           this.$iziToast.success({
             timeout: 2000,
-            message: this.$t('deleteSuccess'),
-            position: 'bottomRight',
-          })
+            message: this.$t("deleteSuccess"),
+            position: "bottomRight",
+          });
         })
         .catch((err) => {
-          this.dialogDelete = false
+          this.dialogDelete = false;
           this.$iziToast.error({
             timeout: 2000,
             message: err.response.data.message,
-            position: 'bottomRight',
-          })
-        })
+            position: "bottomRight",
+          });
+        });
     },
     // ==================== End CRUD ====================
 
     // Set Rows
     setRows() {
-      this.loading = true
-      this.loaderPage = true
+      this.loading = true;
+      this.loaderPage = true;
       this.$axios({
-        method: 'GET',
-        url: 'jobs',
+        method: "GET",
+        url: "jobs",
         params: { page: this.paginations.current_page },
       })
         .then((res) => {
-          this.paginations.last_page = res.data.meta.last_page
-          this.paginations.items_per_page = res.data.meta.per_page
+          this.paginations.last_page = res.data.meta.last_page;
+          this.paginations.items_per_page = res.data.meta.per_page;
 
-          this.rows = res.data.data
+          this.rows = res.data.data;
           // console.log(res.data.data)
-          this.statisticsItem.number = res.data.meta.total
+          this.statisticsItem.number = res.data.meta.total;
 
-          this.loaderPage = false
-          this.loading = false
+          this.loaderPage = false;
+          this.loading = false;
         })
         .catch((err) => {
-          this.loading = false
-          this.loaderPage = false
-        })
+          this.loading = false;
+          this.loaderPage = false;
+        });
     },
     fetchData(e) {
-      this.$router.replace({ query: { page: e } })
-      this.setRows()
+      this.$router.replace({ query: { page: e } });
+      this.setRows();
     },
   },
   created() {
     if (this.$route.query.page) {
-      this.paginations.current_page = +this.$route.query.page
+      this.paginations.current_page = +this.$route.query.page;
     }
-    this.setRows()
+    this.setRows();
   },
 
   // ======= hooks
-}
+};
 </script>
 
 <style lang="scss" scoped></style>

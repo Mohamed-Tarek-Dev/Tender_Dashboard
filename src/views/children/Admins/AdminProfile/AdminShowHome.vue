@@ -55,10 +55,10 @@
 </template>
 
 <script>
-import PersonalData from '../../Users/UserProfile/children/PersonalData.vue'
+import PersonalData from "../../Users/UserProfile/children/PersonalData.vue";
 export default {
   components: { PersonalData },
-  props: ['id'],
+  props: ["id"],
 
   data() {
     return {
@@ -66,37 +66,37 @@ export default {
         userInfo: null,
         loading: false,
       },
-    }
+    };
   },
 
   methods: {
     getData() {
-      this.data.loading = true
+      this.data.loading = true;
       this.$axios({
-        method: 'GET',
+        method: "GET",
         url: `client/${this.id}`,
       })
         .then((res) => {
-          this.data.userInfo = res.data.data
-          this.data.userInfo.loading = false
+          this.data.userInfo = res.data.data;
+          this.data.userInfo.loading = false;
 
-          this.data.loading = false
+          this.data.loading = false;
         })
         .catch((err) => {
           this.$iziToast.error({
             timeout: 2000,
             message: err.response.data.message,
-            position: 'bottomRight',
-          })
-          this.data.loading = false
-        })
+            position: "bottomRight",
+          });
+          this.data.loading = false;
+        });
     },
   },
 
   created() {
-    this.getData()
+    this.getData();
   },
-}
+};
 </script>
 
 <style></style>

@@ -46,7 +46,7 @@
 
 <script>
 export default {
-  emits: ['inputChanged'],
+  emits: ["inputChanged"],
 
   props: {
     data_src: {
@@ -59,50 +59,50 @@ export default {
   data() {
     return {
       imagesToUplode: [],
-    }
+    };
   },
 
   computed: {
     images() {
-      return [...this.imagesToUplode, ...this.data_src]
+      return [...this.imagesToUplode, ...this.data_src];
     },
   },
 
   methods: {
     chooseImages(e) {
-      let images = Array.from(e.target.files)
+      let images = Array.from(e.target.files);
 
       images.forEach((img) => {
         if (img) {
-          let src = URL.createObjectURL(img)
+          let src = URL.createObjectURL(img);
           this.imagesToUplode.push({
             img_file: img,
             link: src,
             name: img.name,
             uniqeID: Math.random().toString(16).slice(2),
-          })
+          });
 
-          this.helper_containsObject(img, this.imagesToUplode, 'name')
+          this.helper_containsObject(img, this.imagesToUplode, "name");
         }
 
-        e.target.value = null
-      })
+        e.target.value = null;
+      });
 
-      this.$emit('inputChanged', this.images)
+      this.$emit("inputChanged", this.images);
     },
 
     deleteImage(img) {
       if (img.id) {
-        this.$emit('imageDeleted', img.id)
+        this.$emit("imageDeleted", img.id);
       } else {
         this.imagesToUplode = this.imagesToUplode.filter((image) => {
-          return img.link != image.link
-        })
-        this.$emit('inputChanged', this.images)
+          return img.link != image.link;
+        });
+        this.$emit("inputChanged", this.images);
       }
     },
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>

@@ -39,7 +39,7 @@
 
         <!-- Select no data State -->
         <template v-slot:no-data>
-          {{ $t('table.noData') }}
+          {{ $t("table.noData") }}
         </template>
 
         <!-- Select actions-->
@@ -64,15 +64,15 @@
           <v-dialog v-model="dialogDelete" max-width="500px">
             <v-card>
               <v-card-title class="text-h5 justify-center">
-                {{ $t('table.deletedialog.areYouSure') }}
+                {{ $t("table.deletedialog.areYouSure") }}
               </v-card-title>
               <v-card-actions>
                 <v-spacer></v-spacer>
                 <v-btn color="#1B5E20" @click="deleteItemConfirm">
-                  {{ $t('table.deletedialog.ok') }}
+                  {{ $t("table.deletedialog.ok") }}
                 </v-btn>
                 <v-btn color="#F44336" @click="dialogDelete = false">
-                  {{ $t('table.deletedialog.cancel') }}
+                  {{ $t("table.deletedialog.cancel") }}
                 </v-btn>
                 <v-spacer></v-spacer>
               </v-card-actions>
@@ -82,15 +82,15 @@
           <v-dialog v-model="dialogDelete_selected" max-width="500px">
             <v-card>
               <v-card-title class="text-h5 justify-center">
-                {{ $t('table.deletedialog.areYouSure') }}
+                {{ $t("table.deletedialog.areYouSure") }}
               </v-card-title>
               <v-card-actions>
                 <v-spacer></v-spacer>
                 <v-btn color="#1B5E20" @click="deleteSelectedConfirm">
-                  {{ $t('table.deletedialog.ok') }}
+                  {{ $t("table.deletedialog.ok") }}
                 </v-btn>
                 <v-btn color="#F44336" @click="dialogDelete_selected = false">
-                  {{ $t('table.deletedialog.cancel') }}
+                  {{ $t("table.deletedialog.cancel") }}
                 </v-btn>
                 <v-spacer></v-spacer>
               </v-card-actions>
@@ -101,7 +101,7 @@
 
           <section
             class="table-buttons d-inline-flex p-0"
-            style="width: fit-content;"
+            style="width: fit-content"
           >
             <!-- Add -->
 
@@ -114,7 +114,7 @@
             >
               <i class="far fa-trash-alt"></i>
               &nbsp;
-              {{ $t('table.deleteSelected') }}
+              {{ $t("table.deleteSelected") }}
             </button>
           </section>
         </template>
@@ -156,7 +156,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters } from "vuex";
 
 export default {
   data() {
@@ -164,19 +164,19 @@ export default {
       // ========== Breadcrumbs
       items: [
         {
-          text: this.$t('breadcrumb.mainPage'),
+          text: this.$t("breadcrumb.mainPage"),
           disabled: false,
-          href: '/',
+          href: "/",
         },
         {
-          text: this.$t('breadcrumb.cities.title'),
+          text: this.$t("breadcrumb.cities.title"),
           disabled: false,
-          href: '/cities/show-all',
+          href: "/cities/show-all",
         },
         {
-          text: this.$t('breadcrumb.cities.all'),
+          text: this.$t("breadcrumb.cities.all"),
           disabled: true,
-          href: '',
+          href: "",
         },
       ],
 
@@ -184,7 +184,7 @@ export default {
       statisticsItem: {},
 
       // ========== Top Section
-      search: '',
+      search: "",
 
       // ========== dialog Status
       dialogDelete: false,
@@ -194,11 +194,11 @@ export default {
       // ========== Model
       model_1: {
         show_model: false,
-        model_img_src: '',
+        model_img_src: "",
       },
 
       // ========== Body Section
-      calories: '',
+      calories: "",
 
       // ========== Your Data
       rows: [], // injected in created
@@ -216,78 +216,78 @@ export default {
 
       // ========== Loding
       lodaing: false,
-    }
+    };
   },
 
   computed: {
     ...mapGetters({
-      lang: 'lang_module/lang',
+      lang: "lang_module/lang",
     }),
 
     headers() {
-      if (this.lang == 'ar') {
+      if (this.lang == "ar") {
         return [
           {
-            text: '  اسم المدينة عربي',
-            align: 'center',
-            value: 'ar.name',
+            text: "  اسم المدينة عربي",
+            align: "center",
+            value: "ar.name",
             sortable: false,
           },
           {
-            text: '  اسم المدينة انجليزي',
-            align: 'center',
-            value: 'en.name',
+            text: "  اسم المدينة انجليزي",
+            align: "center",
+            value: "en.name",
             sortable: false,
           },
           {
-            text: 'اسم الدولة',
-            align: 'center',
-            value: 'country.name',
+            text: "اسم الدولة",
+            align: "center",
+            value: "country.name",
             sortable: false,
           },
 
           {
-            text: 'الاسم المختصر',
-            align: 'center',
-            value: 'short_name',
+            text: "الاسم المختصر",
+            align: "center",
+            value: "short_name",
             sortable: false,
           },
 
           {
-            text: 'التحكم',
-            value: 'actions',
+            text: "التحكم",
+            value: "actions",
             sortable: false,
-            align: 'center',
+            align: "center",
           },
-        ]
+        ];
       } else {
         return [
           {
-            text: 'countryName',
-            align: 'center',
-            value: 'country.name',
+            text: "countryName",
+            align: "center",
+            value: "country.name",
             sortable: false,
           },
           {
-            text: 'CityName (ar)',
-            align: 'center',
-            value: 'ar.name',
+            text: "CityName (ar)",
+            align: "center",
+            value: "ar.name",
             sortable: false,
           },
           {
-            text: 'CityName (en)',
-            align: 'center',
-            value: 'en.name',
+            text: "CityName (en)",
+            align: "center",
+            value: "en.name",
             sortable: false,
           },
 
           {
-            text: 'التحكم',
-            value: 'actions',
+            text: "التحكم",
+            value: "actions",
             sortable: false,
-            align: 'center',
+            align: "center",
           },
-        ]
+        ];
       }
     },
   },
@@ -296,124 +296,124 @@ export default {
     // ===== Search Method =====
     filterClick(word) {
       if (!this.lodaing) {
-        this.search = word
-        this.helper_filterSearch()
+        this.search = word;
+        this.helper_filterSearch();
       }
     },
 
     // img Model
     show_model_1(e) {
-      this.model_1.model_img_src = e.target.src
-      this.model_1.show_model = true
+      this.model_1.model_img_src = e.target.src;
+      this.model_1.show_model = true;
     },
 
     // ==================== Start CRUD ====================
     addItem() {
-      this.$router.push({ path: '/cities/add' })
+      this.$router.push({ path: "/cities/add" });
     },
     showItem(item) {
-      this.$router.push({ path: '/cities/show/' + item.id })
+      this.$router.push({ path: "/cities/show/" + item.id });
     },
     editItem(item) {
-      this.$router.push({ path: '/cities/edit/' + item.id })
+      this.$router.push({ path: "/cities/edit/" + item.id });
     },
     // ===== Delete
     deleteItem(item) {
-      this.dialogDelete = true
-      this.itemtoDelete = item
+      this.dialogDelete = true;
+      this.itemtoDelete = item;
     },
     deleteItemConfirm() {
       this.$axios({
-        method: 'DELETE',
+        method: "DELETE",
         url: `cities/${this.itemtoDelete.id}`,
       })
         .then(() => {
           this.rows = this.rows.filter((item) => {
-            return item.id != this.itemtoDelete.id
-          })
-          this.dialogDelete = false
+            return item.id != this.itemtoDelete.id;
+          });
+          this.dialogDelete = false;
           this.$iziToast.success({
             timeout: 2000,
-            message: this.$t('deleteSuccess'),
-            position: 'bottomRight',
-          })
+            message: this.$t("deleteSuccess"),
+            position: "bottomRight",
+          });
         })
         .catch((err) => {
-          this.dialogDelete = false
+          this.dialogDelete = false;
           this.$iziToast.error({
             timeout: 2000,
             message: err.response.data.message,
-            position: 'bottomRight',
-          })
-        })
+            position: "bottomRight",
+          });
+        });
     },
     deleteSelected() {
-      this.dialogDelete_selected = true
+      this.dialogDelete_selected = true;
     },
     deleteSelectedConfirm() {
       this.$axios({
-        method: 'POST',
+        method: "POST",
         url: `cities/deleteAll`,
         data: { ids: this.selected.map((item) => item.id) },
       })
         .then(() => {
           this.rows = this.rows.filter((item) => {
-            return !this.selected.filter((obj) => obj.id == item.id).length > 0
-          })
-          this.dialogDelete_selected = false
+            return !this.selected.filter((obj) => obj.id == item.id).length > 0;
+          });
+          this.dialogDelete_selected = false;
           this.$iziToast.error({
             timeout: 2000,
-            message: this.$t('deleteSuccess'),
-            position: 'bottomRight',
-          })
+            message: this.$t("deleteSuccess"),
+            position: "bottomRight",
+          });
         })
         .catch((err) => {
-          this.dialogDelete_selected = false
+          this.dialogDelete_selected = false;
           this.$iziToast.error({
             timeout: 2000,
             message: err.response.data.message,
-            position: 'bottomRight',
-          })
-        })
+            position: "bottomRight",
+          });
+        });
     },
     // ==================== End CRUD ====================
 
     // Set Rows
     setRows() {
-      this.lodaing = true
+      this.lodaing = true;
       this.$axios({
-        method: 'GET',
-        url: 'cities',
+        method: "GET",
+        url: "cities",
         params: { page: this.paginations.current_page },
       })
         .then((res) => {
-          this.paginations.last_page = res.data.meta.last_page
-          this.paginations.items_per_page = res.data.meta.per_page
+          this.paginations.last_page = res.data.meta.last_page;
+          this.paginations.items_per_page = res.data.meta.per_page;
 
-          this.rows = res.data.data
+          this.rows = res.data.data;
 
-          this.statisticsItem.number = res.data.meta.total
+          this.statisticsItem.number = res.data.meta.total;
 
-          this.lodaing = false
+          this.lodaing = false;
         })
         .catch((err) => {
-          this.lodaing = false
-        })
+          this.lodaing = false;
+        });
     },
     fetchData(e) {
-      this.$router.replace({ query: { page: e } })
-      this.setRows()
+      this.$router.replace({ query: { page: e } });
+      this.setRows();
     },
   },
   created() {
     if (this.$route.query.page) {
-      this.paginations.current_page = +this.$route.query.page
+      this.paginations.current_page = +this.$route.query.page;
     }
-    this.setRows()
+    this.setRows();
   },
 
   // ======= hooks
-}
+};
 </script>
 
 <style lang="scss" scoped></style>

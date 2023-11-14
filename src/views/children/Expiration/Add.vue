@@ -6,7 +6,7 @@
 
     <div class="custom_card">
       <div class="card-header">
-        <h4 class="card-title">{{ $t('addNew') }}</h4>
+        <h4 class="card-title">{{ $t("addNew") }}</h4>
       </div>
 
       <!-- ==== Start Form ==== -->
@@ -17,7 +17,7 @@
             <div class="col-lg-6 py-0">
               <div class="input_wrapper top_label">
                 <label class="form-label">
-                  {{ $t('forms.labels.categories') }}
+                  {{ $t("forms.labels.categories") }}
                 </label>
                 <multiselect
                   v-model="data.category_ids"
@@ -37,7 +37,7 @@
             <div class="col-lg-6 py-0">
               <div class="input_wrapper top_label">
                 <label class="form-label">
-                  {{ $t('forms.labels.client') }}
+                  {{ $t("forms.labels.client") }}
                 </label>
                 <multiselect
                   v-model="data.user_id"
@@ -61,13 +61,13 @@
                   type="text"
                   class="form-control"
                   @input="
-                    helper_checkIfInputIsEmpty
-                    addDataLocalStorage()
+                    helper_checkIfInputIsEmpty;
+                    addDataLocalStorage();
                   "
                   v-model.trim="data.title"
                 />
                 <label for="name_input" class="form-label">
-                  {{ $t('forms.labels.title') }}
+                  {{ $t("forms.labels.title") }}
                 </label>
               </div>
             </div>
@@ -79,14 +79,12 @@
                   type="text"
                   class="form-control"
                   @input="
-                    helper_checkIfInputIsEmpty
-                    addDataLocalStorage()
+                    helper_checkIfInputIsEmpty;
+                    addDataLocalStorage();
                   "
                   v-model.trim="data.company_name"
                 />
-                <label for="name_input" class="form-label">
-                  اسم الشركة
-                </label>
+                <label for="name_input" class="form-label"> اسم الشركة </label>
               </div>
             </div>
             <!-- End:: company_name-->
@@ -98,14 +96,12 @@
                   type="text"
                   class="form-control"
                   @input="
-                    helper_checkIfInputIsEmpty
-                    addDataLocalStorage()
+                    helper_checkIfInputIsEmpty;
+                    addDataLocalStorage();
                   "
                   v-model.trim="data.product_name"
                 />
-                <label for="name_input" class="form-label">
-                  اسم المنتج
-                </label>
+                <label for="name_input" class="form-label"> اسم المنتج </label>
               </div>
             </div>
             <!-- End:: product_name-->
@@ -114,7 +110,7 @@
             <div class="col-lg-6 py-0">
               <div class="input_wrapper top_label">
                 <label class="form-label">
-                  {{ $t('forms.labels.type') }}
+                  {{ $t("forms.labels.type") }}
                 </label>
                 <multiselect
                   v-model="data.type"
@@ -168,13 +164,13 @@
                 <textarea
                   class="form-control"
                   @input="
-                    helper_checkIfInputIsEmpty
-                    addDataLocalStorage()
+                    helper_checkIfInputIsEmpty;
+                    addDataLocalStorage();
                   "
                   v-model.trim="data.desc"
                 ></textarea>
                 <label for="name_input" class="form-label">
-                  {{ $t('forms.labels.desc') }}
+                  {{ $t("forms.labels.desc") }}
                 </label>
               </div>
             </div>
@@ -232,9 +228,7 @@
                   <div class="row w-100">
                     <div class="col-11">
                       <div class="input_wrapper top_label file_input">
-                        <span class="file_input_label">
-                          ارفاق ملف
-                        </span>
+                        <span class="file_input_label"> ارفاق ملف </span>
                         <label
                           :for="`file_input_${index}`"
                           class="form-label"
@@ -294,7 +288,7 @@
 
         <div class="buttons_wrapper">
           <button class="button_style_1" :disabled="btnIsLoading">
-            {{ $t('forms.submit') }}
+            {{ $t("forms.submit") }}
             <span class="btn_loader" v-if="btnIsLoading"></span>
           </button>
         </div>
@@ -311,7 +305,7 @@
           type="video/webm"
           :src="model_1.model_img_src"
           width="100%"
-          style="max-height: 50rem; min-height: 20rem;"
+          style="max-height: 50rem; min-height: 20rem"
         />
       </div>
     </base-model>
@@ -320,29 +314,29 @@
 </template>
 
 <script>
-import { json } from 'body-parser'
+import { json } from "body-parser";
 
 export default {
-  name: 'Create',
+  name: "Create",
 
   data() {
     return {
       // ========== Breadcrumbs
       items: [
         {
-          text: this.$t('breadcrumb.mainPage'),
+          text: this.$t("breadcrumb.mainPage"),
           disabled: false,
-          href: '/',
+          href: "/",
         },
         {
-          text: this.$t('breadcrumb.expirations.title'),
+          text: this.$t("breadcrumb.expirations.title"),
           disabled: false,
-          href: '/expirations/show-all',
+          href: "/expirations/show-all",
         },
         {
-          text: this.$t('breadcrumb.expirations.add'),
+          text: this.$t("breadcrumb.expirations.add"),
           disabled: true,
-          href: '',
+          href: "",
         },
       ],
 
@@ -377,202 +371,202 @@ export default {
       // ========== Model
       model_1: {
         show_model: false,
-        model_img_src: '',
+        model_img_src: "",
       },
       types: [
         {
-          id: 'liquidation',
-          name: 'تصفية',
+          id: "liquidation",
+          name: "تصفية",
         },
-        { id: 'expiration', name: 'منتهي' },
+        { id: "expiration", name: "منتهي" },
       ],
       clients: [],
       categories: [],
-    }
+    };
   },
 
   mounted() {
-    this.getDataLocalStorage()
+    this.getDataLocalStorage();
     this.$globalServices
-      .getData('clients/without-pagination')
-      .then((data) => (this.clients = data))
+      .getData("clients/without-pagination")
+      .then((data) => (this.clients = data));
     this.$globalServices
-      .getData('categories_without_pagination')
-      .then((data) => (this.categories = data))
+      .getData("categories_without_pagination")
+      .then((data) => (this.categories = data));
   },
 
   methods: {
     allowedDates(val) {
-      let current = new Date(val)
-      current.setDate(current.getDate() + 1)
-      return current >= new Date()
+      let current = new Date(val);
+      current.setDate(current.getDate() + 1);
+      return current >= new Date();
     },
     addDataLocalStorage() {
-      localStorage.setItem('expirations_data', JSON.stringify(this.data))
+      localStorage.setItem("expirations_data", JSON.stringify(this.data));
     },
 
     getDataLocalStorage() {
-      if (localStorage.getItem('expirations_data')) {
-        this.data = JSON.parse(localStorage.getItem('expirations_data'))
+      if (localStorage.getItem("expirations_data")) {
+        this.data = JSON.parse(localStorage.getItem("expirations_data"));
       }
     },
     show_model_1(e) {
-      this.model_1.model_img_src = e.path
-      this.model_1.show_model = true
+      this.model_1.model_img_src = e.path;
+      this.model_1.show_model = true;
     },
     // Validate Data
     validateForm() {
-      this.btnIsLoading = true
+      this.btnIsLoading = true;
 
       if (!this.data.title) {
         this.$iziToast.error({
           timeout: 2000,
-          message: this.$t('forms.validation.title'),
-          position: 'bottomRight',
-        })
-        this.btnIsLoading = false
-        return
+          message: this.$t("forms.validation.title"),
+          position: "bottomRight",
+        });
+        this.btnIsLoading = false;
+        return;
       } else if (!this.data.user_id) {
         this.$iziToast.error({
           timeout: 2000,
-          message: this.$t('forms.validation.user'),
-          position: 'bottomRight',
-        })
-        this.btnIsLoading = false
-        return
+          message: this.$t("forms.validation.user"),
+          position: "bottomRight",
+        });
+        this.btnIsLoading = false;
+        return;
       } else if (!this.data.desc) {
         this.$iziToast.error({
           timeout: 2000,
-          message: this.$t('forms.validation.desc'),
-          position: 'bottomRight',
-        })
-        this.btnIsLoading = false
-        return
+          message: this.$t("forms.validation.desc"),
+          position: "bottomRight",
+        });
+        this.btnIsLoading = false;
+        return;
       } else if (!this.data.product_name) {
         this.$iziToast.error({
           timeout: 2000,
-          message: 'حقل اسم المنتج مطلوب',
-          position: 'bottomRight',
-        })
-        this.btnIsLoading = false
-        return
+          message: "حقل اسم المنتج مطلوب",
+          position: "bottomRight",
+        });
+        this.btnIsLoading = false;
+        return;
       } else if (!this.data.category_ids) {
         this.$iziToast.error({
           timeout: 2000,
-          message: this.$t('forms.validation.category'),
-          position: 'bottomRight',
-        })
-        this.btnIsLoading = false
-        return
+          message: this.$t("forms.validation.category"),
+          position: "bottomRight",
+        });
+        this.btnIsLoading = false;
+        return;
       } else if (!this.data.type) {
         this.$iziToast.error({
           timeout: 2000,
-          message: 'حقل النوع مطلوب',
-          position: 'bottomRight',
-        })
-        this.btnIsLoading = false
-        return
+          message: "حقل النوع مطلوب",
+          position: "bottomRight",
+        });
+        this.btnIsLoading = false;
+        return;
       } else if (!this.data.expiry_date) {
         this.$iziToast.error({
           timeout: 2000,
-          message: 'حقل تاريخ الانتهاء مطلوب',
-          position: 'bottomRight',
-        })
-        this.btnIsLoading = false
-        return
+          message: "حقل تاريخ الانتهاء مطلوب",
+          position: "bottomRight",
+        });
+        this.btnIsLoading = false;
+        return;
       }
 
       if (!this.data.tender_images[0].image) {
         this.$iziToast.error({
           timeout: 2000,
-          message: 'حقل صوره التالف مطلوب',
-          position: 'bottomRight',
-        })
-        this.btnIsLoading = false
-        return
+          message: "حقل صوره التالف مطلوب",
+          position: "bottomRight",
+        });
+        this.btnIsLoading = false;
+        return;
       }
-      this.submitData()
+      this.submitData();
     },
 
     handelOtherFile(e, index) {
-      this.data.tender_other_files[index].file = e.target.files[0]
-      this.data.tender_other_files[index].name = e.target.files[0].name
+      this.data.tender_other_files[index].file = e.target.files[0];
+      this.data.tender_other_files[index].name = e.target.files[0].name;
       this.data.tender_other_files[index].path = URL.createObjectURL(
-        e.target.files[0],
-      )
+        e.target.files[0]
+      );
     },
     appendTenderImagesRow() {
       this.data.tender_images.push({
         image: null,
-      })
+      });
     },
     deleteTenderImagesRow(index) {
-      this.data.tender_images.splice(index, 1)
+      this.data.tender_images.splice(index, 1);
     },
     appendOtherFileRow() {
       this.data.tender_other_files.push({
         file: null,
         name: null,
         path: null,
-      })
+      });
     },
     deleteOtherFileRow(index) {
-      this.data.tender_other_files.splice(index, 1)
+      this.data.tender_other_files.splice(index, 1);
     },
     uplodeImg(obj, index) {
-      this.data.tender_images[index].image = obj
+      this.data.tender_images[index].image = obj;
     },
     // Submit Data
     submitData() {
-      const submit_data = new FormData()
-      submit_data.append('user_id', this.data.user_id.id)
+      const submit_data = new FormData();
+      submit_data.append("user_id", this.data.user_id.id);
       this.data.category_ids.map((el, index) =>
-        submit_data.append(`category_ids[${index}]`, el.id),
-      )
-      submit_data.append('title', this.data.title)
-      submit_data.append('desc', this.data.desc)
-      submit_data.append('expiry_date', this.data.expiry_date)
-      submit_data.append('company_name', this.data.company_name)
-      submit_data.append('product_name', this.data.product_name)
-      submit_data.append('type', this.data.type.id)
+        submit_data.append(`category_ids[${index}]`, el.id)
+      );
+      submit_data.append("title", this.data.title);
+      submit_data.append("desc", this.data.desc);
+      submit_data.append("expiry_date", this.data.expiry_date);
+      submit_data.append("company_name", this.data.company_name);
+      submit_data.append("product_name", this.data.product_name);
+      submit_data.append("type", this.data.type.id);
       this.data.tender_images.map((el, index) => {
         if (el.image) {
-          submit_data.append(`expiration_images[${index}]`, el.image?.img_file)
+          submit_data.append(`expiration_images[${index}]`, el.image?.img_file);
         }
-      })
+      });
       this.data.tender_other_files.map((el, index) => {
         if (el.file) {
-          submit_data.append(`expiration_files[${index}]`, el.file)
+          submit_data.append(`expiration_files[${index}]`, el.file);
         }
-      })
+      });
 
       this.$axios({
-        method: 'POST',
-        url: 'expirations',
+        method: "POST",
+        url: "expirations",
         data: submit_data,
       })
         .then(() => {
           // =============== Start:: Remove Form Data From LocalStorage =============== //
-          localStorage.removeItem('expirations_data')
+          localStorage.removeItem("expirations_data");
 
           // =============== End:: Remove Form Data From LocalStorage =============== //
           this.$iziToast.success({
             timeout: 2000,
-            message: this.$t('addSuccess'),
-            position: 'bottomRight',
-          })
-          this.$router.push({ path: '/expirations/show-all' })
-          this.btnIsLoading = false
+            message: this.$t("addSuccess"),
+            position: "bottomRight",
+          });
+          this.$router.push({ path: "/expirations/show-all" });
+          this.btnIsLoading = false;
         })
         .catch((err) => {
           this.$iziToast.error({
             timeout: 2000,
             message: err.response.data.message,
-            position: 'bottomRight',
-          })
-          this.btnIsLoading = false
-        })
+            position: "bottomRight",
+          });
+          this.btnIsLoading = false;
+        });
     },
   },
-}
+};
 </script>

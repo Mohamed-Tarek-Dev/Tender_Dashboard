@@ -67,13 +67,13 @@
 
           <!-- Select no data State -->
           <template v-slot:no-data>
-            {{ $t('table.noData') }}
+            {{ $t("table.noData") }}
           </template>
 
           <!-- IsActive -->
           <template v-slot:[`item.is_active`]="{ item }">
             <span class="status" :class="item.is_active ? 'paid' : 'unpaid'">
-              {{ item.is_active ? 'نعم' : 'لا' }}
+              {{ item.is_active ? "نعم" : "لا" }}
             </span>
           </template>
           <!-- <template v-slot:[`item.fullname`]="{ item }">
@@ -108,15 +108,15 @@
             <v-dialog v-model="dialogDelete" max-width="500px">
               <v-card>
                 <v-card-title class="text-h5 justify-center">
-                  {{ $t('table.deletedialog.areYouSure') }}
+                  {{ $t("table.deletedialog.areYouSure") }}
                 </v-card-title>
                 <v-card-actions>
                   <v-spacer></v-spacer>
                   <v-btn color="#1B5E20" @click="deleteItemConfirm">
-                    {{ $t('table.deletedialog.ok') }}
+                    {{ $t("table.deletedialog.ok") }}
                   </v-btn>
                   <v-btn color="#F44336" @click="dialogDelete = false">
-                    {{ $t('table.deletedialog.cancel') }}
+                    {{ $t("table.deletedialog.cancel") }}
                   </v-btn>
                   <v-spacer></v-spacer>
                 </v-card-actions>
@@ -177,11 +177,11 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters } from "vuex";
 // START:: Main Loader
 
 // END:: Main Loader
-import MainFilter from '@/components/Filters/MainFilter.vue'
+import MainFilter from "@/components/Filters/MainFilter.vue";
 
 export default {
   components: {
@@ -193,19 +193,19 @@ export default {
       // ========== Breadcrumbs
       items: [
         {
-          text: this.$t('breadcrumb.mainPage'),
+          text: this.$t("breadcrumb.mainPage"),
           disabled: false,
-          href: '/',
+          href: "/",
         },
         {
-          text: this.$t('breadcrumb.users.title'),
+          text: this.$t("breadcrumb.users.title"),
           disabled: false,
-          href: '/users',
+          href: "/users",
         },
         {
-          text: this.$t('breadcrumb.users.all'),
+          text: this.$t("breadcrumb.users.all"),
           disabled: true,
-          href: '',
+          href: "",
         },
       ],
 
@@ -216,7 +216,7 @@ export default {
       filterItems: null,
 
       // ========== Top Section
-      search: '',
+      search: "",
 
       // ========== dialog Status
       dialogDelete: false,
@@ -225,11 +225,11 @@ export default {
       // ========== Model
       model_1: {
         show_model: false,
-        model_img_src: '',
+        model_img_src: "",
       },
 
       // ========== Body Section
-      calories: '',
+      calories: "",
 
       // ========== Your Data
       rows: [], // injected in created
@@ -247,43 +247,43 @@ export default {
       // ========== Loding
       loading: false,
       loading_table: false,
-    }
+    };
   },
 
   computed: {
     ...mapGetters({
-      lang: 'lang_module/lang',
+      lang: "lang_module/lang",
     }),
 
     headers() {
-      if (this.lang == 'ar') {
+      if (this.lang == "ar") {
         return [
           {
-            text: '#',
-            align: 'center',
-            value: 'index',
+            text: "#",
+            align: "center",
+            value: "index",
             sortable: true,
           },
           {
-            text: 'الصورة',
-            align: 'center',
-            value: 'avatar',
+            text: "الصورة",
+            align: "center",
+            value: "avatar",
             sortable: false,
           },
           {
-            text: 'الاسم',
-            value: 'full_name',
-            align: 'center',
+            text: "الاسم",
+            value: "full_name",
+            align: "center",
           },
           {
-            text: 'رقم الهاتف',
-            value: 'phone',
-            align: 'center',
+            text: "رقم الهاتف",
+            value: "phone",
+            align: "center",
           },
           {
-            text: 'البريد الالكتروني',
-            value: 'email',
-            align: 'center',
+            text: "البريد الالكتروني",
+            value: "email",
+            align: "center",
           },
 
           // {
@@ -292,56 +292,56 @@ export default {
           //   align: 'center',
           // },
           {
-            text: 'الدولة',
-            value: 'country.name',
-            align: 'center',
+            text: "الدولة",
+            value: "country.name",
+            align: "center",
           },
           {
-            text: 'التحكم',
-            value: 'actions',
-            align: 'center',
+            text: "التحكم",
+            value: "actions",
+            align: "center",
             sortable: false,
           },
-        ]
+        ];
       } else {
         return [
           {
-            text: '#',
-            align: 'center',
-            value: 'id',
+            text: "#",
+            align: "center",
+            value: "id",
             sortable: true,
           },
           {
-            text: 'image',
-            align: 'center',
-            value: 'image',
+            text: "image",
+            align: "center",
+            value: "image",
             sortable: false,
           },
-          { text: 'Name', value: 'fullname', align: 'center' },
-          { text: 'Followers', value: 'followers_count', align: 'center' },
-          { text: 'Following', value: 'followings_count', align: 'center' },
+          { text: "Name", value: "fullname", align: "center" },
+          { text: "Followers", value: "followers_count", align: "center" },
+          { text: "Following", value: "followings_count", align: "center" },
           {
-            text: 'Active',
-            value: 'is_active',
-            align: 'center',
+            text: "Active",
+            value: "is_active",
+            align: "center",
           },
           {
-            text: 'Permission',
-            value: 'role',
-            align: 'center',
+            text: "Permission",
+            value: "role",
+            align: "center",
           },
           {
-            text: 'control',
-            value: 'actions',
-            align: 'center',
+            text: "control",
+            value: "actions",
+            align: "center",
             sortable: false,
           },
-        ]
+        ];
       }
     },
     keyword() {
       if (this.$route.query.keyword) {
-        return this.$route.query.keyword
+        return this.$route.query.keyword;
       }
     },
   },
@@ -350,106 +350,106 @@ export default {
     // ===== Search Method =====
     filterClick(word) {
       if (!this.loading) {
-        this.search = word
-        this.helper_filterSearch()
+        this.search = word;
+        this.helper_filterSearch();
       }
     },
 
     // img Model
     show_model_1(e) {
-      this.model_1.model_img_src = e.target.src
-      this.model_1.show_model = true
+      this.model_1.model_img_src = e.target.src;
+      this.model_1.show_model = true;
     },
 
     // ==================== Start CRUD ====================
     addItem() {
-      this.$router.push({ path: '/users/add' })
+      this.$router.push({ path: "/users/add" });
     },
     showItem(item) {
-      this.$router.push({ path: '/users/show/' + item.id })
+      this.$router.push({ path: "/users/show/" + item.id });
     },
     editItem(item) {
-      this.$router.push({ path: '/users/edit/' + item.id })
+      this.$router.push({ path: "/users/edit/" + item.id });
     },
 
     // ===== Delete
     deleteItem(item) {
-      this.dialogDelete = true
-      this.itemtoDelete = item
+      this.dialogDelete = true;
+      this.itemtoDelete = item;
     },
     deleteItemConfirm() {
       this.$axios({
-        method: 'DELETE',
+        method: "DELETE",
         url: `client/${this.itemtoDelete.id}`,
       })
         .then(() => {
           this.rows = this.rows.filter((item) => {
-            return item.id != this.itemtoDelete.id
-          })
-          this.dialogDelete = false
+            return item.id != this.itemtoDelete.id;
+          });
+          this.dialogDelete = false;
           this.$iziToast.success({
             timeout: 2000,
-            message: this.$t('deleteSuccess'),
-            position: 'bottomRight',
-          })
+            message: this.$t("deleteSuccess"),
+            position: "bottomRight",
+          });
         })
         .catch((err) => {
-          this.dialogDelete = false
+          this.dialogDelete = false;
           this.$iziToast.error({
             timeout: 2000,
             message: err.response.data.message,
-            position: 'bottomRight',
-          })
-        })
+            position: "bottomRight",
+          });
+        });
     },
     // ==================== End CRUD ====================
 
     // Filter Table
     filterTable(items) {
-      this.rows = []
-      this.filterItems = items
-      this.setRows()
+      this.rows = [];
+      this.filterItems = items;
+      this.setRows();
     },
 
     // Set Rows
     setRows() {
-      this.loading_table = true
+      this.loading_table = true;
       this.$axios({
-        method: 'GET',
-        url: 'client',
+        method: "GET",
+        url: "client",
         params: {
           page: this.paginations.current_page,
           fullname: this.keyword,
         },
       })
         .then((res) => {
-          this.paginations.last_page = res.data.meta.last_page
-          this.paginations.items_per_page = res.data.meta.per_page
+          this.paginations.last_page = res.data.meta.last_page;
+          this.paginations.items_per_page = res.data.meta.per_page;
 
-          this.rows = res.data.data
+          this.rows = res.data.data;
 
-          this.statisticsItem.number = res.data.meta.total
+          this.statisticsItem.number = res.data.meta.total;
 
-          this.loading_table = false
+          this.loading_table = false;
         })
         .catch((err) => {
-          this.loading_table = false
-        })
+          this.loading_table = false;
+        });
     },
     fetchData(e) {
-      this.$router.replace({ query: { page: e } })
-      this.setRows()
+      this.$router.replace({ query: { page: e } });
+      this.setRows();
     },
   },
   created() {
     if (this.$route.query.page) {
-      this.paginations.current_page = +this.$route.query.page
+      this.paginations.current_page = +this.$route.query.page;
     }
-    this.setRows()
+    this.setRows();
   },
 
   // ======= hooks
-}
+};
 </script>
 
 <style lang="scss" scoped></style>

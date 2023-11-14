@@ -6,7 +6,7 @@
 
     <div class="custom_card">
       <div class="card-header">
-        <h4 class="card-title">{{ $t('addNew') }}</h4>
+        <h4 class="card-title">{{ $t("addNew") }}</h4>
       </div>
       <!-- ==== Start Form ==== -->
       <form @submit.prevent="validateCreateForm">
@@ -57,7 +57,7 @@
             <div class="col-lg-12 py-0">
               <div class="input_wrapper top_label">
                 <label for="textarea_1" class="form-label">
-                  {{ $t('forms.labels.replay') }}
+                  {{ $t("forms.labels.replay") }}
                 </label>
                 <textarea
                   v-model="data.replay"
@@ -75,7 +75,7 @@
             class="button_style_1"
             :class="btnIsLoading ? 'disabled' : ''"
           >
-            {{ $t('forms.submit') }}
+            {{ $t("forms.submit") }}
             <span class="btn_loader" v-if="btnIsLoading"></span>
           </button>
         </div>
@@ -86,11 +86,11 @@
 </template>
 
 <script>
-import UserMessage from '@/components/Global/UserMessage.vue'
+import UserMessage from "@/components/Global/UserMessage.vue";
 export default {
-  name: 'Create',
+  name: "Create",
 
-  props: ['id'],
+  props: ["id"],
   components: {
     UserMessage,
   },
@@ -102,19 +102,19 @@ export default {
       // ========== Breadcrumbs
       items: [
         {
-          text: this.$t('breadcrumb.mainPage'),
+          text: this.$t("breadcrumb.mainPage"),
           disabled: false,
-          href: '/',
+          href: "/",
         },
         {
-          text: 'رسائل المستخدمين',
+          text: "رسائل المستخدمين",
           disabled: true,
-          href: '/contact_messages',
+          href: "/contact_messages",
         },
         {
-          text: 'الرد علي الرسالة',
+          text: "الرد علي الرسالة",
           disabled: true,
-          href: '',
+          href: "",
         },
       ],
 
@@ -129,86 +129,86 @@ export default {
       },
       send_types: [
         {
-          id: 'fcm',
-          name: 'fcm',
+          id: "fcm",
+          name: "fcm",
         },
         {
-          id: 'sms',
-          name: 'sms',
+          id: "sms",
+          name: "sms",
         },
         {
-          id: 'email',
-          name: 'email',
+          id: "email",
+          name: "email",
         },
       ],
-    }
+    };
   },
 
   methods: {
     // Uplode Image
     uplodeImg_1(obj) {
-      this.data.ar.image = obj
+      this.data.ar.image = obj;
     },
     // Uplode Image
     uplodeImg_2(obj) {
-      this.data.en.image = obj
+      this.data.en.image = obj;
     },
 
     // Validate Data
     validateCreateForm() {
-      this.btnIsLoading = true
-      this.submitData()
+      this.btnIsLoading = true;
+      this.submitData();
     },
 
     //GET DATA
     getData() {
       this.$axios({
-        method: 'GET',
+        method: "GET",
         url: `contacts/${this.id}`,
       }).then((res) => {
-        this.allData = res.data.data
-      })
+        this.allData = res.data.data;
+      });
     },
     //GET DATA
 
     // Submit Data
     submitData() {
-      const submit_data = new FormData()
+      const submit_data = new FormData();
 
-      submit_data.append('send_type', this.data.send_type.id)
+      submit_data.append("send_type", this.data.send_type.id);
 
-      submit_data.append('reply', this.data.replay)
+      submit_data.append("reply", this.data.replay);
 
       this.$axios({
-        method: 'POST',
+        method: "POST",
         url: `contacts/${this.id}/reply`,
         data: submit_data,
       })
         .then(() => {
           this.$iziToast.success({
             timeout: 2000,
-            message: this.$t('editSuccess'),
-            position: 'bottomRight',
-          })
-          this.$router.push({ path: '/settings/contact_messages' })
-          this.btnIsLoading = false
+            message: this.$t("editSuccess"),
+            position: "bottomRight",
+          });
+          this.$router.push({ path: "/settings/contact_messages" });
+          this.btnIsLoading = false;
         })
         .catch((err) => {
           this.$iziToast.error({
             timeout: 2000,
             message: err.response.data.message,
-            position: 'bottomRight',
-          })
-          this.btnIsLoading = false
-        })
+            position: "bottomRight",
+          });
+          this.btnIsLoading = false;
+        });
     },
   },
 
   created() {
-    this.getData()
-    console.log(this.id)
+    this.getData();
+    console.log(this.id);
   },
-}
+};
 </script>
 <style scoped>
 .card-table .details {

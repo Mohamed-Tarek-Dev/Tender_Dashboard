@@ -6,7 +6,7 @@
 
     <div class="custom_card">
       <div class="card-header">
-        <h4 class="card-title">{{ $t('addNew') }}</h4>
+        <h4 class="card-title">{{ $t("addNew") }}</h4>
       </div>
 
       <!-- ==== Start Form ==== -->
@@ -22,13 +22,13 @@
                   type="text"
                   class="form-control"
                   @input="
-                    helper_checkIfInputIsEmpty
-                    addDataLocalStorage()
+                    helper_checkIfInputIsEmpty;
+                    addDataLocalStorage();
                   "
                   v-model.trim="data.ar.name"
                 />
                 <label for="name_input" class="form-label">
-                  {{ $t('forms.labels.name_ar') }}
+                  {{ $t("forms.labels.name_ar") }}
                 </label>
               </div>
             </div>
@@ -39,13 +39,13 @@
                   type="text"
                   class="form-control"
                   @input="
-                    helper_checkIfInputIsEmpty
-                    addDataLocalStorage()
+                    helper_checkIfInputIsEmpty;
+                    addDataLocalStorage();
                   "
                   v-model.trim="data.en.name"
                 />
                 <label for="name_input" class="form-label">
-                  {{ $t('forms.labels.name_en') }}
+                  {{ $t("forms.labels.name_en") }}
                 </label>
               </div>
             </div>
@@ -57,13 +57,13 @@
                   type="text"
                   class="form-control"
                   @input="
-                    helper_checkIfInputIsEmpty
-                    addDataLocalStorage()
+                    helper_checkIfInputIsEmpty;
+                    addDataLocalStorage();
                   "
                   v-model.trim="data.ar.slug"
                 />
                 <label for="name_input" class="form-label">
-                  {{ $t('forms.labels.slug_ar') }}
+                  {{ $t("forms.labels.slug_ar") }}
                 </label>
               </div>
             </div>
@@ -76,13 +76,13 @@
                   type="text"
                   class="form-control"
                   @input="
-                    helper_checkIfInputIsEmpty
-                    addDataLocalStorage()
+                    helper_checkIfInputIsEmpty;
+                    addDataLocalStorage();
                   "
                   v-model.trim="data.en.slug"
                 />
                 <label for="name_input" class="form-label">
-                  {{ $t('forms.labels.slug_en') }}
+                  {{ $t("forms.labels.slug_en") }}
                 </label>
               </div>
             </div>
@@ -90,7 +90,7 @@
             <div class="col-lg-6 py-0">
               <div class="input_wrapper top_label">
                 <label class="form-label">
-                  {{ $t('forms.labels.country') }}
+                  {{ $t("forms.labels.country") }}
                 </label>
                 <multiselect
                   v-model="data.country"
@@ -111,13 +111,13 @@
                   type="text"
                   class="form-control"
                   @input="
-                    helper_checkIfInputIsEmpty
-                    addDataLocalStorage()
+                    helper_checkIfInputIsEmpty;
+                    addDataLocalStorage();
                   "
                   v-model.trim="data.short_name"
                 />
                 <label for="name_input" class="form-label">
-                  {{ $t('forms.labels.short_name') }}
+                  {{ $t("forms.labels.short_name") }}
                 </label>
               </div>
             </div>
@@ -130,13 +130,13 @@
                   type="number"
                   class="form-control"
                   @input="
-                    helper_checkIfInputIsEmpty
-                    addDataLocalStorage()
+                    helper_checkIfInputIsEmpty;
+                    addDataLocalStorage();
                   "
                   v-model.trim="data.postal_code"
                 />
                 <label for="name_input" class="form-label">
-                  {{ $t('forms.labels.postal_code') }}
+                  {{ $t("forms.labels.postal_code") }}
                 </label>
               </div>
             </div>
@@ -150,7 +150,7 @@
             :class="btnIsLoading ? 'disabled' : ''"
             :disabled="btnIsLoading"
           >
-            {{ $t('forms.submit') }}
+            {{ $t("forms.submit") }}
             <span class="btn_loader" v-if="btnIsLoading"></span>
           </button>
         </div>
@@ -162,26 +162,26 @@
 
 <script>
 export default {
-  name: 'Create',
+  name: "Create",
 
   data() {
     return {
       // ========== Breadcrumbs
       items: [
         {
-          text: this.$t('breadcrumb.mainPage'),
+          text: this.$t("breadcrumb.mainPage"),
           disabled: false,
-          href: '/',
+          href: "/",
         },
         {
-          text: this.$t('breadcrumb.cities.title'),
+          text: this.$t("breadcrumb.cities.title"),
           disabled: false,
-          href: '/cities/show-all',
+          href: "/cities/show-all",
         },
         {
-          text: this.$t('breadcrumb.cities.add'),
+          text: this.$t("breadcrumb.cities.add"),
           disabled: true,
-          href: '',
+          href: "",
         },
       ],
 
@@ -205,136 +205,136 @@ export default {
 
       // Fixed Data
       countries: [],
-    }
+    };
   },
 
   mounted() {
-    this.getDataLocalStorage()
+    this.getDataLocalStorage();
   },
 
   methods: {
     addDataLocalStorage() {
-      localStorage.setItem('cities_data', JSON.stringify(this.data))
+      localStorage.setItem("cities_data", JSON.stringify(this.data));
     },
 
     getDataLocalStorage() {
-      if (localStorage.getItem('cities_data')) {
-        this.data = JSON.parse(localStorage.getItem('cities_data'))
+      if (localStorage.getItem("cities_data")) {
+        this.data = JSON.parse(localStorage.getItem("cities_data"));
       }
     },
 
     // Uplode Image
     uplodeImg_1(obj) {
-      this.data.image = obj
+      this.data.image = obj;
     },
 
     // Validate Data
     validateCreateForm() {
-      this.btnIsLoading = true
+      this.btnIsLoading = true;
       if (!this.data.ar.name) {
         this.$iziToast.error({
           timeout: 2000,
-          message: this.$t('forms.validation.name_ar'),
-          position: 'bottomRight',
-        })
-        this.btnIsLoading = false
-        return
+          message: this.$t("forms.validation.name_ar"),
+          position: "bottomRight",
+        });
+        this.btnIsLoading = false;
+        return;
       } else if (!this.data.en.name) {
         this.$iziToast.error({
           timeout: 2000,
-          message: this.$t('forms.validation.name_en'),
-          position: 'bottomRight',
-        })
-        this.btnIsLoading = false
-        return
+          message: this.$t("forms.validation.name_en"),
+          position: "bottomRight",
+        });
+        this.btnIsLoading = false;
+        return;
       } else if (!this.data.ar.slug) {
         this.$iziToast.error({
           timeout: 2000,
-          message: this.$t('forms.validation.slug_ar'),
-          position: 'bottomRight',
-        })
-        this.btnIsLoading = false
-        return
+          message: this.$t("forms.validation.slug_ar"),
+          position: "bottomRight",
+        });
+        this.btnIsLoading = false;
+        return;
       } else if (!this.data.en.slug) {
         this.$iziToast.error({
           timeout: 2000,
-          message: this.$t('forms.validation.slug_en'),
-          position: 'bottomRight',
-        })
-        this.btnIsLoading = false
-        return
+          message: this.$t("forms.validation.slug_en"),
+          position: "bottomRight",
+        });
+        this.btnIsLoading = false;
+        return;
       } else if (!this.data.country) {
         this.$iziToast.error({
           timeout: 2000,
-          message: this.$t('forms.validation.country'),
-          position: 'bottomRight',
-        })
-        this.btnIsLoading = false
-        return
+          message: this.$t("forms.validation.country"),
+          position: "bottomRight",
+        });
+        this.btnIsLoading = false;
+        return;
       } else {
-        this.submitData()
-        return
+        this.submitData();
+        return;
       }
     },
 
     // Submit Data
     submitData() {
-      const submit_data = new FormData()
-      submit_data.append('ar[name]', this.data.ar.name)
-      submit_data.append('en[name]', this.data.en.name)
-      submit_data.append('ar[slug]', this.data.ar.slug)
-      submit_data.append('en[slug]', this.data.en.slug)
-      submit_data.append('country_id', this.data.country.id)
-      submit_data.append('short_name', this.data.short_name)
-      submit_data.append('postal_code', this.data.postal_code)
+      const submit_data = new FormData();
+      submit_data.append("ar[name]", this.data.ar.name);
+      submit_data.append("en[name]", this.data.en.name);
+      submit_data.append("ar[slug]", this.data.ar.slug);
+      submit_data.append("en[slug]", this.data.en.slug);
+      submit_data.append("country_id", this.data.country.id);
+      submit_data.append("short_name", this.data.short_name);
+      submit_data.append("postal_code", this.data.postal_code);
 
       this.$axios({
-        method: 'POST',
-        url: 'cities',
+        method: "POST",
+        url: "cities",
         data: submit_data,
       })
         .then(() => {
           // =============== Start:: Remove Form Data From LocalStorage =============== //
-          localStorage.removeItem('cities_data')
+          localStorage.removeItem("cities_data");
 
           // =============== End:: Remove Form Data From LocalStorage =============== //
           this.$iziToast.success({
             timeout: 2000,
-            message: this.$t('addSuccess'),
-            position: 'bottomRight',
-          })
-          this.$router.push({ path: '/cities/show-all' })
-          this.btnIsLoading = false
+            message: this.$t("addSuccess"),
+            position: "bottomRight",
+          });
+          this.$router.push({ path: "/cities/show-all" });
+          this.btnIsLoading = false;
         })
         .catch((err) => {
-          console.log(err.response)
+          console.log(err.response);
           this.$iziToast.error({
             timeout: 2000,
             message: err.response.data.message,
-            position: 'bottomRight',
-          })
-          this.btnIsLoading = false
-        })
+            position: "bottomRight",
+          });
+          this.btnIsLoading = false;
+        });
     },
 
     // Get Data
     getData() {
       this.$axios({
-        method: 'GET',
+        method: "GET",
         url: `countries`,
       }).then((res) => {
         this.countries = res.data.data.map((item) => {
           return {
             id: item.id,
             name: item.name,
-          }
-        })
-      })
+          };
+        });
+      });
     },
   },
 
   created() {
-    this.getData()
+    this.getData();
   },
-}
+};
 </script>

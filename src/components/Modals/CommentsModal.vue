@@ -14,7 +14,7 @@
 
         <!-- Start:: Comments List -->
         <!-- @scroll="scrollSection" -->
-        <ul class="comments_list heightScreen"  >
+        <ul class="comments_list heightScreen">
           <li
             class="single_comment"
             v-for="item in commentsList"
@@ -141,7 +141,6 @@ export default {
 
   methods: {
     toggleModal() {
-      
       this.$emit("toggleModal");
     },
     // scrollSection() {

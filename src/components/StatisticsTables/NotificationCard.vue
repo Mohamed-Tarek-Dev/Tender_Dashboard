@@ -27,7 +27,7 @@
     </div>
     <div v-else>
       <p class="text-center fs-6">
-        {{ $t('table.noData') }}
+        {{ $t("table.noData") }}
       </p>
     </div>
   </div>
@@ -35,9 +35,9 @@
 
 <script>
 export default {
-  props: ['items', 'height', 'title'],
+  props: ["items", "height", "title"],
   components: {},
-}
+};
 </script>
 
 <style lang="scss" scoped>

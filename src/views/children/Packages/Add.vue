@@ -6,7 +6,7 @@
 
     <div class="custom_card">
       <div class="card-header">
-        <h4 class="card-title">{{ $t('addNew') }}</h4>
+        <h4 class="card-title">{{ $t("addNew") }}</h4>
       </div>
 
       <!-- ==== Start Form ==== -->
@@ -20,13 +20,13 @@
                   type="text"
                   class="form-control"
                   @input="
-                    helper_checkIfInputIsEmpty
-                    addDataLocalStorage()
+                    helper_checkIfInputIsEmpty;
+                    addDataLocalStorage();
                   "
                   v-model.trim="data.title"
                 />
                 <label for="name_input" class="form-label">
-                  {{ $t('forms.labels.title') }}
+                  {{ $t("forms.labels.title") }}
                 </label>
               </div>
             </div>
@@ -38,13 +38,13 @@
                   type="number"
                   class="form-control"
                   @input="
-                    helper_checkIfInputIsEmpty
-                    addDataLocalStorage()
+                    helper_checkIfInputIsEmpty;
+                    addDataLocalStorage();
                   "
                   v-model.trim="data.price"
                 />
                 <label for="name_input" class="form-label">
-                  {{ $t('forms.labels.price') }}
+                  {{ $t("forms.labels.price") }}
                 </label>
               </div>
             </div>
@@ -57,13 +57,13 @@
                 <textarea
                   class="form-control"
                   @input="
-                    helper_checkIfInputIsEmpty
-                    addDataLocalStorage()
+                    helper_checkIfInputIsEmpty;
+                    addDataLocalStorage();
                   "
                   v-model.trim="data.desc"
                 ></textarea>
                 <label for="name_input" class="form-label">
-                  {{ $t('forms.labels.desc') }}
+                  {{ $t("forms.labels.desc") }}
                 </label>
               </div>
             </div>
@@ -75,13 +75,13 @@
                 <textarea
                   class="form-control"
                   @input="
-                    helper_checkIfInputIsEmpty
-                    addDataLocalStorage()
+                    helper_checkIfInputIsEmpty;
+                    addDataLocalStorage();
                   "
                   v-model.trim="data.note"
                 ></textarea>
                 <label for="name_input" class="form-label">
-                  {{ $t('forms.labels.note') }}
+                  {{ $t("forms.labels.note") }}
                 </label>
               </div>
             </div>
@@ -94,13 +94,13 @@
                   type="number"
                   class="form-control"
                   @input="
-                    helper_checkIfInputIsEmpty
-                    addDataLocalStorage()
+                    helper_checkIfInputIsEmpty;
+                    addDataLocalStorage();
                   "
                   v-model.trim="data.duration_by_month"
                 />
                 <label for="name_input" class="form-label">
-                  {{ $t('forms.labels.duration_by_month') }}
+                  {{ $t("forms.labels.duration_by_month") }}
                 </label>
               </div>
             </div>
@@ -110,7 +110,7 @@
             <div class="col-lg-6 py-0">
               <div class="input_wrapper top_label">
                 <label class="form-label">
-                  {{ $t('forms.labels.type') }}
+                  {{ $t("forms.labels.type") }}
                 </label>
                 <multiselect
                   v-model="data.type"
@@ -130,7 +130,7 @@
 
         <div class="buttons_wrapper">
           <button class="button_style_1" :disabled="btnIsLoading">
-            {{ $t('forms.submit') }}
+            {{ $t("forms.submit") }}
             <span class="btn_loader" v-if="btnIsLoading"></span>
           </button>
         </div>
@@ -147,7 +147,7 @@
           type="video/webm"
           :src="model_1.model_img_src"
           width="100%"
-          style="max-height: 50rem; min-height: 20rem;"
+          style="max-height: 50rem; min-height: 20rem"
         />
       </div>
     </base-model>
@@ -156,29 +156,29 @@
 </template>
 
 <script>
-import { json } from 'body-parser'
+import { json } from "body-parser";
 
 export default {
-  name: 'Create',
+  name: "Create",
 
   data() {
     return {
       // ========== Breadcrumbs
       items: [
         {
-          text: this.$t('breadcrumb.mainPage'),
+          text: this.$t("breadcrumb.mainPage"),
           disabled: false,
-          href: '/',
+          href: "/",
         },
         {
-          text: this.$t('breadcrumb.packages.title'),
+          text: this.$t("breadcrumb.packages.title"),
           disabled: false,
-          href: '/packages/show-all',
+          href: "/packages/show-all",
         },
         {
-          text: this.$t('breadcrumb.packages.add'),
+          text: this.$t("breadcrumb.packages.add"),
           disabled: true,
-          href: '',
+          href: "",
         },
       ],
 
@@ -199,139 +199,139 @@ export default {
       // ========== Model
       model_1: {
         show_model: false,
-        model_img_src: '',
+        model_img_src: "",
       },
       types: [
         {
-          id: 'free',
-          name: 'مجاني',
+          id: "free",
+          name: "مجاني",
         },
-        { id: 'supplier_package', name: 'حزمة المورد' },
+        { id: "supplier_package", name: "حزمة المورد" },
         {
-          id: 'package_agents_and_distributors',
-          name: 'باقة الوكلاء والموزعين',
+          id: "package_agents_and_distributors",
+          name: "باقة الوكلاء والموزعين",
         },
-        { id: 'package_inclusive', name: 'باقة شاملة' },
+        { id: "package_inclusive", name: "باقة شاملة" },
       ],
-    }
+    };
   },
 
   mounted() {
-    this.getDataLocalStorage()
+    this.getDataLocalStorage();
   },
 
   methods: {
     addDataLocalStorage() {
-      localStorage.setItem('packages_data', JSON.stringify(this.data))
+      localStorage.setItem("packages_data", JSON.stringify(this.data));
     },
     // ============ Get Select Lists Data
     getDataLocalStorage() {
-      if (localStorage.getItem('packages_data')) {
-        this.data = JSON.parse(localStorage.getItem('packages_data'))
+      if (localStorage.getItem("packages_data")) {
+        this.data = JSON.parse(localStorage.getItem("packages_data"));
       }
     },
     show_model_1(e) {
-      this.model_1.model_img_src = e.path
-      this.model_1.show_model = true
+      this.model_1.model_img_src = e.path;
+      this.model_1.show_model = true;
     },
     // Validate Data
     validateForm() {
-      this.btnIsLoading = true
+      this.btnIsLoading = true;
 
       if (!this.data.title) {
         this.$iziToast.error({
           timeout: 2000,
-          message: this.$t('forms.validation.title'),
-          position: 'bottomRight',
-        })
-        this.btnIsLoading = false
-        return
+          message: this.$t("forms.validation.title"),
+          position: "bottomRight",
+        });
+        this.btnIsLoading = false;
+        return;
       } else if (!this.data.desc) {
         this.$iziToast.error({
           timeout: 2000,
-          message: this.$t('forms.validation.desc'),
-          position: 'bottomRight',
-        })
-        this.btnIsLoading = false
-        return
+          message: this.$t("forms.validation.desc"),
+          position: "bottomRight",
+        });
+        this.btnIsLoading = false;
+        return;
       } else if (!this.data.price) {
         this.$iziToast.error({
           timeout: 2000,
-          message: this.$t('forms.validation.price'),
-          position: 'bottomRight',
-        })
-        this.btnIsLoading = false
-        return
+          message: this.$t("forms.validation.price"),
+          position: "bottomRight",
+        });
+        this.btnIsLoading = false;
+        return;
       } else if (!this.data.note) {
         this.$iziToast.error({
           timeout: 2000,
-          message: this.$t('forms.validation.note'),
-          position: 'bottomRight',
-        })
-        this.btnIsLoading = false
-        return
+          message: this.$t("forms.validation.note"),
+          position: "bottomRight",
+        });
+        this.btnIsLoading = false;
+        return;
       } else if (!this.data.duration_by_month) {
         this.$iziToast.error({
           timeout: 2000,
-          message: this.$t('forms.validation.duration_by_month'),
-          position: 'bottomRight',
-        })
-        this.btnIsLoading = false
-        return
+          message: this.$t("forms.validation.duration_by_month"),
+          position: "bottomRight",
+        });
+        this.btnIsLoading = false;
+        return;
       } else if (!this.data.type) {
         this.$iziToast.error({
           timeout: 2000,
-          message: this.$t('forms.validation.type'),
-          position: 'bottomRight',
-        })
-        this.btnIsLoading = false
-        return
+          message: this.$t("forms.validation.type"),
+          position: "bottomRight",
+        });
+        this.btnIsLoading = false;
+        return;
       }
 
-      this.submitData()
+      this.submitData();
     },
 
     // Submit Data
     submitData() {
-      const submit_data = new FormData()
-      submit_data.append('title', this.data.title)
-      submit_data.append('desc', this.data.desc)
-      submit_data.append('note', this.data.note)
-      submit_data.append('duration_by_month', this.data.duration_by_month)
-      submit_data.append('type', this.data.type?.id)
-      submit_data.append('price', this.data.price)
+      const submit_data = new FormData();
+      submit_data.append("title", this.data.title);
+      submit_data.append("desc", this.data.desc);
+      submit_data.append("note", this.data.note);
+      submit_data.append("duration_by_month", this.data.duration_by_month);
+      submit_data.append("type", this.data.type?.id);
+      submit_data.append("price", this.data.price);
 
       this.$axios({
-        method: 'POST',
-        url: 'packages',
+        method: "POST",
+        url: "packages",
         data: submit_data,
       })
         .then(() => {
           // =============== Start:: Remove Form Data From LocalStorage =============== //
-          localStorage.removeItem('packages_data')
+          localStorage.removeItem("packages_data");
 
           // =============== End:: Remove Form Data From LocalStorage =============== //
           this.$iziToast.success({
             timeout: 2000,
-            message: this.$t('addSuccess'),
-            position: 'bottomRight',
-          })
-          this.$router.push({ path: '/packages/show-all' })
-          this.btnIsLoading = false
+            message: this.$t("addSuccess"),
+            position: "bottomRight",
+          });
+          this.$router.push({ path: "/packages/show-all" });
+          this.btnIsLoading = false;
         })
         .catch((err) => {
-          let message = ''
+          let message = "";
           err.response.data.message
             ? (message = err.response.data.message)
-            : (message = err.response.data.messages)
+            : (message = err.response.data.messages);
           this.$iziToast.error({
             timeout: 2000,
             message: message,
-            position: 'bottomRight',
-          })
-          this.btnIsLoading = false
-        })
+            position: "bottomRight",
+          });
+          this.btnIsLoading = false;
+        });
     },
   },
-}
+};
 </script>

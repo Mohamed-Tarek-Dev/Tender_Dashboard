@@ -48,7 +48,7 @@
 
       <!-- Select no data State -->
       <template v-slot:no-data>
-        {{ $t('table.noData') }}
+        {{ $t("table.noData") }}
       </template>
 
       <!-- Select actions-->
@@ -75,15 +75,15 @@
         <v-dialog v-model="dialogDelete" max-width="500px">
           <v-card>
             <v-card-title class="text-h5 justify-center">
-              {{ $t('table.deletedialog.areYouSure') }}
+              {{ $t("table.deletedialog.areYouSure") }}
             </v-card-title>
             <v-card-actions>
               <v-spacer></v-spacer>
               <v-btn color="#1B5E20" @click="deleteItemConfirm">
-                {{ $t('table.deletedialog.ok') }}
+                {{ $t("table.deletedialog.ok") }}
               </v-btn>
               <v-btn color="#F44336" @click="dialogDelete = false">
-                {{ $t('table.deletedialog.cancel') }}
+                {{ $t("table.deletedialog.cancel") }}
               </v-btn>
               <v-spacer></v-spacer>
             </v-card-actions>
@@ -150,34 +150,34 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-import StatsCard from './../../../components/Charts/ChartComponent.vue'
+import { mapGetters } from "vuex";
+import StatsCard from "./../../../components/Charts/ChartComponent.vue";
 export default {
   data() {
     return {
       // ========== Breadcrumbs
       items: [
         {
-          text: 'Home',
+          text: "Home",
           disabled: false,
-          href: '/',
+          href: "/",
         },
         {
-          text: 'Main_Table',
+          text: "Main_Table",
           disabled: true,
-          href: '',
+          href: "",
         },
       ],
       statisticsItems: [
         {
           id: 1,
-          icon: 'fal fa-chalkboard-teacher',
-          title: 'كل المحادثات',
-          number: '10',
+          icon: "fal fa-chalkboard-teacher",
+          title: "كل المحادثات",
+          number: "10",
         },
       ],
       // ========== Top Section
-      search: '',
+      search: "",
 
       // ========== dialog Status
       dialogDelete: false,
@@ -186,11 +186,11 @@ export default {
       // ========== Model
       model_1: {
         show_model: false,
-        model_img_src: '',
+        model_img_src: "",
       },
 
       // ========== Body Section
-      calories: '',
+      calories: "",
 
       // ========== Your Data
       rows: [], // injected in created
@@ -207,47 +207,47 @@ export default {
 
       // ========== Loding
       loading: false,
-    }
+    };
   },
   components: {
     StatsCard,
   },
   computed: {
     ...mapGetters({
-      lang: 'lang_module/lang',
+      lang: "lang_module/lang",
     }),
 
     headers() {
-      if (this.lang == 'ar') {
+      if (this.lang == "ar") {
         return [
           {
-            text: 'الصورة', // the name to display
-            align: 'center', // [center, start]
-            value: 'avatar', // must be equal to the name in rows object
+            text: "الصورة", // the name to display
+            align: "center", // [center, start]
+            value: "avatar", // must be equal to the name in rows object
           },
-          { text: 'محادثة مع', value: 'name', align: 'center' },
+          { text: "محادثة مع", value: "name", align: "center" },
           {
-            text: 'التحكم',
-            value: 'actions',
+            text: "التحكم",
+            value: "actions",
             sortable: false,
-            align: 'center',
+            align: "center",
           },
-        ]
+        ];
       } else {
         return [
           {
-            text: 'Avatar', // the name to display
-            align: 'center', // [center, start]
-            value: 'avatar', // must be equal to the name in rows object
+            text: "Avatar", // the name to display
+            align: "center", // [center, start]
+            value: "avatar", // must be equal to the name in rows object
           },
-          { text: 'Chat With', value: 'name', align: 'center' },
+          { text: "Chat With", value: "name", align: "center" },
           {
-            text: 'Actions',
-            value: 'actions',
+            text: "Actions",
+            value: "actions",
             sortable: false,
-            align: 'center',
+            align: "center",
           },
-        ]
+        ];
       }
     },
   },
@@ -255,12 +255,12 @@ export default {
   methods: {
     filterClick(word) {
       if (!this.loading) {
-        if (word != 'كل المحادثات') {
-          this.search = word
+        if (word != "كل المحادثات") {
+          this.search = word;
         } else {
-          this.search = ''
+          this.search = "";
         }
-        this.filterSearch()
+        this.filterSearch();
       }
     },
     // ===== Search Method =====
@@ -270,18 +270,18 @@ export default {
         value: ${value},
         search: ${search},
         item: ${item}
-      `)
+      `);
 
       return (
         value != null &&
         search != null &&
-        typeof value === 'string' &&
+        typeof value === "string" &&
         value.toString().toLocaleUpperCase().indexOf(search) !== -1
-      )
+      );
     },
 
     setRows() {
-      this.loading = true
+      this.loading = true;
 
       // let pageIndex;
       // if (pageNumber) {
@@ -295,114 +295,114 @@ export default {
           {
             id: 1,
             avatar:
-              'https://ui.alalmiyalhura.com/new_dashboard/img/joker.830f1452.jpg',
-            name: 'Ahmed Ali',
+              "https://ui.alalmiyalhura.com/new_dashboard/img/joker.830f1452.jpg",
+            name: "Ahmed Ali",
           },
           {
             id: 2,
             avatar:
-              'https://inflco.o.aait-d.com/storage/images/user/D3lukOvbubcPoVvEoFKLuYTYMKkaE46kPEFSvdQH.png',
-            name: 'Ahmed Ali',
+              "https://inflco.o.aait-d.com/storage/images/user/D3lukOvbubcPoVvEoFKLuYTYMKkaE46kPEFSvdQH.png",
+            name: "Ahmed Ali",
           },
           {
             id: 3,
             avatar:
-              'https://inflco.o.aait-d.com/storage/images/user/D3lukOvbubcPoVvEoFKLuYTYMKkaE46kPEFSvdQH.png',
-            name: 'Ahmed Ali',
+              "https://inflco.o.aait-d.com/storage/images/user/D3lukOvbubcPoVvEoFKLuYTYMKkaE46kPEFSvdQH.png",
+            name: "Ahmed Ali",
           },
           {
             id: 4,
             avatar:
-              'https://inflco.o.aait-d.com/storage/images/user/D3lukOvbubcPoVvEoFKLuYTYMKkaE46kPEFSvdQH.png',
-            name: 'Ahmed Ali',
+              "https://inflco.o.aait-d.com/storage/images/user/D3lukOvbubcPoVvEoFKLuYTYMKkaE46kPEFSvdQH.png",
+            name: "Ahmed Ali",
           },
           {
             id: 5,
             avatar:
-              'https://inflco.o.aait-d.com/storage/images/user/D3lukOvbubcPoVvEoFKLuYTYMKkaE46kPEFSvdQH.png',
-            name: 'Ahmed Ali',
+              "https://inflco.o.aait-d.com/storage/images/user/D3lukOvbubcPoVvEoFKLuYTYMKkaE46kPEFSvdQH.png",
+            name: "Ahmed Ali",
           },
           {
             id: 6,
             avatar:
-              'https://inflco.o.aait-d.com/storage/images/user/D3lukOvbubcPoVvEoFKLuYTYMKkaE46kPEFSvdQH.png',
-            name: 'Ahmed Ali',
+              "https://inflco.o.aait-d.com/storage/images/user/D3lukOvbubcPoVvEoFKLuYTYMKkaE46kPEFSvdQH.png",
+            name: "Ahmed Ali",
           },
           {
             id: 7,
             avatar:
-              'https://inflco.o.aait-d.com/storage/images/user/D3lukOvbubcPoVvEoFKLuYTYMKkaE46kPEFSvdQH.png',
-            name: 'Ahmed Ali',
+              "https://inflco.o.aait-d.com/storage/images/user/D3lukOvbubcPoVvEoFKLuYTYMKkaE46kPEFSvdQH.png",
+            name: "Ahmed Ali",
           },
           {
             id: 8,
             avatar:
-              'https://inflco.o.aait-d.com/storage/images/user/D3lukOvbubcPoVvEoFKLuYTYMKkaE46kPEFSvdQH.png',
-            name: 'Ahmed Ali',
+              "https://inflco.o.aait-d.com/storage/images/user/D3lukOvbubcPoVvEoFKLuYTYMKkaE46kPEFSvdQH.png",
+            name: "Ahmed Ali",
           },
           {
             id: 9,
             avatar:
-              'https://inflco.o.aait-d.com/storage/images/user/D3lukOvbubcPoVvEoFKLuYTYMKkaE46kPEFSvdQH.png',
-            name: 'Ahmed Ali',
+              "https://inflco.o.aait-d.com/storage/images/user/D3lukOvbubcPoVvEoFKLuYTYMKkaE46kPEFSvdQH.png",
+            name: "Ahmed Ali",
           },
           {
             id: 10,
             avatar:
-              'https://inflco.o.aait-d.com/storage/images/user/D3lukOvbubcPoVvEoFKLuYTYMKkaE46kPEFSvdQH.png',
-            name: 'Ahmed Ali',
+              "https://inflco.o.aait-d.com/storage/images/user/D3lukOvbubcPoVvEoFKLuYTYMKkaE46kPEFSvdQH.png",
+            name: "Ahmed Ali",
           },
-        ]
+        ];
 
         // this.paginations.current_page = res.data.meta.current_page;
         // this.paginations.last_page = res.data.meta.last_page;
 
-        this.loading = false
-      }, 2000)
+        this.loading = false;
+      }, 2000);
     },
 
     // img Model
     show_model_1(e) {
-      this.model_1.model_img_src = e.target.src
-      this.model_1.show_model = true
+      this.model_1.model_img_src = e.target.src;
+      this.model_1.show_model = true;
     },
 
     // ==================== CRUD ====================
     addItem() {
-      console.log('Add Item')
+      console.log("Add Item");
     },
     showItem(item) {
-      this.$router.push({ path: '/readOnly_chat/' + item.id })
-      console.log(item)
+      this.$router.push({ path: "/readOnly_chat/" + item.id });
+      console.log(item);
     },
     editItem(item) {
-      console.log('Edite Item')
-      console.log(item)
+      console.log("Edite Item");
+      console.log(item);
     },
     // ===== Delete
     deleteItem(item) {
-      this.dialogDelete = true
-      console.log('delete Item')
-      console.log(item)
-      this.itemtoDelete = item
+      this.dialogDelete = true;
+      console.log("delete Item");
+      console.log(item);
+      this.itemtoDelete = item;
     },
     deleteItemConfirm() {
-      console.log('delete Item confirm')
-      console.log(this.itemtoDelete)
-      this.dialogDelete = false
+      console.log("delete Item confirm");
+      console.log(this.itemtoDelete);
+      this.dialogDelete = false;
     },
     fetchData(e) {
-      this.$router.replace({ query: { page: e } })
-      this.setRows()
+      this.$router.replace({ query: { page: e } });
+      this.setRows();
     },
   },
   created() {
     if (this.$route.query.page) {
-      this.paginations.current_page = +this.$route.query.page
+      this.paginations.current_page = +this.$route.query.page;
     }
-    this.setRows()
+    this.setRows();
   },
-}
+};
 </script>
 
 <style lang="scss" scoped></style>

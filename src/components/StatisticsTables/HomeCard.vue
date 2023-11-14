@@ -18,7 +18,7 @@
           <!--Details-->
           <div class="exp">
             <h4>{{ item.product.name }}</h4>
-            <span>{{ item.product.desc.substring(0, 40) + '..' }}</span>
+            <span>{{ item.product.desc.substring(0, 40) + ".." }}</span>
           </div>
         </div>
         <!--Othor Part-->
@@ -29,20 +29,20 @@
     </div>
     <div v-else>
       <p class="text-center fs-6">
-        {{ $t('table.noData') }}
+        {{ $t("table.noData") }}
       </p>
     </div>
   </div>
 </template>
 
 <script>
-import RatingStars from '../../components/UI/RatingStars.vue'
+import RatingStars from "../../components/UI/RatingStars.vue";
 export default {
-  props: ['items', 'height', 'title'],
+  props: ["items", "height", "title"],
   components: {
     RatingStars,
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>

@@ -2,7 +2,7 @@
   <div class="main_filter_content_wrapper">
     <!-- Start:: Filter Divider -->
     <div class="divider">
-      <h4>{{ $t('searchAt', { filterTitle: title }) }}</h4>
+      <h4>{{ $t("searchAt", { filterTitle: title }) }}</h4>
       <hr
         role="separator"
         aria-orientation="horizontal"
@@ -16,7 +16,7 @@
       <!-- ********** Start:: Hashtags Input ********** -->
       <div class="col-12 py-0">
         <div class="input_wrapper top_label auto_complete">
-          <label class="form-label">{{$t("hashtag")}}</label>
+          <label class="form-label">{{ $t("hashtag") }}</label>
           <v-autocomplete
             v-model="filterKeys.hashtag_id"
             :search-input.sync="filterKeyWords.hashtag"
@@ -36,11 +36,8 @@
 
       <!-- ********** Start:: Submit Button ********** -->
       <div class="buttons_wrapper my-2">
-        <button
-          class="button_style_1"
-          @click="$emit('filterData', filterKeys)"
-        >
-          {{$t("table.search")}}
+        <button class="button_style_1" @click="$emit('filterData', filterKeys)">
+          {{ $t("table.search") }}
         </button>
       </div>
       <!-- ********** End:: Submit Button ********** -->
@@ -70,7 +67,7 @@ export default {
       filterKeyWords: {
         hashtag: "",
       },
-        //  ====== Start:: Search Options Data
+      //  ====== Start:: Search Options Data
 
       //  ====== Start:: Select Lists Data
       selectLists: {
@@ -83,10 +80,10 @@ export default {
         hashtag_id: null,
       },
       //  ====== End:: Filter Keys
-    }
+    };
   },
 
-    watch: {
+  watch: {
     [`filterKeyWords.hashtag`](newVal, oldVal) {
       if (!newVal || newVal.length < 3) {
         this.selectLists.hashtags = null;
@@ -105,7 +102,9 @@ export default {
   methods: {
     // Start:: Hashtags Filter
     addHashtagData(item) {
-      this.filterKeys.hashtag_id ?  this.filterKeys.hashtag_id = item : this.filterKeys.hashtag_id = null;
+      this.filterKeys.hashtag_id
+        ? (this.filterKeys.hashtag_id = item)
+        : (this.filterKeys.hashtag_id = null);
     },
     get_filterd_hashtags(keyword) {
       this.isGettingHashtags = true;
@@ -123,7 +122,7 @@ export default {
     },
     // End:: Hashtags Filter
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -147,7 +146,7 @@ export default {
       @include flexCenterAlignment;
     }
     .v-divider {
-      border-color:  var(--mainColor-2_2);
+      border-color: var(--mainColor-2_2);
       opacity: 1;
     }
   }

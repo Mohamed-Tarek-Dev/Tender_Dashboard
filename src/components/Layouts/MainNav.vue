@@ -16,7 +16,7 @@
                     <router-link to="/profile/show">
                       <span class="icon"></span>
                       <span class="text">
-                        {{ $t('navbar.userMenu.profile') }}
+                        {{ $t("navbar.userMenu.profile") }}
                       </span>
                     </router-link>
                   </li>
@@ -24,7 +24,7 @@
                     <router-link to="/profile/edit">
                       <span class="icon"></span>
                       <span class="text">
-                        {{ $t('navbar.userMenu.editProfile') }}
+                        {{ $t("navbar.userMenu.editProfile") }}
                       </span>
                     </router-link>
                   </li>
@@ -39,7 +39,7 @@
                   <v-divider></v-divider>
                   <li @click="logOut">
                     <span class="icon"></span>
-                    <span class="text">{{ $t('navbar.userMenu.logout') }}</span>
+                    <span class="text">{{ $t("navbar.userMenu.logout") }}</span>
                   </li>
                 </ul>
               </div>
@@ -52,7 +52,7 @@
         </div>
         <div class="dashName" v-else>
           <span v-if="!isSmallScreen" class="_title">
-            {{ $t('navbar.Dash_Name') }}
+            {{ $t("navbar.Dash_Name") }}
           </span>
           <span class="name">Tender</span>
           <!-- <span class="icon"><i class="fas fa-video mt-2"></i></span> -->
@@ -113,9 +113,9 @@
                   <header class="header">
                     <h3>
                       {{ unreadNotifCount }}
-                      {{ $t('navbar.notification.topTitle_1') }}
+                      {{ $t("navbar.notification.topTitle_1") }}
                     </h3>
-                    <p>{{ $t('navbar.notification.topTitle_2') }}</p>
+                    <p>{{ $t("navbar.notification.topTitle_2") }}</p>
                   </header>
                   <!-- If Empty -->
                   <div
@@ -128,7 +128,7 @@
                       width="120"
                       height="150"
                     />
-                    <h4>{{ $t('navbar.notification.no_notifications') }}</h4>
+                    <h4>{{ $t("navbar.notification.no_notifications") }}</h4>
                   </div>
                   <!-- Else -->
                   <ul class="notifications_container" v-else>
@@ -142,7 +142,7 @@
                         </span>
                         <div class="text">
                           <h4>{{ item.title }}</h4>
-                          <p>{{ item.body.slice(0, 40) + '...' }}</p>
+                          <p>{{ item.body.slice(0, 40) + "..." }}</p>
                         </div>
                         <span class="time">{{ item.created_time }}</span>
                       </router-link>
@@ -186,81 +186,83 @@
   </nav>
 </template>
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters } from "vuex";
 export default {
   data() {
     return {
       profile_menu: false,
       notification_menu: false,
-      searchInput: '',
+      searchInput: "",
       notifications: [],
       unreadNotifCount: null,
       userDataExist: false,
-    }
+    };
   },
   methods: {
     getNotifications() {
-      this.$axios.get('notifications').then((data) => {
-        this.notifications = data.data.data
+      this.$axios.get("notifications").then((data) => {
+        this.notifications = data.data.data;
 
-        this.unreadNotifCount = data.data.meta.total
-      })
+        this.unreadNotifCount = data.data.meta.total;
+      });
     },
     getUserData() {
-      this.$axios.get('profile').then((data) => {
-        this.userDataExist = data.data.data
-      })
+      this.$axios.get("profile").then((data) => {
+        this.userDataExist = data.data.data;
+      });
     },
     toggleSearch() {
-      let searchForm = document.querySelector('.search-form .form-group')
-      console.log(searchForm)
-      searchForm.classList.toggle('show')
+      let searchForm = document.querySelector(".search-form .form-group");
+      console.log(searchForm);
+      searchForm.classList.toggle("show");
     },
     toggle_profile_menu() {
-      this.profile_menu = !this.profile_menu
-      this.notification_menu = false
+      this.profile_menu = !this.profile_menu;
+      this.notification_menu = false;
     },
     toggle_notification_menu() {
-      this.notification_menu = !this.notification_menu
-      this.profile_menu = false
+      this.notification_menu = !this.notification_menu;
+      this.profile_menu = false;
     },
     toggleMenu() {
-      document.querySelector('.smallScreenSidebar').classList.toggle('active')
+      document.querySelector(".smallScreenSidebar").classList.toggle("active");
     },
     logOut() {
-      this.$store.dispatch('auth_module/logOut')
+      this.$store.dispatch("auth_module/logOut");
     },
     changeTheme(value) {
-      this.$store.dispatch('theme_module/changeTheme', value)
-      if (value == 'light') {
-        this.$vuetify.theme.dark = false
+      this.$store.dispatch("theme_module/changeTheme", value);
+      if (value == "light") {
+        this.$vuetify.theme.dark = false;
       } else {
-        this.$vuetify.theme.dark = true
+        this.$vuetify.theme.dark = true;
       }
     },
     changeLang(value) {
-      this.$store.dispatch('lang_module/switchLang', value)
+      this.$store.dispatch("lang_module/switchLang", value);
     },
   },
   computed: {
     ...mapGetters({
-      isSmallScreen: 'sideNav_module/isSmallScreen',
-      current_theme: 'theme_module/current_theme',
-      lang: 'lang_module/lang',
+      isSmallScreen: "sideNav_module/isSmallScreen",
+      current_theme: "theme_module/current_theme",
+      lang: "lang_module/lang",
     }),
   },
   mounted() {
-    this.getNotifications()
-    this.getUserData()
-    document.querySelector('body').addEventListener('click', () => {
-      this.profile_menu = false
-      this.notification_menu = false
-      if (document.querySelector('.smallScreenSidebar')) {
-        document.querySelector('.smallScreenSidebar').classList.remove('active')
+    this.getNotifications();
+    this.getUserData();
+    document.querySelector("body").addEventListener("click", () => {
+      this.profile_menu = false;
+      this.notification_menu = false;
+      if (document.querySelector(".smallScreenSidebar")) {
+        document
+          .querySelector(".smallScreenSidebar")
+          .classList.remove("active");
       }
-    })
+    });
   },
-}
+};
 </script>
 <style lang="scss">
 nav.main_nav > .custom_card .navContent .otherSide {
@@ -317,7 +319,7 @@ nav.main_nav > .custom_card .navContent .otherSide {
       display: flex;
       align-items: center;
     }
-    input[role='readonly'] {
+    input[role="readonly"] {
       display: none;
     }
     .v-select__slot {
@@ -326,7 +328,7 @@ nav.main_nav > .custom_card .navContent .otherSide {
     .v-input__slot:after {
       content: unset !important;
     }
-    div[role='button'] {
+    div[role="button"] {
       height: 42px;
       margin: 0 !important;
       bottom: 1px;

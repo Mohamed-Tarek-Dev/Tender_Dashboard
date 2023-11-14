@@ -41,9 +41,7 @@
                   >
                     <template #chart_title>
                       <span class="title_text">احصائيات</span>
-                      <p class="chart_val" :style="{ color: '#648dc4' }">
-                        20
-                      </p>
+                      <p class="chart_val" :style="{ color: '#648dc4' }">20</p>
                     </template>
                   </SparksAreaCharts>
                 </div>
@@ -72,7 +70,7 @@
               >
                 <template #chart_title>
                   <span class="title_text">
-                    {{ $t('leagues') }}
+                    {{ $t("leagues") }}
                   </span>
                 </template>
               </ColumnChart>
@@ -86,7 +84,7 @@
               >
                 <template #chart_title>
                   <span class="title_text">
-                    {{ $t('teams') }}
+                    {{ $t("teams") }}
                   </span>
                 </template>
               </ColumnChart>
@@ -100,7 +98,7 @@
               >
                 <template #chart_title>
                   <span class="title_text">
-                    {{ $t('theUsers') }}
+                    {{ $t("theUsers") }}
                   </span>
                 </template>
               </ColumnChart>
@@ -183,30 +181,30 @@
 
 <script>
 // Start:: Importing Charts
-import SparksAreaCharts from '@/components/Charts/SparksAreaCharts.vue'
-import AreaCharts from '@/components/Charts/AreaCharts.vue'
-import ColumnChart from '@/components/Charts/ColumnChart.vue'
-import DonutChart from '@/components/Charts/DonutChart.vue'
-import LineChart from '@/components/Charts/LineChart.vue'
-import RadialChart from '@/components/Charts/RadialChart.vue'
+import SparksAreaCharts from "@/components/Charts/SparksAreaCharts.vue";
+import AreaCharts from "@/components/Charts/AreaCharts.vue";
+import ColumnChart from "@/components/Charts/ColumnChart.vue";
+import DonutChart from "@/components/Charts/DonutChart.vue";
+import LineChart from "@/components/Charts/LineChart.vue";
+import RadialChart from "@/components/Charts/RadialChart.vue";
 // End:: Importing Charts
 
 // Start:: Statistics Tables
-import UsersStatisticsTable from '@/components/StatisticsTables/UsersStatisticsTable.vue'
-import TransfersTable from '@/components/StatisticsTables/TransfersStatisticsTable.vue'
-import HashtagsStatisticsTable from '@/components/StatisticsTables/HashtagsStatisticsTable.vue'
-import VideosStatisticsView from '@/components/StatisticsTables/VideosStatisticsView.vue'
-import HomeCard from '@/components/StatisticsTables/HomeCard.vue'
-import ReviewCard from '@/components/StatisticsTables/ReviewCard.vue'
-import NewsCard from '@/components/StatisticsTables/NewsCard.vue'
-import StockTrackCard from '@/components/StatisticsTables/StockTracking.vue'
+import UsersStatisticsTable from "@/components/StatisticsTables/UsersStatisticsTable.vue";
+import TransfersTable from "@/components/StatisticsTables/TransfersStatisticsTable.vue";
+import HashtagsStatisticsTable from "@/components/StatisticsTables/HashtagsStatisticsTable.vue";
+import VideosStatisticsView from "@/components/StatisticsTables/VideosStatisticsView.vue";
+import HomeCard from "@/components/StatisticsTables/HomeCard.vue";
+import ReviewCard from "@/components/StatisticsTables/ReviewCard.vue";
+import NewsCard from "@/components/StatisticsTables/NewsCard.vue";
+import StockTrackCard from "@/components/StatisticsTables/StockTracking.vue";
 // End:: Statistics Tables
 
 // Start::
-import HashtagSlider from '@/components/Sliders/HashtagSlider.vue'
+import HashtagSlider from "@/components/Sliders/HashtagSlider.vue";
 
 export default {
-  name: 'HomePage',
+  name: "HomePage",
 
   components: {
     HashtagSlider,
@@ -231,9 +229,9 @@ export default {
       // ========== Charts Aside
       items: [
         {
-          text: this.$t('breadcrumb.mainPage'),
+          text: this.$t("breadcrumb.mainPage"),
           disabled: false,
-          href: '/',
+          href: "/",
         },
       ],
 
@@ -254,50 +252,50 @@ export default {
       orders: [
         {
           id: 1,
-          date: '12-11-1994',
+          date: "12-11-1994",
           customer: {
             id: 1,
-            name: 'diaa',
+            name: "diaa",
           },
           price: 200,
-          status: 'pendding',
+          status: "pendding",
           paid: 1,
         },
         {
           id: 2,
-          date: '12-11-1994',
+          date: "12-11-1994",
           customer: {
             id: 1,
-            name: 'diaa',
+            name: "diaa",
           },
           price: 200,
-          status: 'inprogress',
+          status: "inprogress",
           paid: 0,
         },
         {
           id: 2,
-          date: '12-11-1994',
+          date: "12-11-1994",
           customer: {
             id: 1,
-            name: 'diaa',
+            name: "diaa",
           },
           price: 200,
-          status: 'inprogress',
+          status: "inprogress",
           paid: 0,
         },
       ],
-    }
+    };
   },
 
   methods: {
     getStatistcsData() {
-      this.loading = true
+      this.loading = true;
       this.$axios({
-        method: 'GET',
-        url: 'home',
+        method: "GET",
+        url: "home",
       })
         .then((res) => {
-          let result = res.data.data
+          let result = res.data.data;
 
           // for (const [key, value] of Object.entries(result)) {
           //   if (typeof value != 'object') {
@@ -307,38 +305,38 @@ export default {
           //     })
           //   }
           // }
-          this.upper_chart = result.statistical
-          this.users_chart = result.stats.users_chart
-          this.teams_chart = result.stats.teams_chart
-          this.leagues_chart = result.stats.leagues_chart
+          this.upper_chart = result.statistical;
+          this.users_chart = result.stats.users_chart;
+          this.teams_chart = result.stats.teams_chart;
+          this.leagues_chart = result.stats.leagues_chart;
           this.champions_expectations_order =
-            result.champions_expectations_order
-          this.news = result.latest_news
+            result.champions_expectations_order;
+          this.news = result.latest_news;
 
-          this.loading = false
+          this.loading = false;
         })
         .catch((err) => {
-          this.loading = false
-          console.log(err)
-        })
+          this.loading = false;
+          console.log(err);
+        });
     },
 
     generateRandomColor() {
       for (let i = 0; i < this.cards.length; i++) {
-        const random = () => Math.floor(256 * Math.random())
-        this.randomColors.push(`rgb(${random()}, ${random()}, ${random()})`)
+        const random = () => Math.floor(256 * Math.random());
+        this.randomColors.push(`rgb(${random()}, ${random()}, ${random()})`);
       }
     },
   },
 
   mounted() {
     this.$nextTick(() => {
-      window.dispatchEvent(new Event('resize'))
-    })
+      window.dispatchEvent(new Event("resize"));
+    });
   },
 
   created() {
     // this.getStatistcsData()
   },
-}
+};
 </script>

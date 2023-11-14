@@ -12,7 +12,7 @@
 
     <div class="custom_card" v-else>
       <div class="card-header">
-        <h4 class="card-title">{{ $t('edit') }}</h4>
+        <h4 class="card-title">{{ $t("edit") }}</h4>
       </div>
 
       <!-- ==== Start Form ==== -->
@@ -29,7 +29,7 @@
                   v-model.trim="data.title"
                 />
                 <label for="name_input" class="form-label">
-                  {{ $t('forms.labels.title') }}
+                  {{ $t("forms.labels.title") }}
                 </label>
               </div>
             </div>
@@ -44,7 +44,7 @@
                   v-model.trim="data.price"
                 />
                 <label for="name_input" class="form-label">
-                  {{ $t('forms.labels.price') }}
+                  {{ $t("forms.labels.price") }}
                 </label>
               </div>
             </div>
@@ -60,7 +60,7 @@
                   v-model.trim="data.desc"
                 ></textarea>
                 <label for="name_input" class="form-label">
-                  {{ $t('forms.labels.desc') }}
+                  {{ $t("forms.labels.desc") }}
                 </label>
               </div>
             </div>
@@ -75,7 +75,7 @@
                   v-model.trim="data.note"
                 ></textarea>
                 <label for="name_input" class="form-label">
-                  {{ $t('forms.labels.note') }}
+                  {{ $t("forms.labels.note") }}
                 </label>
               </div>
             </div>
@@ -91,7 +91,7 @@
                   v-model.trim="data.duration_by_month"
                 />
                 <label for="name_input" class="form-label">
-                  {{ $t('forms.labels.duration_by_month') }}
+                  {{ $t("forms.labels.duration_by_month") }}
                 </label>
               </div>
             </div>
@@ -101,7 +101,7 @@
             <div class="col-lg-6 py-0">
               <div class="input_wrapper top_label">
                 <label class="form-label">
-                  {{ $t('forms.labels.type') }}
+                  {{ $t("forms.labels.type") }}
                 </label>
                 <multiselect
                   v-model="data.type"
@@ -120,7 +120,7 @@
         </div>
         <div class="buttons_wrapper">
           <button class="button_style_1" :disabled="btnIsLoading">
-            {{ $t('forms.submit') }}
+            {{ $t("forms.submit") }}
             <span class="btn_loader" v-if="btnIsLoading"></span>
           </button>
         </div>
@@ -131,11 +131,11 @@
 </template>
 
 <script>
-import VueDocPreview from 'vue-doc-preview'
+import VueDocPreview from "vue-doc-preview";
 export default {
-  name: 'Update',
+  name: "Update",
   components: { VueDocPreview },
-  props: ['id'],
+  props: ["id"],
 
   data() {
     return {
@@ -145,19 +145,19 @@ export default {
       // ========== Breadcrumbs
       items: [
         {
-          text: this.$t('breadcrumb.mainPage'),
+          text: this.$t("breadcrumb.mainPage"),
           disabled: false,
-          href: '/',
+          href: "/",
         },
         {
-          text: this.$t('breadcrumb.packages.title'),
+          text: this.$t("breadcrumb.packages.title"),
           disabled: false,
-          href: '/packages/show-all',
+          href: "/packages/show-all",
         },
         {
-          text: this.$t('breadcrumb.packages.edit'),
+          text: this.$t("breadcrumb.packages.edit"),
           disabled: true,
-          href: '',
+          href: "",
         },
       ],
 
@@ -175,162 +175,162 @@ export default {
       },
       types: [
         {
-          id: 'free',
-          name: 'مجاني',
+          id: "free",
+          name: "مجاني",
         },
-        { id: 'supplier_package', name: 'حزمة المورد' },
+        { id: "supplier_package", name: "حزمة المورد" },
         {
-          id: 'package_agents_and_distributors',
-          name: 'باقة الوكلاء والموزعين',
+          id: "package_agents_and_distributors",
+          name: "باقة الوكلاء والموزعين",
         },
-        { id: 'package_inclusive', name: 'باقة شاملة' },
+        { id: "package_inclusive", name: "باقة شاملة" },
       ],
-    }
+    };
   },
 
   methods: {
     allowedDates(val) {
-      let current = new Date(val)
-      current.setDate(current.getDate() + 1)
-      return current >= new Date()
+      let current = new Date(val);
+      current.setDate(current.getDate() + 1);
+      return current >= new Date();
     },
     // Get_Data
     getData() {
-      this.loaderPage = true
+      this.loaderPage = true;
       this.$axios({
-        method: 'GET',
+        method: "GET",
         url: `packages/${this.id}`,
       }).then((res) => {
-        this.loaderPage = false
+        this.loaderPage = false;
 
-        this.data.title = res.data.data.title
-        this.data.desc = res.data.data.desc
-        this.data.note = res.data.data.note
-        this.data.price = res.data.data.price
-        this.data.duration_by_month = res.data.data.duration_by_month
-        this.data.type = this.types.find((el) => el.id == res.data.data.type)
-      })
+        this.data.title = res.data.data.title;
+        this.data.desc = res.data.data.desc;
+        this.data.note = res.data.data.note;
+        this.data.price = res.data.data.price;
+        this.data.duration_by_month = res.data.data.duration_by_month;
+        this.data.type = this.types.find((el) => el.id == res.data.data.type);
+      });
     },
 
     validateForm() {
-      this.btnIsLoading = true
+      this.btnIsLoading = true;
 
       if (!this.data.title) {
         this.$iziToast.error({
           timeout: 2000,
-          message: this.$t('forms.validation.title'),
-          position: 'bottomRight',
-        })
-        this.btnIsLoading = false
-        return
+          message: this.$t("forms.validation.title"),
+          position: "bottomRight",
+        });
+        this.btnIsLoading = false;
+        return;
       } else if (!this.data.desc) {
         this.$iziToast.error({
           timeout: 2000,
-          message: this.$t('forms.validation.desc'),
-          position: 'bottomRight',
-        })
-        this.btnIsLoading = false
-        return
+          message: this.$t("forms.validation.desc"),
+          position: "bottomRight",
+        });
+        this.btnIsLoading = false;
+        return;
       } else if (!this.data.price) {
         this.$iziToast.error({
           timeout: 2000,
-          message: this.$t('forms.validation.price'),
-          position: 'bottomRight',
-        })
-        this.btnIsLoading = false
-        return
+          message: this.$t("forms.validation.price"),
+          position: "bottomRight",
+        });
+        this.btnIsLoading = false;
+        return;
       } else if (!this.data.note) {
         this.$iziToast.error({
           timeout: 2000,
-          message: this.$t('forms.validation.note'),
-          position: 'bottomRight',
-        })
-        this.btnIsLoading = false
-        return
+          message: this.$t("forms.validation.note"),
+          position: "bottomRight",
+        });
+        this.btnIsLoading = false;
+        return;
       } else if (!this.data.duration_by_month) {
         this.$iziToast.error({
           timeout: 2000,
-          message: this.$t('forms.validation.duration_by_month'),
-          position: 'bottomRight',
-        })
-        this.btnIsLoading = false
-        return
+          message: this.$t("forms.validation.duration_by_month"),
+          position: "bottomRight",
+        });
+        this.btnIsLoading = false;
+        return;
       } else if (!this.data.type) {
         this.$iziToast.error({
           timeout: 2000,
-          message: this.$t('forms.validation.type'),
-          position: 'bottomRight',
-        })
-        this.btnIsLoading = false
-        return
+          message: this.$t("forms.validation.type"),
+          position: "bottomRight",
+        });
+        this.btnIsLoading = false;
+        return;
       }
 
-      this.submitData()
+      this.submitData();
     },
     // img Model
 
     // Submit Data
     submitData() {
-      const submit_data = new FormData()
-      submit_data.append('_method', 'PUT')
-      submit_data.append('title', this.data.title)
-      submit_data.append('desc', this.data.desc)
-      submit_data.append('note', this.data.note)
-      submit_data.append('duration_by_month', this.data.duration_by_month)
-      submit_data.append('type', this.data.type?.id)
-      submit_data.append('price', this.data.price)
+      const submit_data = new FormData();
+      submit_data.append("_method", "PUT");
+      submit_data.append("title", this.data.title);
+      submit_data.append("desc", this.data.desc);
+      submit_data.append("note", this.data.note);
+      submit_data.append("duration_by_month", this.data.duration_by_month);
+      submit_data.append("type", this.data.type?.id);
+      submit_data.append("price", this.data.price);
 
       this.$axios({
-        method: 'POST',
+        method: "POST",
         url: `packages/${this.id}`,
         data: submit_data,
       })
         .then(() => {
           // =============== Start:: Remove Form Data From LocalStorage =============== //
-          localStorage.removeItem('tender_data')
+          localStorage.removeItem("tender_data");
 
           // =============== End:: Remove Form Data From LocalStorage =============== //
           this.$iziToast.success({
             timeout: 2000,
-            message: this.$t('addSuccess'),
-            position: 'bottomRight',
-          })
-          this.$router.push({ path: '/packages/show-all' })
-          this.btnIsLoading = false
+            message: this.$t("addSuccess"),
+            position: "bottomRight",
+          });
+          this.$router.push({ path: "/packages/show-all" });
+          this.btnIsLoading = false;
         })
         .catch((err) => {
           this.$iziToast.error({
             timeout: 2000,
             message: err.response.data.message,
-            position: 'bottomRight',
-          })
-          this.btnIsLoading = false
-        })
+            position: "bottomRight",
+          });
+          this.btnIsLoading = false;
+        });
     },
 
     getCountries() {
       this.$axios({
-        method: 'GET',
+        method: "GET",
         url: `countries_without_pagination`,
       }).then((res) => {
         this.countries = res.data.data.map((item) => {
           return {
             id: item.id,
             name: item.name,
-          }
-        })
+          };
+        });
         this.phone_codes = res.data.data.map((item) => {
           return {
             id: item.phone_code,
             name: item.phone_code,
-          }
-        })
-      })
+          };
+        });
+      });
     },
     getCities(e) {
-      this.data.city_id = null
+      this.data.city_id = null;
       this.$axios({
-        method: 'GET',
+        method: "GET",
         // url: `cities`,
         url: `countries/${e.id}`,
       }).then((res) => {
@@ -338,15 +338,15 @@ export default {
           return {
             id: item.id,
             name: item.name,
-          }
-        })
-      })
+          };
+        });
+      });
     },
   },
 
   created() {
-    this.getCountries()
-    this.getData()
+    this.getCountries();
+    this.getData();
   },
-}
+};
 </script>

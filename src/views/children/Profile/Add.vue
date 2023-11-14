@@ -6,7 +6,7 @@
 
     <div class="custom_card">
       <div class="card-header">
-        <h4 class="card-title">{{ $t('addNew') }}</h4>
+        <h4 class="card-title">{{ $t("addNew") }}</h4>
       </div>
 
       <!-- ==== Start Form ==== -->
@@ -39,7 +39,7 @@
                   v-model.trim="data.name"
                 />
                 <label for="name_input" class="form-label">
-                  {{ $t('forms.labels.name') }}
+                  {{ $t("forms.labels.name") }}
                 </label>
               </div>
             </div>
@@ -55,7 +55,7 @@
                   v-model.trim="data.phone"
                 />
                 <label for="name_input" class="form-label">
-                  {{ $t('forms.labels.phone') }}
+                  {{ $t("forms.labels.phone") }}
                 </label>
               </div>
             </div>
@@ -130,7 +130,7 @@
                   v-model.trim="data.email"
                 />
                 <label for="name_input" class="form-label">
-                  {{ $t('forms.labels.email') }}
+                  {{ $t("forms.labels.email") }}
                 </label>
               </div>
             </div>
@@ -166,7 +166,7 @@
                   v-model.trim="data.password"
                 />
                 <label for="name_input" class="form-label">
-                  {{ $t('forms.labels.password') }}
+                  {{ $t("forms.labels.password") }}
                 </label>
               </div>
             </div>
@@ -182,7 +182,7 @@
                   v-model.trim="data.password_confirmation"
                 />
                 <label for="name_input" class="form-label">
-                  {{ $t('forms.labels.confirmPassword') }}
+                  {{ $t("forms.labels.confirmPassword") }}
                 </label>
               </div>
             </div>
@@ -256,7 +256,7 @@
 
         <div class="buttons_wrapper">
           <button class="button_style_1">
-            {{ $t('forms.submit') }}
+            {{ $t("forms.submit") }}
             <span class="btn_loader" v-if="btnIsLoading"></span>
           </button>
         </div>
@@ -268,26 +268,26 @@
 
 <script>
 export default {
-  name: 'Create',
+  name: "Create",
 
   data() {
     return {
       // ========== Breadcrumbs
       items: [
         {
-          text: this.$t('breadcrumb.mainPage'),
+          text: this.$t("breadcrumb.mainPage"),
           disabled: false,
-          href: '/',
+          href: "/",
         },
         {
-          text: this.$t('breadcrumb.users.title'),
+          text: this.$t("breadcrumb.users.title"),
           disabled: false,
-          href: '/users',
+          href: "/users",
         },
         {
-          text: this.$t('breadcrumb.users.add'),
+          text: this.$t("breadcrumb.users.add"),
           disabled: true,
-          href: '',
+          href: "",
         },
       ],
 
@@ -310,24 +310,24 @@ export default {
       // ========== Select Lists Data
       genders: [
         {
-          id: 'male',
-          name: this.$t('male'),
+          id: "male",
+          name: this.$t("male"),
         },
         {
-          id: 'female',
-          name: this.$t('female'),
+          id: "female",
+          name: this.$t("female"),
         },
       ],
       countries: null,
       cities: null,
-    }
+    };
   },
 
   methods: {
     // ============ Get Select Lists Data
     getCountries() {
       this.$axios({
-        method: 'GET',
+        method: "GET",
         url: `countries_without_pagination`,
       }).then((res) => {
         this.countries = res.data.data.map((item) => {
@@ -335,129 +335,129 @@ export default {
             id: item.id,
             name: item.name,
             phoneCode: item.phone_code,
-          }
-        })
-      })
+          };
+        });
+      });
     },
 
     getCities() {
       this.$axios({
-        method: 'GET',
+        method: "GET",
         url: `countries/${this.data.country.id}/cities`,
       }).then((res) => {
         this.cities = res.data.data.map((item) => {
           return {
             id: item.id,
             name: item.ar.name,
-          }
-        })
-      })
+          };
+        });
+      });
     },
 
     // Uplode Image
     uplodeImg_1(obj) {
-      this.data.cover = obj
+      this.data.cover = obj;
     },
     uplodeImg_2(obj) {
-      this.data.image = obj
+      this.data.image = obj;
     },
 
     // Empty Form Data
     emptyFormData() {
-      this.data.image = null
-      this.data.cover = null
-      this.name = null
-      this.phone = null
+      this.data.image = null;
+      this.data.cover = null;
+      this.name = null;
+      this.phone = null;
 
-      this.email = null
+      this.email = null;
 
-      this.password = null
-      this.password_confirmation = null
+      this.password = null;
+      this.password_confirmation = null;
     },
 
     // Validate Data
     validateForm() {
-      this.btnIsLoading = true
+      this.btnIsLoading = true;
 
       if (!this.data.image?.img_file) {
         this.$iziToast.error({
           timeout: 2000,
-          message: this.$t('forms.validation.image'),
-          position: 'bottomRight',
-        })
-        this.btnIsLoading = false
-        return
+          message: this.$t("forms.validation.image"),
+          position: "bottomRight",
+        });
+        this.btnIsLoading = false;
+        return;
       } else if (!this.data.name) {
         this.$iziToast.error({
           timeout: 2000,
-          message: this.$t('forms.validation.name'),
-          position: 'bottomRight',
-        })
-        this.btnIsLoading = false
-        return
+          message: this.$t("forms.validation.name"),
+          position: "bottomRight",
+        });
+        this.btnIsLoading = false;
+        return;
       } else if (!this.data.phone) {
         this.$iziToast.error({
           timeout: 2000,
-          message: this.$t('forms.validation.phone'),
-          position: 'bottomRight',
-        })
-        this.btnIsLoading = false
-        return
+          message: this.$t("forms.validation.phone"),
+          position: "bottomRight",
+        });
+        this.btnIsLoading = false;
+        return;
       } else if (this.data.phone.length < 9) {
         this.$iziToast.error({
           timeout: 2000,
-          message: 'رقم الهاتف يجب ان يكون اكبر من 9 ارقام',
-          position: 'bottomRight',
-        })
-        this.btnIsLoading = false
-        return
+          message: "رقم الهاتف يجب ان يكون اكبر من 9 ارقام",
+          position: "bottomRight",
+        });
+        this.btnIsLoading = false;
+        return;
       } else if (this.data.phone.length > 11) {
         this.$iziToast.error({
           timeout: 2000,
-          message: 'رقم الهاتف يجب ان يكون اقل من 11 رقم',
-          position: 'bottomRight',
-        })
-        this.btnIsLoading = false
-        return
+          message: "رقم الهاتف يجب ان يكون اقل من 11 رقم",
+          position: "bottomRight",
+        });
+        this.btnIsLoading = false;
+        return;
       } else if (!this.data.email) {
         this.$iziToast.error({
           timeout: 2000,
-          message: this.$t('forms.validation.email'),
-          position: 'bottomRight',
-        })
-        this.btnIsLoading = false
-        return
+          message: this.$t("forms.validation.email"),
+          position: "bottomRight",
+        });
+        this.btnIsLoading = false;
+        return;
       } else if (!this.data.password) {
         this.$iziToast.error({
           timeout: 2000,
-          message: this.$t('forms.validation.password'),
-          position: 'bottomRight',
-        })
-        this.btnIsLoading = false
-        return
+          message: this.$t("forms.validation.password"),
+          position: "bottomRight",
+        });
+        this.btnIsLoading = false;
+        return;
       } else if (!this.data.password_confirmation) {
         this.$iziToast.error({
           timeout: 2000,
-          message: this.$t('forms.validation.confirmPassword'),
-          position: 'bottomRight',
-        })
-        this.btnIsLoading = false
-        return
+          message: this.$t("forms.validation.confirmPassword"),
+          position: "bottomRight",
+        });
+        this.btnIsLoading = false;
+        return;
       } else {
-        this.submitData()
-        return
+        this.submitData();
+        return;
       }
     },
 
     // Submit Data
     submitData() {
-      const submit_data = new FormData()
-      submit_data.append('image', this.data.image.img_file)
+      const submit_data = new FormData();
+      submit_data.append("image", this.data.image.img_file);
       if (this.data.cover) {
-        submit_data.append('cover', this.data.cover.img_file)
+        submit_data.append("cover", this.data.cover.img_file);
       }
-      submit_data.append('fullname', this.data.name)
-      submit_data.append('phone', this.data.phone)
+      submit_data.append("fullname", this.data.name);
+      submit_data.append("phone", this.data.phone);
       // submit_data.append('phone_code', this.data.phone_code.phoneCode)
       // if (this.data.country) {
       //   // submit_data.append('country_id', this.data.country.id)
@@ -465,13 +465,13 @@ export default {
       // if (this.data.city) {
       //   submit_data.append('city_id', this.data.city.id)
       // }
-      submit_data.append('email', this.data.email)
+      submit_data.append("email", this.data.email);
       // submit_data.append('gender', this.data.gender.id)
-      submit_data.append('password', this.data.password)
+      submit_data.append("password", this.data.password);
       submit_data.append(
-        'password_confirmation',
-        this.data.password_confirmation,
-      )
+        "password_confirmation",
+        this.data.password_confirmation
+      );
       // submit_data.append('is_ban', +this.data.is_ban)
       // submit_data.append('is_active', +this.data.is_active)
       // submit_data.append(
@@ -484,34 +484,34 @@ export default {
       // submit_data.append("bio", this.data.bio);
 
       this.$axios({
-        method: 'POST',
-        url: 'client',
+        method: "POST",
+        url: "client",
         data: submit_data,
       })
         .then(() => {
           this.$iziToast.success({
             timeout: 2000,
-            message: this.$t('addSuccess'),
-            position: 'bottomRight',
-          })
-          this.$router.push({ path: '/users' })
-          this.btnIsLoading = false
+            message: this.$t("addSuccess"),
+            position: "bottomRight",
+          });
+          this.$router.push({ path: "/users" });
+          this.btnIsLoading = false;
         })
         .catch((err) => {
           this.$iziToast.error({
             timeout: 2000,
             message: err.response.data.message,
-            position: 'bottomRight',
-          })
-          this.btnIsLoading = false
-        })
+            position: "bottomRight",
+          });
+          this.btnIsLoading = false;
+        });
     },
   },
 
   created() {
     // Start:: Fire Methods
-    this.getCountries()
+    this.getCountries();
     // End:: Fire Methods
   },
-}
+};
 </script>

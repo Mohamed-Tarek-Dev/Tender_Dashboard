@@ -1,13 +1,13 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import Vue from "vue";
+import Vuex from "vuex";
 
-import lang from './modules/lang/index.js'
-import sideNav from './modules/sideNav/index.js'
-import auth from './modules/Auth/index.js'
-import theme from './modules/Theme/index.js'
-import socket from './modules/SocketGetters/index.js'
+import lang from "./modules/lang/index.js";
+import sideNav from "./modules/sideNav/index.js";
+import auth from "./modules/Auth/index.js";
+import theme from "./modules/Theme/index.js";
+import socket from "./modules/SocketGetters/index.js";
 
-Vue.use(Vuex)
+Vue.use(Vuex);
 
 export default new Vuex.Store({
   modules: {
@@ -20,25 +20,25 @@ export default new Vuex.Store({
 
   state() {
     return {
-      offerTypeEdit: '',
+      offerTypeEdit: "",
       resizeEventExisit: false,
-    }
+    };
   },
   getters: {
     resizeEventExisit(state) {
-      return state.resizeEventExisit
+      return state.resizeEventExisit;
     },
     offerTypeEdit(state) {
-      return state.offerTypeEdit
+      return state.offerTypeEdit;
     },
   },
   mutations: {
     changeRessizeEvent(state) {
-      state.resizeEventExisit = !state.resizeEventExisit
+      state.resizeEventExisit = !state.resizeEventExisit;
     },
     offerTypeEdit(state, paylod) {
-      state.offerTypeEdit = paylod
+      state.offerTypeEdit = paylod;
     },
   },
   actions: {},
-})
+});

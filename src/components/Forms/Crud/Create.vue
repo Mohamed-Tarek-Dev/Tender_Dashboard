@@ -90,9 +90,20 @@
               <!-- START:: FILE INPUT -->
               <div class="input_wrapper top_label file_input">
                 <span class="file_input_label"> File Input </span>
-                <label for="file_input" class="form-label" v-if="!selectedFile.file"></label>
-                <label for="file_input" class="form-label" v-else> {{selectedFile.name}} </label>
-                <input type="file" class="form-control" id="file_input" @change="handelSelectedFile"/>
+                <label
+                  for="file_input"
+                  class="form-label"
+                  v-if="!selectedFile.file"
+                ></label>
+                <label for="file_input" class="form-label" v-else>
+                  {{ selectedFile.name }}
+                </label>
+                <input
+                  type="file"
+                  class="form-control"
+                  id="file_input"
+                  @change="handelSelectedFile"
+                />
               </div>
               <!-- END:: FILE INPUT -->
             </div>
@@ -218,7 +229,12 @@
               <!-- START:: TEXT AREA -->
               <div class="input_wrapper top_label">
                 <label for="desc" class="form-label">Description</label>
-                <textarea class="form-control" id="desc" v-model.trim="createData.desc" rows="5"></textarea>
+                <textarea
+                  class="form-control"
+                  id="desc"
+                  v-model.trim="createData.desc"
+                  rows="5"
+                ></textarea>
               </div>
               <!-- END:: TEXT AREA -->
             </div>
@@ -314,10 +330,10 @@ export default {
       single_select_value: "",
       single_select_options: [
         { id: 1, name: "Option_1" },
-        { id: 2, name: "Option_2"},
-        { id: 3, name: "Option_3"},
-        { id: 4, name: "Option_4"},
-        { id: 5, name: "Option_5"},
+        { id: 2, name: "Option_2" },
+        { id: 3, name: "Option_3" },
+        { id: 4, name: "Option_4" },
+        { id: 5, name: "Option_5" },
       ],
       // END:: SINGLE SELECT DATA
 
@@ -325,10 +341,10 @@ export default {
       multiple_select_value: [],
       multiple_select_options: [
         { id: 1, name: "Option_1" },
-        { id: 2, name: "Option_2"},
-        { id: 3, name: "Option_3"},
-        { id: 4, name: "Option_4"},
-        { id: 5, name: "Option_5"},
+        { id: 2, name: "Option_2" },
+        { id: 3, name: "Option_3" },
+        { id: 4, name: "Option_4" },
+        { id: 5, name: "Option_5" },
       ],
       // END:: MULTIPLE SELECT DATA
 
@@ -481,7 +497,7 @@ export default {
         });
         this.btnIsLoading = false;
         return;
-      }  else if (!this.createData.desc) {
+      } else if (!this.createData.desc) {
         this.$iziToast.error({
           timeout: 2000,
           message: "Description Feild Can't Be Empty",
@@ -513,7 +529,9 @@ export default {
         });
         this.btnIsLoading = false;
         return;
-      } else if (this.createData.password != this.createData.password_confirmation) {
+      } else if (
+        this.createData.password != this.createData.password_confirmation
+      ) {
         this.$iziToast.error({
           timeout: 2000,
           message: "Passwords Don't Match",

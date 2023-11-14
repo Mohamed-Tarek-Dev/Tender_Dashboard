@@ -6,7 +6,7 @@
 
     <div class="custom_card">
       <div class="card-header">
-        <h4 class="card-title">{{ $t('addNew') }}</h4>
+        <h4 class="card-title">{{ $t("addNew") }}</h4>
       </div>
 
       <!-- ==== Start Form ==== -->
@@ -51,7 +51,7 @@
                   v-model.trim="data.title"
                 />
                 <label for="name_input" class="form-label">
-                  {{ $t('forms.labels.title') }}
+                  {{ $t("forms.labels.title") }}
                 </label>
               </div>
             </div>
@@ -61,7 +61,7 @@
             <div class="col-lg-12 py-0">
               <div class="input_wrapper top_label">
                 <label for="textarea_1" class="form-label">
-                  {{ $t('forms.labels.desc') }}
+                  {{ $t("forms.labels.desc") }}
                 </label>
                 <textarea
                   v-model="data.desc"
@@ -79,7 +79,7 @@
             class="button_style_1"
             :class="btnIsLoading ? 'disabled' : ''"
           >
-            {{ $t('forms.submit') }}
+            {{ $t("forms.submit") }}
             <span class="btn_loader" v-if="btnIsLoading"></span>
           </button>
         </div>
@@ -91,7 +91,7 @@
 
 <script>
 export default {
-  name: 'Create',
+  name: "Create",
 
   data() {
     return {
@@ -100,19 +100,19 @@ export default {
       // ========== Breadcrumbs
       items: [
         {
-          text: this.$t('breadcrumb.mainPage'),
+          text: this.$t("breadcrumb.mainPage"),
           disabled: false,
-          href: '/',
+          href: "/",
         },
         {
-          text: this.$t('breadcrumb.notifications.title'),
+          text: this.$t("breadcrumb.notifications.title"),
           disabled: false,
-          href: '/notifications',
+          href: "/notifications",
         },
         {
-          text: this.$t('breadcrumb.notifications.add'),
+          text: this.$t("breadcrumb.notifications.add"),
           disabled: true,
-          href: '',
+          href: "",
         },
       ],
 
@@ -128,101 +128,101 @@ export default {
         desc: null,
       },
       clients: [],
-    }
+    };
   },
 
   methods: {
     // Validate Data
     validateCreateForm() {
-      this.btnIsLoading = true
+      this.btnIsLoading = true;
 
       if (!this.data.all && this.data.user_list.length == 0) {
         this.$iziToast.error({
           timeout: 2000,
-          message: this.$t('forms.validation.clients'),
-          position: 'bottomRight',
-        })
-        this.btnIsLoading = false
-        return
+          message: this.$t("forms.validation.clients"),
+          position: "bottomRight",
+        });
+        this.btnIsLoading = false;
+        return;
       } else if (!this.data.title) {
         this.$iziToast.error({
           timeout: 2000,
-          message: this.$t('forms.validation.title'),
-          position: 'bottomRight',
-        })
-        this.btnIsLoading = false
-        return
+          message: this.$t("forms.validation.title"),
+          position: "bottomRight",
+        });
+        this.btnIsLoading = false;
+        return;
       } else if (!this.data.desc) {
         this.$iziToast.error({
           timeout: 2000,
-          message: this.$t('forms.validation.desc'),
-          position: 'bottomRight',
-        })
-        this.btnIsLoading = false
-        return
+          message: this.$t("forms.validation.desc"),
+          position: "bottomRight",
+        });
+        this.btnIsLoading = false;
+        return;
       } else {
-        this.submitData()
-        return
+        this.submitData();
+        return;
       }
     },
 
     // Submit Data
     submitData() {
-      const submit_data = new FormData()
+      const submit_data = new FormData();
       if (!this.data.all) {
         if (this.data.user_list.length) {
           this.data.user_list.map((item, index) => {
-            submit_data.append(`user_ids[${index}]`, item.id)
-          })
+            submit_data.append(`user_ids[${index}]`, item.id);
+          });
         }
       }
-      submit_data.append('all', +this.data.all)
-      submit_data.append('title', this.data.title)
-      submit_data.append('body', this.data.desc)
+      submit_data.append("all", +this.data.all);
+      submit_data.append("title", this.data.title);
+      submit_data.append("body", this.data.desc);
 
       this.$axios({
-        method: 'POST',
-        url: 'notifications',
+        method: "POST",
+        url: "notifications",
         data: submit_data,
       })
         .then(() => {
           this.$iziToast.success({
             timeout: 2000,
-            message: this.$t('addSuccess'),
-            position: 'bottomRight',
-          })
-          this.$router.push({ path: '/notifications/show-all' })
-          this.btnIsLoading = false
+            message: this.$t("addSuccess"),
+            position: "bottomRight",
+          });
+          this.$router.push({ path: "/notifications/show-all" });
+          this.btnIsLoading = false;
         })
         .catch((err) => {
           this.$iziToast.error({
             timeout: 2000,
             message: err.response.data.message,
-            position: 'bottomRight',
-          })
-          this.btnIsLoading = false
-        })
+            position: "bottomRight",
+          });
+          this.btnIsLoading = false;
+        });
     },
     // ====== Clients
     getClients() {
       this.$axios({
-        method: 'GET',
+        method: "GET",
         url: `clients/without-pagination`,
       }).then((res) => {
         this.clients = res.data.data.map((item) => {
           return {
             id: item.id,
             name: item.name,
-          }
-        })
-      })
+          };
+        });
+      });
     },
   },
 
   created() {
-    this.getClients()
+    this.getClients();
   },
-}
+};
 </script>
 
 <style lang="scss">

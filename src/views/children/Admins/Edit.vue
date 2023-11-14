@@ -12,7 +12,7 @@
 
     <div class="custom_card" v-else>
       <div class="card-header">
-        <h4 class="card-title">{{ $t('edit') }}</h4>
+        <h4 class="card-title">{{ $t("edit") }}</h4>
       </div>
 
       <!-- ==== Start Form ==== -->
@@ -39,7 +39,7 @@
                   v-model.trim="data.name"
                 />
                 <label for="name_input" class="form-label">
-                  {{ $t('forms.labels.name') }}
+                  {{ $t("forms.labels.name") }}
                 </label>
               </div>
             </div>
@@ -55,7 +55,7 @@
                   v-model.trim="data.email"
                 />
                 <label for="name_input" class="form-label">
-                  {{ $t('forms.labels.email') }}
+                  {{ $t("forms.labels.email") }}
                 </label>
               </div>
             </div>
@@ -65,7 +65,7 @@
             <div class="col-lg-6 py-0">
               <div class="input_wrapper top_label">
                 <label class="form-label">
-                  {{ $t('forms.labels.country') }}
+                  {{ $t("forms.labels.country") }}
                 </label>
                 <multiselect
                   :loading="!countries.length"
@@ -87,7 +87,7 @@
             <div class="col-lg-6 py-0">
               <div class="input_wrapper top_label">
                 <label class="form-label">
-                  {{ $t('forms.labels.city') }}
+                  {{ $t("forms.labels.city") }}
                 </label>
                 <multiselect
                   :disabled="!cities.length"
@@ -108,7 +108,7 @@
             <div class="col-lg-6 py-0">
               <div class="input_wrapper top_label">
                 <label class="form-label">
-                  {{ $t('forms.labels.phone_code') }}
+                  {{ $t("forms.labels.phone_code") }}
                 </label>
                 <multiselect
                   :loading="!phone_codes.length"
@@ -135,7 +135,7 @@
                   v-model.trim="data.phone"
                 />
                 <label for="name_input" class="form-label">
-                  {{ $t('forms.labels.phone') }}
+                  {{ $t("forms.labels.phone") }}
                 </label>
               </div>
             </div>
@@ -151,7 +151,7 @@
                   v-model.trim="data.password"
                 />
                 <label for="name_input" class="form-label">
-                  {{ $t('forms.labels.password') }}
+                  {{ $t("forms.labels.password") }}
                 </label>
               </div>
             </div>
@@ -167,7 +167,7 @@
                   v-model.trim="data.password_confirmation"
                 />
                 <label for="name_input" class="form-label">
-                  {{ $t('forms.labels.confirmPassword') }}
+                  {{ $t("forms.labels.confirmPassword") }}
                 </label>
               </div>
             </div>
@@ -176,7 +176,7 @@
             <div class="col-lg-6 py-0">
               <div class="input_wrapper top_label">
                 <label class="form-label">
-                  {{ $t('forms.labels.gender') }}
+                  {{ $t("forms.labels.gender") }}
                 </label>
                 <multiselect
                   v-model="data.gender"
@@ -228,7 +228,7 @@
                   :disabled="!data.is_ban"
                 ></textarea>
                 <label for="name_input" class="form-label">
-                  {{ $t('forms.labels.ban_reason') }}
+                  {{ $t("forms.labels.ban_reason") }}
                 </label>
               </div>
             </div>
@@ -238,7 +238,7 @@
         </div>
         <div class="buttons_wrapper">
           <button class="button_style_1" :disabled="btnIsLoading">
-            {{ $t('forms.submit') }}
+            {{ $t("forms.submit") }}
             <span class="btn_loader" v-if="btnIsLoading"></span>
           </button>
         </div>
@@ -250,9 +250,9 @@
 
 <script>
 export default {
-  name: 'Update',
+  name: "Update",
 
-  props: ['id'],
+  props: ["id"],
 
   data() {
     return {
@@ -262,19 +262,19 @@ export default {
       // ========== Breadcrumbs
       items: [
         {
-          text: this.$t('breadcrumb.mainPage'),
+          text: this.$t("breadcrumb.mainPage"),
           disabled: false,
-          href: '/',
+          href: "/",
         },
         {
-          text: this.$t('breadcrumb.admins.title'),
+          text: this.$t("breadcrumb.admins.title"),
           disabled: false,
-          href: '/admins/show-all',
+          href: "/admins/show-all",
         },
         {
-          text: this.$t('breadcrumb.admins.edit'),
+          text: this.$t("breadcrumb.admins.edit"),
           disabled: true,
-          href: '',
+          href: "",
         },
       ],
 
@@ -300,152 +300,152 @@ export default {
       cities: [],
       phone_codes: [],
       countries: [],
-    }
+    };
   },
 
   methods: {
     // ============ Get Main Data
     getData() {
-      this.loaderPage = true
+      this.loaderPage = true;
       this.$axios({
-        method: 'GET',
+        method: "GET",
         url: `admins/${this.id}`,
       }).then((res) => {
-        this.loaderPage = false
-        this.data.avatar = res.data.data.avatar
+        this.loaderPage = false;
+        this.data.avatar = res.data.data.avatar;
 
-        this.data.name = res.data.data.name
-        this.data.phone = res.data.data.phone
-        this.data.email = res.data.data.email
+        this.data.name = res.data.data.name;
+        this.data.phone = res.data.data.phone;
+        this.data.email = res.data.data.email;
 
-        this.data.country_id = res.data.data.country
-        this.getCities(this.data.country_id)
-        this.data.city_id = res.data.data.city
+        this.data.country_id = res.data.data.country;
+        this.getCities(this.data.country_id);
+        this.data.city_id = res.data.data.city;
         this.data.phone_code = this.phone_codes.find(
-          (el) => el.id == res.data.data.phone_code,
-        )
+          (el) => el.id == res.data.data.phone_code
+        );
         this.data.gender = this.genders.find(
-          (el) => el.id == res.data.data.gender,
-        )
-        this.data.is_active = res.data.data.is_active
-        this.data.is_ban = res.data.data.is_ban
-        this.data.is_admin_active_user = res.data.data.is_admin_active_user
-        this.data.ban_reason = res.data.data.ban_reason
-      })
+          (el) => el.id == res.data.data.gender
+        );
+        this.data.is_active = res.data.data.is_active;
+        this.data.is_ban = res.data.data.is_ban;
+        this.data.is_admin_active_user = res.data.data.is_admin_active_user;
+        this.data.ban_reason = res.data.data.ban_reason;
+      });
     },
 
     // ============ Get Select Lists Data
     getCountries() {
       this.$axios({
-        method: 'GET',
+        method: "GET",
         url: `countries_without_pagination`,
       }).then((res) => {
         this.countries = res.data.data.map((item) => {
           return {
             id: item.id,
             name: item.name,
-          }
-        })
+          };
+        });
         this.phone_codes = res.data.data.map((item) => {
           return {
             id: item.phone_code,
-          }
-        })
-      })
+          };
+        });
+      });
     },
 
     // Uplode Image
     uplodeImg_1(obj) {
-      this.data.avatar = obj
+      this.data.avatar = obj;
     },
 
     // Validate Data
     validateForm() {
-      this.btnIsLoading = true
+      this.btnIsLoading = true;
 
       if (!this.data.name) {
         this.$iziToast.error({
           timeout: 2000,
-          message: this.$t('forms.validation.name'),
-          position: 'bottomRight',
-        })
-        this.btnIsLoading = false
-        return
+          message: this.$t("forms.validation.name"),
+          position: "bottomRight",
+        });
+        this.btnIsLoading = false;
+        return;
       } else if (!this.data.phone_code) {
         this.$iziToast.error({
           timeout: 2000,
-          message: this.$t('forms.validation.phone_code'),
-          position: 'bottomRight',
-        })
-        this.btnIsLoading = false
-        return
+          message: this.$t("forms.validation.phone_code"),
+          position: "bottomRight",
+        });
+        this.btnIsLoading = false;
+        return;
       } else if (!this.data.phone) {
         this.$iziToast.error({
           timeout: 2000,
-          message: this.$t('forms.validation.phone'),
-          position: 'bottomRight',
-        })
-        this.btnIsLoading = false
-        return
+          message: this.$t("forms.validation.phone"),
+          position: "bottomRight",
+        });
+        this.btnIsLoading = false;
+        return;
       } else if (this.data.phone.length < 9) {
         this.$iziToast.error({
           timeout: 2000,
-          message: 'رقم الهاتف يجب ان يكون اكبر من 9 ارقام',
-          position: 'bottomRight',
-        })
-        this.btnIsLoading = false
-        return
+          message: "رقم الهاتف يجب ان يكون اكبر من 9 ارقام",
+          position: "bottomRight",
+        });
+        this.btnIsLoading = false;
+        return;
       } else if (this.data.phone.length > 11) {
         this.$iziToast.error({
           timeout: 2000,
-          message: 'رقم الهاتف يجب ان يكون اقل من 11 رقم',
-          position: 'bottomRight',
-        })
-        this.btnIsLoading = false
-        return
+          message: "رقم الهاتف يجب ان يكون اقل من 11 رقم",
+          position: "bottomRight",
+        });
+        this.btnIsLoading = false;
+        return;
       } else if (!this.data.email) {
         this.$iziToast.error({
           timeout: 2000,
-          message: this.$t('forms.validation.email'),
-          position: 'bottomRight',
-        })
-        this.btnIsLoading = false
-        return
+          message: this.$t("forms.validation.email"),
+          position: "bottomRight",
+        });
+        this.btnIsLoading = false;
+        return;
       } else if (!this.data.country_id) {
         this.$iziToast.error({
           timeout: 2000,
-          message: this.$t('forms.validation.country'),
-          position: 'bottomRight',
-        })
-        this.btnIsLoading = false
-        return
+          message: this.$t("forms.validation.country"),
+          position: "bottomRight",
+        });
+        this.btnIsLoading = false;
+        return;
       } else if (!this.data.city_id) {
         this.$iziToast.error({
           timeout: 2000,
-          message: this.$t('forms.validation.city'),
-          position: 'bottomRight',
-        })
-        this.btnIsLoading = false
-        return
+          message: this.$t("forms.validation.city"),
+          position: "bottomRight",
+        });
+        this.btnIsLoading = false;
+        return;
       } else if (this.data.is_ban && !this.data.ban_reason) {
         this.$iziToast.error({
           timeout: 2000,
-          message: this.$t('forms.validation.ban_reason'),
-          position: 'bottomRight',
-        })
-        this.btnIsLoading = false
-        return
+          message: this.$t("forms.validation.ban_reason"),
+          position: "bottomRight",
+        });
+        this.btnIsLoading = false;
+        return;
       } else if (this.data.password != this.data.password_confirmation) {
         this.$iziToast.error({
           timeout: 2000,
-          message: 'تاكيد الباسورد يجب  ان يساوي الباسورد',
-          position: 'bottomRight',
-        })
-        this.btnIsLoading = false
-        return
+          message: "تاكيد الباسورد يجب  ان يساوي الباسورد",
+          position: "bottomRight",
+        });
+        this.btnIsLoading = false;
+        return;
       } else {
-        this.submitData()
-        return
+        this.submitData();
+        return;
       }
     },
 
@@ -454,17 +454,17 @@ export default {
       this.$globalEdit
         .submitData({ data: this.data }, `admins/${this.id}`)
         .then((res) => {
-          this.btnIsLoading = false
+          this.btnIsLoading = false;
           if (res.data.status == false) {
-            return
+            return;
           }
-          this.$router.push('/admins/show-all')
+          this.$router.push("/admins/show-all");
         })
-        .catch(() => (this.btnIsLoading = false))
+        .catch(() => (this.btnIsLoading = false));
     },
     getCities(e) {
       this.$axios({
-        method: 'GET',
+        method: "GET",
         // url: `cities_without_pagination`,
         url: `countries/${e.id}`,
       }).then((res) => {
@@ -472,17 +472,17 @@ export default {
           return {
             id: item.id,
             name: item.name,
-          }
-        })
-      })
+          };
+        });
+      });
     },
   },
 
   created() {
     // Start:: Fire Methods
-    this.getCountries()
-    this.getData()
+    this.getCountries();
+    this.getData();
     // End:: Fire Methods
   },
-}
+};
 </script>

@@ -35,7 +35,7 @@
 
         <!-- Select no data State -->
         <template v-slot:no-data>
-          {{ $t('table.noData') }}
+          {{ $t("table.noData") }}
         </template>
 
         <!-- Select actions-->
@@ -59,15 +59,15 @@
           <v-dialog v-model="dialogDelete" max-width="500px">
             <v-card>
               <v-card-title class="text-h5 justify-center">
-                {{ $t('table.deletedialog.areYouSure') }}
+                {{ $t("table.deletedialog.areYouSure") }}
               </v-card-title>
               <v-card-actions>
                 <v-spacer></v-spacer>
                 <v-btn color="#1B5E20" @click="deleteItemConfirm">
-                  {{ $t('table.deletedialog.ok') }}
+                  {{ $t("table.deletedialog.ok") }}
                 </v-btn>
                 <v-btn color="#F44336" @click="dialogDelete = false">
-                  {{ $t('table.deletedialog.cancel') }}
+                  {{ $t("table.deletedialog.cancel") }}
                 </v-btn>
                 <v-spacer></v-spacer>
               </v-card-actions>
@@ -77,15 +77,15 @@
           <v-dialog v-model="dialogDelete_selected" max-width="500px">
             <v-card>
               <v-card-title class="text-h5 justify-center">
-                {{ $t('table.deletedialog.areYouSure') }}
+                {{ $t("table.deletedialog.areYouSure") }}
               </v-card-title>
               <v-card-actions>
                 <v-spacer></v-spacer>
                 <v-btn color="#1B5E20" @click="deleteSelectedConfirm">
-                  {{ $t('table.deletedialog.ok') }}
+                  {{ $t("table.deletedialog.ok") }}
                 </v-btn>
                 <v-btn color="#F44336" @click="dialogDelete_selected = false">
-                  {{ $t('table.deletedialog.cancel') }}
+                  {{ $t("table.deletedialog.cancel") }}
                 </v-btn>
                 <v-spacer></v-spacer>
               </v-card-actions>
@@ -142,7 +142,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters } from "vuex";
 
 export default {
   data() {
@@ -150,14 +150,14 @@ export default {
       // ========== Breadcrumbs
       items: [
         {
-          text: this.$t('breadcrumb.mainPage'),
+          text: this.$t("breadcrumb.mainPage"),
           disabled: false,
-          href: '/',
+          href: "/",
         },
         {
-          text: 'رسائل المستخدمين',
+          text: "رسائل المستخدمين",
           disabled: false,
-          href: '/contact_messages',
+          href: "/contact_messages",
         },
       ],
 
@@ -165,7 +165,7 @@ export default {
       statisticsItem: {},
 
       // ========== Top Section
-      search: '',
+      search: "",
 
       // ========== dialog Status
       dialogDelete: false,
@@ -175,11 +175,11 @@ export default {
       // ========== Model
       model_1: {
         show_model: false,
-        model_img_src: '',
+        model_img_src: "",
       },
 
       // ========== Body Section
-      calories: '',
+      calories: "",
 
       // ========== Your Data
       rows: [],
@@ -197,87 +197,87 @@ export default {
 
       // ========== Loding
       lodaing: false,
-    }
+    };
   },
 
   computed: {
     ...mapGetters({
-      lang: 'lang_module/lang',
+      lang: "lang_module/lang",
     }),
 
     headers() {
-      if (this.lang == 'ar') {
+      if (this.lang == "ar") {
         return [
           {
-            text: 'اسم المستخدم',
-            align: 'center',
-            value: 'fullname',
+            text: "اسم المستخدم",
+            align: "center",
+            value: "fullname",
             sortable: false,
           },
           {
-            text: 'البريد الالكتروني',
-            align: 'center',
-            value: 'email',
+            text: "البريد الالكتروني",
+            align: "center",
+            value: "email",
             sortable: false,
           },
           {
-            text: 'الهاتف',
-            align: 'center',
-            value: 'phone',
+            text: "الهاتف",
+            align: "center",
+            value: "phone",
             sortable: false,
           },
           {
-            text: 'المحتوى',
-            align: 'center',
-            value: 'content',
+            text: "المحتوى",
+            align: "center",
+            value: "content",
             sortable: false,
           },
           {
-            text: 'تاريخ الارسال',
-            align: 'center',
-            value: 'created_at',
+            text: "تاريخ الارسال",
+            align: "center",
+            value: "created_at",
             sortable: false,
           },
           {
-            text: 'التحكم',
-            value: 'actions',
-            align: 'center',
+            text: "التحكم",
+            value: "actions",
+            align: "center",
             sortable: false,
           },
-        ]
+        ];
       } else {
         return [
           {
-            text: 'Image',
-            align: 'center',
-            value: 'images.en',
+            text: "Image",
+            align: "center",
+            value: "images.en",
             sortable: false,
           },
           {
-            text: 'Title',
-            align: 'center',
-            value: 'en[title]',
+            text: "Title",
+            align: "center",
+            value: "en[title]",
             sortable: false,
           },
           {
-            text: 'Description',
-            align: 'center',
-            value: 'en[desc]',
+            text: "Description",
+            align: "center",
+            value: "en[desc]",
             sortable: false,
           },
           {
-            text: 'Slug',
-            align: 'center',
-            value: 'en[slug]',
+            text: "Slug",
+            align: "center",
+            value: "en[slug]",
             sortable: false,
           },
           {
-            text: 'التحكم',
-            value: 'actions',
-            align: 'center',
+            text: "التحكم",
+            value: "actions",
+            align: "center",
             sortable: false,
           },
-        ]
+        ];
       }
     },
   },
@@ -285,107 +285,107 @@ export default {
   methods: {
     // img Model
     show_model_1(e) {
-      this.model_1.model_img_src = e.target.src
-      this.model_1.show_model = true
+      this.model_1.model_img_src = e.target.src;
+      this.model_1.show_model = true;
     },
     // ==================== Start CRUD ====================
     addItem() {
-      this.$router.push({ path: '/settings/about/add' })
+      this.$router.push({ path: "/settings/about/add" });
     },
     showItem(item) {
-      this.$router.push({ path: '/settings/about/show/' + item.id })
+      this.$router.push({ path: "/settings/about/show/" + item.id });
     },
     editItem(item) {
       this.$router.push({
-        path: '/settings/contact_messages/replay/' + item.id,
-      })
+        path: "/settings/contact_messages/replay/" + item.id,
+      });
     },
     // ===== Delete
     deleteItem(item) {
-      this.dialogDelete = true
-      this.itemtoDelete = item
+      this.dialogDelete = true;
+      this.itemtoDelete = item;
     },
     deleteItemConfirm() {
       this.$axios({
-        method: 'DELETE',
+        method: "DELETE",
         url: `contacts/${this.itemtoDelete.id}`,
       })
         .then(() => {
           this.rows = this.rows.filter((item) => {
-            return item.id != this.itemtoDelete.id
-          })
-          this.dialogDelete = false
+            return item.id != this.itemtoDelete.id;
+          });
+          this.dialogDelete = false;
           this.$iziToast.success({
             timeout: 2000,
-            message: this.$t('deleteSuccess'),
-            position: 'bottomRight',
-          })
+            message: this.$t("deleteSuccess"),
+            position: "bottomRight",
+          });
         })
         .catch((err) => {
-          this.dialogDelete = false
+          this.dialogDelete = false;
           this.$iziToast.error({
             timeout: 2000,
             message: err.response.data.message,
-            position: 'bottomRight',
-          })
-        })
+            position: "bottomRight",
+          });
+        });
     },
     deleteSelected() {
-      this.dialogDelete_selected = true
+      this.dialogDelete_selected = true;
     },
     deleteSelectedConfirm() {
       this.$axios({
-        method: 'POST',
+        method: "POST",
         url: `contacts/deleteAll`,
         data: { ids: this.selected.map((item) => item.id) },
       })
         .then(() => {
           this.rows = this.rows.filter((item) => {
-            return !this.selected.filter((obj) => obj.id == item.id).length > 0
-          })
-          this.dialogDelete_selected = false
+            return !this.selected.filter((obj) => obj.id == item.id).length > 0;
+          });
+          this.dialogDelete_selected = false;
           this.$iziToast.error({
             timeout: 2000,
-            message: this.$t('deleteSuccess'),
-            position: 'bottomRight',
-          })
+            message: this.$t("deleteSuccess"),
+            position: "bottomRight",
+          });
         })
         .catch((err) => {
-          this.dialogDelete_selected = false
+          this.dialogDelete_selected = false;
           this.$iziToast.error({
             timeout: 2000,
             message: err.response.data.message,
-            position: 'bottomRight',
-          })
-        })
+            position: "bottomRight",
+          });
+        });
     },
     // ==================== End CRUD ====================
 
     // Set Rows
     setRows() {
-      this.lodaing = true
+      this.lodaing = true;
       this.$axios({
-        method: 'GET',
-        url: 'contacts',
+        method: "GET",
+        url: "contacts",
       })
         .then((res) => {
-          this.rows = res.data.data
-          this.lodaing = false
+          this.rows = res.data.data;
+          this.lodaing = false;
         })
         .catch((err) => {
-          this.lodaing = false
-        })
+          this.lodaing = false;
+        });
     },
     fetchData(e) {
-      this.$router.replace({ query: { page: e } })
-      this.setRows()
+      this.$router.replace({ query: { page: e } });
+      this.setRows();
     },
   },
   created() {
     if (this.$route.query.page) {
-      this.paginations.current_page = +this.$route.query.page
+      this.paginations.current_page = +this.$route.query.page;
     }
-    this.setRows()
+    this.setRows();
   },
-}
+};
 </script>

@@ -6,7 +6,7 @@
     <MainLoader v-if="loading"></MainLoader>
     <div class="custom_card fadeIn" v-else>
       <div class="card-header">
-        <h4 class="card-title">{{ $t('edit') }}</h4>
+        <h4 class="card-title">{{ $t("edit") }}</h4>
       </div>
 
       <!-- ==== Start Form ==== -->
@@ -38,7 +38,7 @@
                   v-model.trim="data.ar.name"
                 />
                 <label for="name_input" class="form-label">
-                  {{ $t('forms.labels.name_ar') }}
+                  {{ $t("forms.labels.name_ar") }}
                 </label>
               </div>
             </div>
@@ -52,7 +52,7 @@
                   v-model.trim="data.en.name"
                 />
                 <label for="name_input" class="form-label">
-                  {{ $t('forms.labels.name_en') }}
+                  {{ $t("forms.labels.name_en") }}
                 </label>
               </div>
             </div>
@@ -60,7 +60,7 @@
             <div class="col-lg-6 py-0">
               <div class="input_wrapper top_label">
                 <label for="textarea_1" class="form-label">
-                  {{ $t('forms.labels.content_ar') }}
+                  {{ $t("forms.labels.content_ar") }}
                 </label>
                 <textarea
                   class="form-control"
@@ -73,7 +73,7 @@
             <div class="col-lg-6 py-0">
               <div class="input_wrapper top_label">
                 <label for="textarea_1" class="form-label">
-                  {{ $t('forms.labels.content_en') }}
+                  {{ $t("forms.labels.content_en") }}
                 </label>
                 <textarea
                   class="form-control"
@@ -86,7 +86,7 @@
         </div>
         <div class="buttons_wrapper">
           <button class="button_style_1" :disabled="btnIsLoading">
-            {{ $t('forms.submit') }}
+            {{ $t("forms.submit") }}
             <span class="btn_loader" v-if="btnIsLoading"></span>
           </button>
         </div>
@@ -98,9 +98,9 @@
 
 <script>
 export default {
-  name: 'Update',
+  name: "Update",
 
-  props: ['id'],
+  props: ["id"],
 
   data() {
     return {
@@ -108,19 +108,19 @@ export default {
       // ========== Breadcrumbs
       items: [
         {
-          text: this.$t('breadcrumb.mainPage'),
+          text: this.$t("breadcrumb.mainPage"),
           disabled: false,
-          href: '/',
+          href: "/",
         },
         {
-          text: this.$t('breadcrumb.categories.title'),
+          text: this.$t("breadcrumb.categories.title"),
           disabled: false,
-          href: '/categories/show-all',
+          href: "/categories/show-all",
         },
         {
-          text: this.$t('breadcrumb.categories.edit'),
+          text: this.$t("breadcrumb.categories.edit"),
           disabled: true,
-          href: '',
+          href: "",
         },
       ],
 
@@ -140,122 +140,122 @@ export default {
         },
         is_active: true,
       },
-    }
+    };
   },
 
   methods: {
     // Uplode Image
     uplodeImg_1(obj) {
-      this.data.image = obj
+      this.data.image = obj;
     },
 
     // Validate Data
     validateCreateForm() {
-      this.btnIsLoading = true
+      this.btnIsLoading = true;
 
       if (!this.data.ar.name) {
         this.$iziToast.error({
           timeout: 2000,
-          message: this.$t('forms.validation.name_ar'),
-          position: 'bottomRight',
-        })
-        this.btnIsLoading = false
-        return
+          message: this.$t("forms.validation.name_ar"),
+          position: "bottomRight",
+        });
+        this.btnIsLoading = false;
+        return;
       } else if (!this.data.en.name) {
         this.$iziToast.error({
           timeout: 2000,
-          message: this.$t('forms.validation.name_en'),
-          position: 'bottomRight',
-        })
-        this.btnIsLoading = false
-        return
+          message: this.$t("forms.validation.name_en"),
+          position: "bottomRight",
+        });
+        this.btnIsLoading = false;
+        return;
       } else if (!this.data.en.desc) {
         this.$iziToast.error({
           timeout: 2000,
-          message: this.$t('forms.validation.content_en'),
-          position: 'bottomRight',
-        })
-        this.btnIsLoading = false
-        return
+          message: this.$t("forms.validation.content_en"),
+          position: "bottomRight",
+        });
+        this.btnIsLoading = false;
+        return;
       } else if (!this.data.ar.desc) {
         this.$iziToast.error({
           timeout: 2000,
-          message: this.$t('forms.validation.content_ar'),
-          position: 'bottomRight',
-        })
-        this.btnIsLoading = false
-        return
+          message: this.$t("forms.validation.content_ar"),
+          position: "bottomRight",
+        });
+        this.btnIsLoading = false;
+        return;
       } else {
-        this.submitData()
-        return
+        this.submitData();
+        return;
       }
     },
 
     // Submit Data
     submitData() {
-      this.btnIsLoading = true
+      this.btnIsLoading = true;
 
-      const submit_data = new FormData()
+      const submit_data = new FormData();
       if (this.data.image?.img_file) {
-        submit_data.append('image', this.data.image.img_file)
+        submit_data.append("image", this.data.image.img_file);
       }
-      submit_data.append('ar[name]', this.data.ar.name)
-      submit_data.append('ar[desc]', this.data.ar.desc)
-      submit_data.append('en[name]', this.data.en.name)
-      submit_data.append('en[desc]', this.data.en.desc)
+      submit_data.append("ar[name]", this.data.ar.name);
+      submit_data.append("ar[desc]", this.data.ar.desc);
+      submit_data.append("en[name]", this.data.en.name);
+      submit_data.append("en[desc]", this.data.en.desc);
 
-      submit_data.append('is_active', +this.data.is_active)
+      submit_data.append("is_active", +this.data.is_active);
 
-      submit_data.append('_method', 'PUT')
+      submit_data.append("_method", "PUT");
 
       this.$axios({
-        method: 'POST',
+        method: "POST",
         url: `categories/${this.id}`,
         data: submit_data,
       })
         .then(() => {
           this.$iziToast.success({
             timeout: 2000,
-            message: this.$t('editSuccess'),
-            position: 'bottomRight',
-          })
+            message: this.$t("editSuccess"),
+            position: "bottomRight",
+          });
 
-          this.$router.push({ path: '/categories/show-all' })
+          this.$router.push({ path: "/categories/show-all" });
 
-          this.btnIsLoading = false
+          this.btnIsLoading = false;
         })
         .catch((err) => {
           this.$iziToast.error({
             timeout: 2000,
             message: err.response.data.message,
-            position: 'bottomRight',
-          })
-          this.btnIsLoading = false
-        })
+            position: "bottomRight",
+          });
+          this.btnIsLoading = false;
+        });
     },
 
     getData() {
-      this.loading = true
+      this.loading = true;
       this.$axios({
-        method: 'GET',
+        method: "GET",
         url: `categories/${this.id}`,
       }).then((res) => {
-        this.loading = false
-        this.data.image = res.data.data.image
+        this.loading = false;
+        this.data.image = res.data.data.image;
 
-        this.data.ar.name = res.data.data.ar.name
-        this.data.ar.desc = res.data.data.ar.desc
+        this.data.ar.name = res.data.data.ar.name;
+        this.data.ar.desc = res.data.data.ar.desc;
 
-        this.data.en.name = res.data.data.en.name
-        this.data.en.desc = res.data.data.en.desc
+        this.data.en.name = res.data.data.en.name;
+        this.data.en.desc = res.data.data.en.desc;
 
-        this.data.is_active = res.data.data.is_active
-      })
+        this.data.is_active = res.data.data.is_active;
+      });
     },
   },
 
   mounted() {
-    this.getData()
+    this.getData();
   },
-}
+};
 </script>

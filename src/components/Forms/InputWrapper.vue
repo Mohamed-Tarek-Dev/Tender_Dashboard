@@ -139,9 +139,20 @@
         <!-- START:: FILE INPUT -->
         <div class="input_wrapper top_label file_input">
           <span class="file_input_label"> File Input </span>
-          <label for="file_input_1" class="form-label" v-if="!selectedFile.file"></label>
-          <label for="file_input_1" class="form-label" v-else> {{selectedFile.name}} </label>
-          <input type="file" class="form-control" id="file_input_1" @change="handelSelectedFile"/>
+          <label
+            for="file_input_1"
+            class="form-label"
+            v-if="!selectedFile.file"
+          ></label>
+          <label for="file_input_1" class="form-label" v-else>
+            {{ selectedFile.name }}
+          </label>
+          <input
+            type="file"
+            class="form-control"
+            id="file_input_1"
+            @change="handelSelectedFile"
+          />
         </div>
         <!-- END:: FILE INPUT -->
 
@@ -187,9 +198,7 @@
             id="text_input_2"
             @input="checkIfInputIsEmpty"
           />
-          <label for="text_input_2" class="form-label"
-            >Text Input</label
-          >
+          <label for="text_input_2" class="form-label">Text Input</label>
         </div>
         <!-- END:: TEXT INPUT -->
 
@@ -331,9 +340,20 @@
         <!-- START:: FILE INPUT -->
         <div class="input_wrapper top_label file_input">
           <span class="file_input_label"> File Input </span>
-          <label for="file_input_2" class="form-label" v-if="!selectedFile.file"></label>
-          <label for="file_input_2" class="form-label" v-else> {{selectedFile.name}} </label>
-          <input type="file" class="form-control" id="file_input_2" @change="handelSelectedFile"/>
+          <label
+            for="file_input_2"
+            class="form-label"
+            v-if="!selectedFile.file"
+          ></label>
+          <label for="file_input_2" class="form-label" v-else>
+            {{ selectedFile.name }}
+          </label>
+          <input
+            type="file"
+            class="form-control"
+            id="file_input_2"
+            @change="handelSelectedFile"
+          />
         </div>
         <!-- END:: FILE INPUT -->
 
@@ -547,10 +567,25 @@
 
         <!-- START:: FILE INPUT -->
         <div class="input_wrapper icon_label file_input">
-          <span class="file_input_label"> <i class="fal fa-paperclip fa-lg"></i> </span>
-          <label for="file_input_2" class="form-label" v-if="!selectedFile.file"> Select File </label>
-          <label for="file_input_2" class="form-label" v-else> {{selectedFile.name}} </label>
-          <input type="file" class="form-control" id="file_input_2" @change="handelSelectedFile"/>
+          <span class="file_input_label">
+            <i class="fal fa-paperclip fa-lg"></i>
+          </span>
+          <label
+            for="file_input_2"
+            class="form-label"
+            v-if="!selectedFile.file"
+          >
+            Select File
+          </label>
+          <label for="file_input_2" class="form-label" v-else>
+            {{ selectedFile.name }}
+          </label>
+          <input
+            type="file"
+            class="form-control"
+            id="file_input_2"
+            @change="handelSelectedFile"
+          />
         </div>
         <!-- END:: FILE INPUT -->
 
@@ -609,11 +644,7 @@
             <i class="fal fa-edit fa-lg"></i>
             Text Input
           </label>
-          <input
-            type="text"
-            class="form-control"
-            id="text_input_4"
-          />
+          <input type="text" class="form-control" id="text_input_4" />
         </div>
         <!-- END:: TEXT INPUT -->
 
@@ -623,11 +654,7 @@
             <i class="fal fa-at fa-lg"></i>
             Email Input
           </label>
-          <input
-            type="email"
-            class="form-control"
-            id="email_input_4"
-          />
+          <input type="email" class="form-control" id="email_input_4" />
         </div>
         <!-- END:: EMAIL INPUT -->
 
@@ -637,11 +664,7 @@
             <i class="fal fa-mobile fa-lg"></i>
             Phone Input
           </label>
-          <input
-            type="tel"
-            class="form-control"
-            id="phone_input_4"
-          />
+          <input type="tel" class="form-control" id="phone_input_4" />
         </div>
         <!-- END:: PHONE INPUT -->
 
@@ -799,14 +822,25 @@
 
         <!-- START:: FILE INPUT -->
         <div class="input_wrapper normal_label file_input">
-          <span class="file_input_label"> 
-            <i class="fal fa-paperclip fa-lg"></i> 
+          <span class="file_input_label">
+            <i class="fal fa-paperclip fa-lg"></i>
             Select File
           </span>
 
-          <label for="file_input_2" class="form-label" v-if="!selectedFile.file"></label>
-          <label for="file_input_2" class="form-label" v-else> {{selectedFile.name}} </label>
-          <input type="file" class="form-control" id="file_input_2" @change="handelSelectedFile"/>
+          <label
+            for="file_input_2"
+            class="form-label"
+            v-if="!selectedFile.file"
+          ></label>
+          <label for="file_input_2" class="form-label" v-else>
+            {{ selectedFile.name }}
+          </label>
+          <input
+            type="file"
+            class="form-control"
+            id="file_input_2"
+            @change="handelSelectedFile"
+          />
         </div>
         <!-- END:: FILE INPUT -->
 
@@ -831,7 +865,7 @@
       <div class="wrappers custom_card col-lg-5 my-5">
         <!-- START:: CARD TITLE -->
         <div class="card-header">
-          <h4 class="card-title">Checkboxes And Switches </h4>
+          <h4 class="card-title">Checkboxes And Switches</h4>
         </div>
         <!-- END:: CARD TITLE -->
 
@@ -839,10 +873,7 @@
           <div class="col-lg-6">
             <!-- START:: CHECKBOX INPUT -->
             <div class="input_wrapper checkbox_input">
-              <v-checkbox
-                v-model="checkboxValue"
-                label="Checkbox"
-              ></v-checkbox>
+              <v-checkbox v-model="checkboxValue" label="Checkbox"></v-checkbox>
             </div>
             <!-- END:: CHECKBOX INPUT -->
           </div>
@@ -850,10 +881,7 @@
           <div class="col-lg-6">
             <!-- START:: CHECKBOX INPUT -->
             <div class="input_wrapper checkbox_input">
-              <v-switch
-                v-model="checkboxValue"
-                label="Switch"
-              ></v-switch>
+              <v-switch v-model="checkboxValue" label="Switch"></v-switch>
             </div>
             <!-- END:: CHECKBOX INPUT -->
           </div>
@@ -865,7 +893,7 @@
       <div class="wrappers custom_card col-lg-5 my-5">
         <!-- START:: CARD TITLE -->
         <div class="card-header">
-          <h4 class="card-title"> Radio Buttons </h4>
+          <h4 class="card-title">Radio Buttons</h4>
         </div>
         <!-- END:: CARD TITLE -->
 
@@ -889,7 +917,7 @@
       <div class="wrappers custom_card col-lg-5 my-5">
         <!-- START:: CARD TITLE -->
         <div class="card-header">
-          <h4 class="card-title"> Buttons </h4>
+          <h4 class="card-title">Buttons</h4>
         </div>
         <!-- END:: CARD TITLE -->
 
@@ -926,18 +954,18 @@ export default {
       // END:: DATE PICKER DATA
 
       // START:: DATE PICKER DATA
-        time: null,
-        timeMenu: false,
+      time: null,
+      timeMenu: false,
       // END:: DATE PICKER DATA
 
       // START:: SINGLE SELECT DATA
       single_select_value: {},
       single_select_options: [
         { id: 1, name: "Option_1" },
-        { id: 2, name: "Option_2"},
-        { id: 3, name: "Option_3"},
-        { id: 4, name: "Option_4"},
-        { id: 5, name: "Option_5"},
+        { id: 2, name: "Option_2" },
+        { id: 3, name: "Option_3" },
+        { id: 4, name: "Option_4" },
+        { id: 5, name: "Option_5" },
       ],
       // END:: SINGLE SELECT DATA
 
@@ -945,10 +973,10 @@ export default {
       multiple_select_value: [],
       multiple_select_options: [
         { id: 1, name: "Option_1" },
-        { id: 2, name: "Option_2"},
-        { id: 3, name: "Option_3"},
-        { id: 4, name: "Option_4"},
-        { id: 5, name: "Option_5"},
+        { id: 2, name: "Option_2" },
+        { id: 3, name: "Option_3" },
+        { id: 4, name: "Option_4" },
+        { id: 5, name: "Option_5" },
       ],
       // END:: MULTIPLE SELECT DATA
 
@@ -976,11 +1004,17 @@ export default {
       let passwordElement = e.currentTarget.parentElement.children[1];
       let innerPasswordElement = e.currentTarget.parentElement.children[0];
       let passwordTogglerBtn = e.currentTarget;
-      if (passwordElement.type == "password" || innerPasswordElement.type == "password") {
+      if (
+        passwordElement.type == "password" ||
+        innerPasswordElement.type == "password"
+      ) {
         passwordElement.type = "text";
         innerPasswordElement.type = "text";
         passwordTogglerBtn.classList.add("password_is_visible");
-      } else if (passwordElement.type == "text" || innerPasswordElement.type == "text") {
+      } else if (
+        passwordElement.type == "text" ||
+        innerPasswordElement.type == "text"
+      ) {
         passwordElement.type = "password";
         innerPasswordElement.type = "password";
         passwordTogglerBtn.classList.remove("password_is_visible");

@@ -19,15 +19,15 @@
 
 <script>
 export default {
-  name: 'SparksAreaChart',
+  name: "SparksAreaChart",
 
   props: [
-    'SectionRoute',
-    'ChartColor',
-    'ChartTitle',
-    'ChartName',
-    'ChartLabels',
-    'ChartData',
+    "SectionRoute",
+    "ChartColor",
+    "ChartTitle",
+    "ChartName",
+    "ChartLabels",
+    "ChartData",
   ],
 
   data() {
@@ -35,20 +35,20 @@ export default {
       // START:: SPARKS AREA CHART DATA
       areaChartOptions: {
         chart: {
-          type: 'area',
+          type: "area",
           sparkline: {
             enabled: true,
           },
         },
         stroke: {
-          curve: 'smooth',
+          curve: "smooth",
         },
         title: {
           text: this.ChartTitle,
           offsetX: 100,
           style: {
-            fontFamily: 'Cairo-Bold',
-            fontSize: '24px',
+            fontFamily: "Cairo-Bold",
+            fontSize: "24px",
             color: this.ChartColor,
           },
         },
@@ -63,9 +63,9 @@ export default {
         },
       ],
       // END:: SPARKS AREA CHART DATA
-    }
+    };
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>

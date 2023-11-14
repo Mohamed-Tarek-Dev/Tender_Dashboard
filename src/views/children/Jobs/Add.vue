@@ -6,7 +6,7 @@
 
     <div class="custom_card">
       <div class="card-header">
-        <h4 class="card-title">{{ $t('addNew') }}</h4>
+        <h4 class="card-title">{{ $t("addNew") }}</h4>
       </div>
 
       <!-- ==== Start Form ==== -->
@@ -17,7 +17,7 @@
             <div class="col-lg-6 py-0">
               <div class="input_wrapper top_label">
                 <label class="form-label">
-                  {{ $t('forms.labels.client') }}
+                  {{ $t("forms.labels.client") }}
                 </label>
                 <multiselect
                   v-model="data.user_id"
@@ -40,13 +40,13 @@
                   type="text"
                   class="form-control"
                   @input="
-                    helper_checkIfInputIsEmpty
-                    addDataLocalStorage()
+                    helper_checkIfInputIsEmpty;
+                    addDataLocalStorage();
                   "
                   v-model.trim="data.title"
                 />
                 <label for="name_input" class="form-label">
-                  {{ $t('forms.labels.job_title') }}
+                  {{ $t("forms.labels.job_title") }}
                 </label>
               </div>
             </div>
@@ -58,14 +58,12 @@
                   type="text"
                   class="form-control"
                   @input="
-                    helper_checkIfInputIsEmpty
-                    addDataLocalStorage()
+                    helper_checkIfInputIsEmpty;
+                    addDataLocalStorage();
                   "
                   v-model.trim="data.company_name"
                 />
-                <label for="name_input" class="form-label">
-                  اسم الشركة
-                </label>
+                <label for="name_input" class="form-label"> اسم الشركة </label>
               </div>
             </div>
             <!-- End:: company_name-->
@@ -106,7 +104,7 @@
             <div class="col-lg-6 py-0">
               <div class="input_wrapper top_label">
                 <label class="form-label">
-                  {{ $t('forms.labels.country') }}
+                  {{ $t("forms.labels.country") }}
                 </label>
                 <multiselect
                   :loading="!countries.length"
@@ -128,7 +126,7 @@
             <div class="col-lg-6 py-0">
               <div class="input_wrapper top_label">
                 <label class="form-label">
-                  {{ $t('forms.labels.city') }}
+                  {{ $t("forms.labels.city") }}
                 </label>
                 <multiselect
                   v-model="data.city_id"
@@ -151,13 +149,13 @@
                 <textarea
                   class="form-control"
                   @input="
-                    helper_checkIfInputIsEmpty
-                    addDataLocalStorage()
+                    helper_checkIfInputIsEmpty;
+                    addDataLocalStorage();
                   "
                   v-model.trim="data.desc"
                 ></textarea>
                 <label for="name_input" class="form-label">
-                  {{ $t('forms.labels.desc') }}
+                  {{ $t("forms.labels.desc") }}
                 </label>
               </div>
             </div>
@@ -167,7 +165,7 @@
 
         <div class="buttons_wrapper">
           <button class="button_style_1" :disabled="btnIsLoading">
-            {{ $t('forms.submit') }}
+            {{ $t("forms.submit") }}
             <span class="btn_loader" v-if="btnIsLoading"></span>
           </button>
         </div>
@@ -184,7 +182,7 @@
           type="video/webm"
           :src="model_1.model_img_src"
           width="100%"
-          style="max-height: 50rem; min-height: 20rem;"
+          style="max-height: 50rem; min-height: 20rem"
         />
       </div>
     </base-model>
@@ -193,29 +191,29 @@
 </template>
 
 <script>
-import { json } from 'body-parser'
+import { json } from "body-parser";
 
 export default {
-  name: 'Create',
+  name: "Create",
 
   data() {
     return {
       // ========== Breadcrumbs
       items: [
         {
-          text: this.$t('breadcrumb.mainPage'),
+          text: this.$t("breadcrumb.mainPage"),
           disabled: false,
-          href: '/',
+          href: "/",
         },
         {
-          text: this.$t('breadcrumb.jobs.title'),
+          text: this.$t("breadcrumb.jobs.title"),
           disabled: false,
-          href: '/jobs/show-all',
+          href: "/jobs/show-all",
         },
         {
-          text: this.$t('breadcrumb.jobs.add'),
+          text: this.$t("breadcrumb.jobs.add"),
           disabled: true,
-          href: '',
+          href: "",
         },
       ],
 
@@ -238,55 +236,55 @@ export default {
       // ========== Model
       model_1: {
         show_model: false,
-        model_img_src: '',
+        model_img_src: "",
       },
       countries: [],
       cities: [],
       clients: [],
-    }
+    };
   },
 
   mounted() {
-    this.getCountries()
-    this.getDataLocalStorage()
+    this.getCountries();
+    this.getDataLocalStorage();
     this.$globalServices
-      .getData('clients/without-pagination')
-      .then((data) => (this.clients = data))
+      .getData("clients/without-pagination")
+      .then((data) => (this.clients = data));
   },
 
   methods: {
     allowedDates(val) {
-      let current = new Date(val)
-      current.setDate(current.getDate() + 1)
-      return current >= new Date()
+      let current = new Date(val);
+      current.setDate(current.getDate() + 1);
+      return current >= new Date();
     },
     addDataLocalStorage() {
-      localStorage.setItem('jobs_data', JSON.stringify(this.data))
+      localStorage.setItem("jobs_data", JSON.stringify(this.data));
     },
     // ============ Get Select Lists Data
     getCountries() {
       this.$axios({
-        method: 'GET',
+        method: "GET",
         url: `countries_without_pagination`,
       }).then((res) => {
         this.countries = res.data.data.map((item) => {
           return {
             id: item.id,
             name: item.name,
-          }
-        })
+          };
+        });
         this.phone_codes = res.data.data.map((item) => {
           return {
             id: item.phone_code,
             name: item.phone_code,
-          }
-        })
-      })
+          };
+        });
+      });
     },
     getCities(e) {
-      this.data.city_id = null
+      this.data.city_id = null;
       this.$axios({
-        method: 'GET',
+        method: "GET",
         // url: `cities`,
         url: `countries/${e.id}`,
       }).then((res) => {
@@ -294,104 +292,104 @@ export default {
           return {
             id: item.id,
             name: item.name,
-          }
-        })
-      })
+          };
+        });
+      });
     },
 
     getDataLocalStorage() {
-      if (localStorage.getItem('jobs_data')) {
-        this.data = JSON.parse(localStorage.getItem('jobs_data'))
+      if (localStorage.getItem("jobs_data")) {
+        this.data = JSON.parse(localStorage.getItem("jobs_data"));
       }
     },
     show_model_1(e) {
-      this.model_1.model_img_src = e.path
-      this.model_1.show_model = true
+      this.model_1.model_img_src = e.path;
+      this.model_1.show_model = true;
     },
     // Validate Data
     validateForm() {
-      this.btnIsLoading = true
+      this.btnIsLoading = true;
 
       if (!this.data.title) {
         this.$iziToast.error({
           timeout: 2000,
-          message: this.$t('forms.validation.title'),
-          position: 'bottomRight',
-        })
-        this.btnIsLoading = false
-        return
+          message: this.$t("forms.validation.title"),
+          position: "bottomRight",
+        });
+        this.btnIsLoading = false;
+        return;
       } else if (!this.data.user_id) {
         this.$iziToast.error({
           timeout: 2000,
-          message: this.$t('forms.validation.user'),
-          position: 'bottomRight',
-        })
-        this.btnIsLoading = false
-        return
+          message: this.$t("forms.validation.user"),
+          position: "bottomRight",
+        });
+        this.btnIsLoading = false;
+        return;
       } else if (!this.data.desc) {
         this.$iziToast.error({
           timeout: 2000,
-          message: this.$t('forms.validation.desc'),
-          position: 'bottomRight',
-        })
-        this.btnIsLoading = false
-        return
+          message: this.$t("forms.validation.desc"),
+          position: "bottomRight",
+        });
+        this.btnIsLoading = false;
+        return;
       } else if (!this.data.expiry_date) {
         this.$iziToast.error({
           timeout: 2000,
-          message: 'حقل تاريخ الانتهاء مطلوب',
-          position: 'bottomRight',
-        })
-        this.btnIsLoading = false
-        return
+          message: "حقل تاريخ الانتهاء مطلوب",
+          position: "bottomRight",
+        });
+        this.btnIsLoading = false;
+        return;
       }
 
-      this.submitData()
+      this.submitData();
     },
 
     // Submit Data
     submitData() {
-      const submit_data = new FormData()
-      submit_data.append('user_id', this.data.user_id.id)
+      const submit_data = new FormData();
+      submit_data.append("user_id", this.data.user_id.id);
 
-      submit_data.append('job_title', this.data.title)
-      submit_data.append('desc', this.data.desc)
-      submit_data.append('expiry_date', this.data.expiry_date)
-      submit_data.append('company_name', this.data.company_name)
-      submit_data.append('country_id', this.data.country_id?.id)
-      submit_data.append('city_id', this.data.city_id?.id)
+      submit_data.append("job_title", this.data.title);
+      submit_data.append("desc", this.data.desc);
+      submit_data.append("expiry_date", this.data.expiry_date);
+      submit_data.append("company_name", this.data.company_name);
+      submit_data.append("country_id", this.data.country_id?.id);
+      submit_data.append("city_id", this.data.city_id?.id);
 
       this.$axios({
-        method: 'POST',
-        url: 'jobs',
+        method: "POST",
+        url: "jobs",
         data: submit_data,
       })
         .then(() => {
           // =============== Start:: Remove Form Data From LocalStorage =============== //
-          localStorage.removeItem('jobs_data')
+          localStorage.removeItem("jobs_data");
 
           // =============== End:: Remove Form Data From LocalStorage =============== //
           this.$iziToast.success({
             timeout: 2000,
-            message: this.$t('addSuccess'),
-            position: 'bottomRight',
-          })
-          this.$router.push({ path: '/jobs/show-all' })
-          this.btnIsLoading = false
+            message: this.$t("addSuccess"),
+            position: "bottomRight",
+          });
+          this.$router.push({ path: "/jobs/show-all" });
+          this.btnIsLoading = false;
         })
         .catch((err) => {
-          let message = ''
+          let message = "";
           err.response.data.message
             ? (message = err.response.data.message)
-            : (message = err.response.data.messages)
+            : (message = err.response.data.messages);
           this.$iziToast.error({
             timeout: 2000,
             message: message,
-            position: 'bottomRight',
-          })
-          this.btnIsLoading = false
-        })
+            position: "bottomRight",
+          });
+          this.btnIsLoading = false;
+        });
     },
   },
-}
+};
 </script>

@@ -1,28 +1,23 @@
 <template>
   <div class="hashtag_slider_wrapper">
     <div class="card_title">
-
       <h3>
         <router-link :to="`/hashtags/show/${hashtagData.id}`">
           #{{ hashtagData.name }}
         </router-link>
       </h3>
 
-
       <div class="counts">
-
         <span>
           <i class="fal fa-video"></i>
-          {{ (hashtagData.videos_count).toLocaleString() }}
+          {{ hashtagData.videos_count.toLocaleString() }}
         </span>
-        
+
         <span>
           <i class="fal fa-eye"></i>
           {{ hashtagData.total_showing_video_count.toLocaleString() }}
         </span>
-
       </div>
-
     </div>
     <carousel v-bind="hashtagOptions" dir="ltr">
       <slide v-for="video in hashtagData.videos" :key="video.id" :class="col">
@@ -85,9 +80,9 @@ export default {
 .video_media_card_content_wrapper {
   width: 100%;
 }
-.counts{
+.counts {
   display: flex;
-  span{
+  span {
     margin-inline-end: 1rem;
   }
 }

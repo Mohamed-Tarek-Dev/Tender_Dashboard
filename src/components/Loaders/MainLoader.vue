@@ -6,14 +6,14 @@
 
 <script>
 export default {
-  name: 'mainLoader',
+  name: "mainLoader",
 
-  props: ['ChartType'],
+  props: ["ChartType"],
 
   data() {
-    return {}
+    return {};
   },
 
   created() {},
-}
+};
 </script>

@@ -73,7 +73,7 @@
                 <div class="wrraper">
                   <stats-card
                     title="الحالة"
-                    :number="(allData.is_readed ? 'مقروء': 'غير مقروء')"
+                    :number="allData.is_readed ? 'مقروء' : 'غير مقروء'"
                   ></stats-card>
                 </div>
               </div>
@@ -122,16 +122,16 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters } from "vuex";
 
 // Start:: Importing Modals
-import DeleteModel from '@/components/Modals/DeleteModel.vue'
-import UserMessage from '@/components/Global/UserMessage.vue'
+import DeleteModel from "@/components/Modals/DeleteModel.vue";
+import UserMessage from "@/components/Global/UserMessage.vue";
 // End:: Importing Modals
 
 export default {
-  props: ['id'],
-  name: 'Withdraw',
+  props: ["id"],
+  name: "Withdraw",
 
   components: {
     DeleteModel,
@@ -143,14 +143,14 @@ export default {
       // ========== Breadcrumbs
       items: [
         {
-          text: this.$t('breadcrumb.mainPage'),
+          text: this.$t("breadcrumb.mainPage"),
           disabled: false,
-          href: '/',
+          href: "/",
         },
         {
-          text: this.$t('breadcrumb.notifications.title'),
+          text: this.$t("breadcrumb.notifications.title"),
           disabled: true,
-          href: '',
+          href: "",
         },
         // {
         //   text: this.$t("breadcrumb.transaction.products"),
@@ -163,9 +163,9 @@ export default {
       statisticsItem: {},
 
       // ========== Top Section
-      search: '',
+      search: "",
 
-      rejectedReason: '',
+      rejectedReason: "",
 
       deleteModalIsOpen: false,
       deleteItemToShow: null,
@@ -178,55 +178,55 @@ export default {
       reportReasonToShow: null,
       btnIsLoading: false,
       e1: 1,
-    }
+    };
   },
 
   watch: {
     [`paginations.current_page`]() {
-      this.setRows()
+      this.setRows();
     },
     id(newVal) {
-      if (newVal) this.setRows()
+      if (newVal) this.setRows();
     },
   },
 
   computed: {
     ...mapGetters({
-      lang: 'lang_module/lang',
+      lang: "lang_module/lang",
     }),
   },
 
   methods: {
     // ===== Toggle Delete Modal =====
     toggleDeleteModal(item) {
-      this.deleteItemToShow = item
+      this.deleteItemToShow = item;
 
-      this.deleteModalIsOpen = !this.deleteModalIsOpen
+      this.deleteModalIsOpen = !this.deleteModalIsOpen;
     },
 
     // Set Rows
     setRows() {
-      this.loading = true
+      this.loading = true;
       this.$axios({
-        method: 'GET',
-        url: 'notifications/' + this.id,
+        method: "GET",
+        url: "notifications/" + this.id,
       })
         .then((res) => {
-          this.allData = res.data.data
-          this.loading = false
+          this.allData = res.data.data;
+          this.loading = false;
         })
         .catch((err) => {
-          this.loading = false
-        })
+          this.loading = false;
+        });
     },
   },
 
   // ======= hooks
   created() {
     // Set Rows
-    this.setRows()
+    this.setRows();
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>

@@ -26,7 +26,7 @@
           <!-- Select no data State -->
 
           <template v-slot:no-data>
-            {{ $t('table.noData') }}
+            {{ $t("table.noData") }}
           </template>
 
           <template v-slot:[`item.index`]="{ index }">
@@ -48,7 +48,7 @@
           <template v-slot:[`item.desc`]="{ item }">
             <span>
               {{ item.desc.slice(0, 50) }}
-              {{ item.desc.length > 50 ? '...' : '' }}
+              {{ item.desc.length > 50 ? "..." : "" }}
             </span>
           </template>
           <template v-slot:[`item.is_active`]="{ item }">
@@ -56,7 +56,7 @@
               class="status"
               :class="item.is_active ? 'success' : 'canceled'"
             >
-              {{ item.is_active ? $t('active') : $t('inactive') }}
+              {{ item.is_active ? $t("active") : $t("inactive") }}
             </span>
           </template>
 
@@ -82,15 +82,15 @@
             <v-dialog v-model="dialogDelete" max-width="500px">
               <v-card>
                 <v-card-title class="text-h5 justify-center">
-                  {{ $t('table.deletedialog.areYouSure') }}
+                  {{ $t("table.deletedialog.areYouSure") }}
                 </v-card-title>
                 <v-card-actions>
                   <v-spacer></v-spacer>
                   <v-btn color="#1B5E20" @click="deleteItemConfirm">
-                    {{ $t('table.deletedialog.ok') }}
+                    {{ $t("table.deletedialog.ok") }}
                   </v-btn>
                   <v-btn color="#F44336" @click="dialogDelete = false">
-                    {{ $t('table.deletedialog.cancel') }}
+                    {{ $t("table.deletedialog.cancel") }}
                   </v-btn>
                   <v-spacer></v-spacer>
                 </v-card-actions>
@@ -135,15 +135,15 @@
     <v-dialog v-model="dialogDelete" max-width="500px" :retain-focus="false">
       <v-card>
         <v-card-title class="text-h5 justify-center">
-          {{ $t('table.deletedialog.areYouSure') }}
+          {{ $t("table.deletedialog.areYouSure") }}
         </v-card-title>
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn color="#1B5E20" @click="deleteItemConfirm">
-            {{ $t('table.deletedialog.ok') }}
+            {{ $t("table.deletedialog.ok") }}
           </v-btn>
           <v-btn color="#F44336" @click="dialogDelete = false">
-            {{ $t('table.deletedialog.cancel') }}
+            {{ $t("table.deletedialog.cancel") }}
           </v-btn>
           <v-spacer></v-spacer>
         </v-card-actions>
@@ -153,26 +153,26 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters } from "vuex";
 
 export default {
   data() {
     return {
       items: [
         {
-          text: this.$t('breadcrumb.mainPage'),
+          text: this.$t("breadcrumb.mainPage"),
           disabled: false,
-          href: '/',
+          href: "/",
         },
         {
-          text: this.$t('breadcrumb.categories.title'),
+          text: this.$t("breadcrumb.categories.title"),
           disabled: false,
-          href: '/categories/show-all',
+          href: "/categories/show-all",
         },
         {
-          text: this.$t('breadcrumb.categories.all'),
+          text: this.$t("breadcrumb.categories.all"),
           disabled: true,
-          href: '',
+          href: "",
         },
       ],
 
@@ -180,7 +180,7 @@ export default {
       statisticsItem: {},
 
       // ========== Top Section
-      search: '',
+      search: "",
 
       // ========== dialog Status
       dialogDelete: false,
@@ -190,7 +190,7 @@ export default {
       // ========== Model
       model_1: {
         show_model: false,
-        model_img_src: '',
+        model_img_src: "",
       },
 
       // ========== Your Data
@@ -211,97 +211,97 @@ export default {
       loading: false,
       // expanded: [],
       // singleExpand: false,
-    }
+    };
   },
 
   computed: {
     ...mapGetters({
-      lang: 'lang_module/lang',
+      lang: "lang_module/lang",
     }),
 
     headers() {
-      if (this.lang == 'ar') {
+      if (this.lang == "ar") {
         return [
           {
-            text: '#',
-            align: 'start',
-            value: 'index',
-            width: '60',
+            text: "#",
+            align: "start",
+            value: "index",
+            width: "60",
             sortable: false,
           },
           {
-            text: 'الصوره',
-            align: 'start',
-            value: 'image',
-            width: '120',
+            text: "الصوره",
+            align: "start",
+            value: "image",
+            width: "120",
             sortable: true,
           },
           {
-            text: 'الاسم',
-            align: 'start',
-            value: 'name',
+            text: "الاسم",
+            align: "start",
+            value: "name",
 
-            width: '140',
-            sortable: true,
-          },
-
-          {
-            text: 'الوصف',
-            align: 'start',
-            value: 'desc',
-
-            width: '200',
+            width: "140",
             sortable: true,
           },
 
           {
-            text: 'مفعل؟',
-            align: 'start',
-            width: '200',
-            value: 'is_active',
+            text: "الوصف",
+            align: "start",
+            value: "desc",
+
+            width: "200",
+            sortable: true,
+          },
+
+          {
+            text: "مفعل؟",
+            align: "start",
+            width: "200",
+            value: "is_active",
             sortable: true,
           },
           {
-            text: 'الاجراءات',
-            align: 'start',
-            width: '120',
-            value: 'actions',
+            text: "الاجراءات",
+            align: "start",
+            width: "120",
+            value: "actions",
             sortable: true,
           },
-        ]
+        ];
       } else {
         return [
           {
-            text: '#',
-            align: 'start',
-            value: 'id',
+            text: "#",
+            align: "start",
+            value: "id",
             sortable: true,
           },
           {
-            text: 'Reporter',
-            align: 'start',
-            value: 'from',
+            text: "Reporter",
+            align: "start",
+            value: "from",
             sortable: false,
           },
           {
-            text: 'Reported',
-            align: 'start',
-            value: 'to',
+            text: "Reported",
+            align: "start",
+            value: "to",
             sortable: false,
           },
           {
-            text: 'Report Reason',
-            align: 'start',
-            value: 'report_reason',
+            text: "Report Reason",
+            align: "start",
+            value: "report_reason",
             sortable: false,
           },
           {
-            text: 'Actions',
-            value: 'actions',
+            text: "Actions",
+            value: "actions",
             sortable: false,
-            align: 'start',
+            align: "start",
           },
-        ]
+        ];
       }
     },
   },
@@ -310,123 +310,123 @@ export default {
     // ===== Search Method =====
     filterClick(word) {
       if (!this.loading) {
-        this.search = word
-        this.helper_filterSearch()
+        this.search = word;
+        this.helper_filterSearch();
       }
     },
 
     // img Model
     show_model_1(e) {
-      this.model_1.model_img_src = e.target.src
-      this.model_1.show_model = true
+      this.model_1.model_img_src = e.target.src;
+      this.model_1.show_model = true;
     },
 
     // ==================== Start CRUD ====================
     addItem() {
-      this.$router.push({ path: '/categories/add' })
+      this.$router.push({ path: "/categories/add" });
     },
     showItem(item) {
-      this.$router.push({ path: '/categories/show/' + item.id })
+      this.$router.push({ path: "/categories/show/" + item.id });
     },
     editItem(item) {
-      this.$router.push({ path: '/categories/edit/' + item.id })
+      this.$router.push({ path: "/categories/edit/" + item.id });
     },
 
     // ===== Delete
     deleteItem(item) {
-      this.dialogDelete = true
-      this.itemtoDelete = item
+      this.dialogDelete = true;
+      this.itemtoDelete = item;
     },
     deleteItemConfirm() {
       this.$axios({
-        method: 'DELETE',
+        method: "DELETE",
         url: `categories/${this.itemtoDelete.id}`,
       })
         .then(() => {
           this.rows = this.rows.filter((item) => {
-            return item.id != this.itemtoDelete.id
-          })
-          this.dialogDelete = false
+            return item.id != this.itemtoDelete.id;
+          });
+          this.dialogDelete = false;
           this.$iziToast.success({
             timeout: 2000,
-            message: this.$t('deleteSuccess'),
-            position: 'bottomRight',
-          })
+            message: this.$t("deleteSuccess"),
+            position: "bottomRight",
+          });
         })
         .catch((err) => {
-          this.dialogDelete = false
+          this.dialogDelete = false;
           this.$iziToast.error({
             timeout: 2000,
             message: err.response.data.message,
-            position: 'bottomRight',
-          })
-        })
+            position: "bottomRight",
+          });
+        });
     },
     deleteSelected() {
-      this.dialogDelete_selected = true
+      this.dialogDelete_selected = true;
     },
     deleteSelectedConfirm() {
       this.$axios({
-        method: 'POST',
+        method: "POST",
         url: `categories/deleteAll`,
         data: { ids: this.selected.map((item) => item.id) },
       })
         .then(() => {
           this.rows = this.rows.filter((item) => {
-            return !this.selected.filter((obj) => obj.id == item.id).length > 0
-          })
-          this.dialogDelete_selected = false
+            return !this.selected.filter((obj) => obj.id == item.id).length > 0;
+          });
+          this.dialogDelete_selected = false;
           this.$iziToast.error({
             timeout: 2000,
-            message: this.$t('deleteSuccess'),
-            position: 'bottomRight',
-          })
+            message: this.$t("deleteSuccess"),
+            position: "bottomRight",
+          });
         })
         .catch((err) => {
-          this.dialogDelete_selected = false
+          this.dialogDelete_selected = false;
           this.$iziToast.error({
             timeout: 2000,
             message: err.response.data.message,
-            position: 'bottomRight',
-          })
-        })
+            position: "bottomRight",
+          });
+        });
     },
     // ==================== End CRUD ====================
 
     // Set Rows
     setRows() {
-      this.loading = true
+      this.loading = true;
       this.$axios({
-        method: 'GET',
-        url: 'categories',
+        method: "GET",
+        url: "categories",
         params: { page: this.paginations.current_page },
       })
         .then((res) => {
-          this.paginations.last_page = res.data.meta.last_page
-          this.paginations.items_per_page = res.data.meta.per_page
-          this.rows = res.data.data
+          this.paginations.last_page = res.data.meta.last_page;
+          this.paginations.items_per_page = res.data.meta.per_page;
+          this.rows = res.data.data;
 
-          this.loading = false
+          this.loading = false;
         })
         .catch((err) => {
-          console.log(err)
-          this.loading = false
-        })
+          console.log(err);
+          this.loading = false;
+        });
     },
     fetchData(e) {
-      this.$router.replace({ query: { page: e } })
-      this.setRows()
+      this.$router.replace({ query: { page: e } });
+      this.setRows();
     },
   },
   created() {
     if (this.$route.query.page) {
-      this.paginations.current_page = +this.$route.query.page
+      this.paginations.current_page = +this.$route.query.page;
     }
-    this.setRows()
+    this.setRows();
   },
 
   // ======= hooks
-}
+};
 </script>
 
 <style lang="scss" scoped>

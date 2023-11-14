@@ -22,8 +22,8 @@
 
 <script>
 export default {
-  props: ['items', 'title', 'search_title', 'search_route', 'icon'],
-}
+  props: ["items", "title", "search_title", "search_route", "icon"],
+};
 </script>
 
 <style lang="scss" scoped>

@@ -1,27 +1,16 @@
 <template>
   <div class="tabs_wrapper custom_card">
     <v-card>
-      <v-tabs
-        v-model="tab"
-        background-color="primary"
-        dark
-      >
-        <v-tab
-          v-for="item in tabsContent"
-          :key="item.tab"
-        >
+      <v-tabs v-model="tab" background-color="primary" dark>
+        <v-tab v-for="item in tabsContent" :key="item.tab">
           {{ item.tab }}
         </v-tab>
       </v-tabs>
 
       <v-tabs-items v-model="tab">
-        <v-tab-item
-          v-for="item in tabsContent"
-          :key="item.tab"
-        >
+        <v-tab-item v-for="item in tabsContent" :key="item.tab">
           <v-card flat>
-            <slot :name="item.key_name">
-            </slot>
+            <slot :name="item.key_name"> </slot>
           </v-card>
         </v-tab-item>
       </v-tabs-items>
@@ -37,8 +26,8 @@ export default {
 
   data() {
     return {
-        tab: null,
-    }
+      tab: null,
+    };
   },
-}
+};
 </script>

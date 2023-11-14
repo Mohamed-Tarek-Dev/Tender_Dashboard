@@ -224,107 +224,107 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters } from "vuex";
 
 export default {
   data() {
     return {
       menueMinWidth: true,
       sidebar: [],
-    }
+    };
   },
 
   methods: {
     toggleSideBarFullWidth() {
-      this.menueMinWidth = !this.menueMinWidth
-      this.$store.dispatch('sideNav_module/onResize')
+      this.menueMinWidth = !this.menueMinWidth;
+      this.$store.dispatch("sideNav_module/onResize");
     },
 
     toggleMenu() {
-      this.$refs.smallSidebar.classList.toggle('active')
+      this.$refs.smallSidebar.classList.toggle("active");
     },
 
     changeTheme(value) {
-      this.$store.dispatch('theme_module/changeTheme', value)
-      if (value == 'light') {
-        this.$vuetify.theme.dark = false
+      this.$store.dispatch("theme_module/changeTheme", value);
+      if (value == "light") {
+        this.$vuetify.theme.dark = false;
       } else {
-        this.$vuetify.theme.dark = true
+        this.$vuetify.theme.dark = true;
       }
-      this.$refs.smallSidebar.classList.remove('active')
+      this.$refs.smallSidebar.classList.remove("active");
     },
 
     changeLang(value) {
-      this.$store.dispatch('lang_module/switchLang', value)
-      this.$refs.smallSidebar.classList.remove('active')
+      this.$store.dispatch("lang_module/switchLang", value);
+      this.$refs.smallSidebar.classList.remove("active");
     },
 
     manipulateTheSideBar() {
       // Convert 'JSON' Object to JS Object
-      const Json_Sidebar = JSON.parse(JSON.stringify(this.$t('sidebar')))
+      const Json_Sidebar = JSON.parse(JSON.stringify(this.$t("sidebar")));
 
       Json_Sidebar.forEach((el) => {
         // IF Dropdown
         if (el.items) {
           // ======== Check Nested
-          let inside_nested = false
+          let inside_nested = false;
           el.items.forEach((element) => {
             if (element.items) {
-              inside_nested = true
+              inside_nested = true;
             }
-          })
+          });
 
           // ======== IF Nested Else
           if (inside_nested) {
             el.items.forEach((subEl) => {
               // Active
-              subEl.activeRoutesMatch = subEl.items[0].url
+              subEl.activeRoutesMatch = subEl.items[0].url;
 
               // DropDown
               if (this.$route.path.includes(subEl.activeRoutesMatch)) {
-                subEl.active = true
+                subEl.active = true;
               } else {
-                subEl.active = false
+                subEl.active = false;
               }
-            })
-            el.activeRoutesMatch = el.parentUrl
+            });
+            el.activeRoutesMatch = el.parentUrl;
 
             // DropDown
             if (this.$route.path.includes(el.activeRoutesMatch)) {
-              el.active = true
+              el.active = true;
             } else {
-              el.active = false
+              el.active = false;
             }
           } else {
-            el.activeRoutesMatch = el.items[0].url
+            el.activeRoutesMatch = el.items[0].url;
 
             // DropDown
             if (this.$route.path.includes(el.activeRoutesMatch)) {
-              el.active = true
+              el.active = true;
             } else {
-              el.active = false
+              el.active = false;
             }
           }
         }
-      })
+      });
 
-      this.sidebar = Json_Sidebar
+      this.sidebar = Json_Sidebar;
     },
   },
 
   computed: {
     ...mapGetters({
-      isSmallScreen: 'sideNav_module/isSmallScreen',
-      current_theme: 'theme_module/current_theme',
-      lang: 'lang_module/lang',
-      user: 'auth_module/currentUser',
+      isSmallScreen: "sideNav_module/isSmallScreen",
+      current_theme: "theme_module/current_theme",
+      lang: "lang_module/lang",
+      user: "auth_module/currentUser",
     }),
   },
 
   created() {
-    this.manipulateTheSideBar()
+    this.manipulateTheSideBar();
   },
-}
+};
 </script>
 
 <style lang="scss">

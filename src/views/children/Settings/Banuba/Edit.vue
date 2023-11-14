@@ -58,7 +58,7 @@ export default {
       // END:: BUTTON LOADER HANDLING DATA
 
       // START:: CREATE DATA
-        banuba_token: null,
+      banuba_token: null,
       // END:: CREATE DATA
     };
   },

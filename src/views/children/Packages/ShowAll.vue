@@ -44,7 +44,7 @@
             <!-- ================== You Can use any slots you want ================== -->
             <!-- Select no data State -->
             <template v-slot:no-data>
-              {{ $t('table.noData') }}
+              {{ $t("table.noData") }}
             </template>
 
             <template v-slot:[`item.is_expired`]="{ item }">
@@ -52,7 +52,7 @@
                 class="status"
                 :class="item.is_expired ? 'success' : 'canceled'"
               >
-                {{ item.is_expired ? $t('yes') : $t('no') }}
+                {{ item.is_expired ? $t("yes") : $t("no") }}
               </span>
             </template>
 
@@ -74,22 +74,20 @@
 
             <!-- ======================== Start Top Section ======================== -->
             <template v-slot:top>
-              <h3 class="title table-title">
-                الباقات
-              </h3>
+              <h3 class="title table-title">الباقات</h3>
               <!-- Delete dialog -->
               <v-dialog v-model="dialogDelete" max-width="500px">
                 <v-card>
                   <v-card-title class="text-h5 justify-center">
-                    {{ $t('table.deletedialog.areYouSure') }}
+                    {{ $t("table.deletedialog.areYouSure") }}
                   </v-card-title>
                   <v-card-actions>
                     <v-spacer></v-spacer>
                     <v-btn color="#1B5E20" @click="deleteItemConfirm">
-                      {{ $t('table.deletedialog.ok') }}
+                      {{ $t("table.deletedialog.ok") }}
                     </v-btn>
                     <v-btn color="#F44336" @click="dialogDelete = false">
-                      {{ $t('table.deletedialog.cancel') }}
+                      {{ $t("table.deletedialog.cancel") }}
                     </v-btn>
                     <v-spacer></v-spacer>
                   </v-card-actions>
@@ -165,7 +163,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters } from "vuex";
 
 export default {
   data() {
@@ -175,19 +173,19 @@ export default {
       // ========== Breadcrumbs
       items: [
         {
-          text: this.$t('breadcrumb.mainPage'),
+          text: this.$t("breadcrumb.mainPage"),
           disabled: false,
-          href: '/',
+          href: "/",
         },
         {
-          text: this.$t('breadcrumb.packages.title'),
+          text: this.$t("breadcrumb.packages.title"),
           disabled: false,
-          href: '/packages/show-all',
+          href: "/packages/show-all",
         },
         {
-          text: this.$t('breadcrumb.packages.all'),
+          text: this.$t("breadcrumb.packages.all"),
           disabled: true,
-          href: '',
+          href: "",
         },
       ],
 
@@ -195,7 +193,7 @@ export default {
       statisticsItem: 0,
 
       // ========== Top Section
-      search: '',
+      search: "",
 
       // ========== dialog Status
       dialogDelete: false,
@@ -208,7 +206,7 @@ export default {
       },
 
       // ========== Body Section
-      calories: '',
+      calories: "",
 
       // ========== Your Data
       rows: [], // injected in created
@@ -222,113 +220,113 @@ export default {
 
       // ========== Loding
       loading: false,
-    }
+    };
   },
 
   computed: {
     ...mapGetters({
-      lang: 'lang_module/lang',
+      lang: "lang_module/lang",
     }),
 
     headers() {
-      if (this.lang == 'ar') {
+      if (this.lang == "ar") {
         return [
           {
-            text: '#',
-            align: 'center',
-            value: 'id',
+            text: "#",
+            align: "center",
+            value: "id",
             sortable: true,
           },
           {
-            text: 'العنوان',
-            align: 'center',
-            value: 'title',
+            text: "العنوان",
+            align: "center",
+            value: "title",
             sortable: false,
           },
           {
-            text: 'الوصف',
-            align: 'center',
-            value: 'desc',
+            text: "الوصف",
+            align: "center",
+            value: "desc",
             sortable: false,
           },
 
           {
-            text: 'المدة',
-            align: 'center',
-            value: 'duration_by_month',
+            text: "المدة",
+            align: "center",
+            value: "duration_by_month",
             sortable: false,
           },
           {
-            text: 'النوع',
-            align: 'center',
-            value: 'type',
+            text: "النوع",
+            align: "center",
+            value: "type",
             sortable: false,
           },
 
           {
-            text: 'التحكم',
-            value: 'actions',
+            text: "التحكم",
+            value: "actions",
             sortable: false,
-            align: 'center',
+            align: "center",
           },
-        ]
+        ];
       } else {
         return [
           {
-            text: '#',
-            align: 'center',
-            value: 'id',
+            text: "#",
+            align: "center",
+            value: "id",
             sortable: true,
           },
           {
-            text: 'Flag',
-            align: 'center',
-            value: 'image',
+            text: "Flag",
+            align: "center",
+            value: "image",
             sortable: false,
           },
           {
-            text: 'Name',
-            align: 'center',
-            value: 'ar.name',
+            text: "Name",
+            align: "center",
+            value: "ar.name",
             sortable: false,
           },
           {
-            text: 'Name (En)',
-            align: 'center',
-            value: 'en.name',
+            text: "Name (En)",
+            align: "center",
+            value: "en.name",
             sortable: false,
           },
           {
-            text: 'Short Name',
-            align: 'center',
-            value: 'short_name',
+            text: "Short Name",
+            align: "center",
+            value: "short_name",
             sortable: false,
           },
           {
-            text: 'Phone Code',
-            align: 'center',
-            value: 'phonecode',
+            text: "Phone Code",
+            align: "center",
+            value: "phonecode",
             sortable: false,
           },
           {
-            text: 'Currency (Ar)',
-            align: 'center',
-            value: 'ar.currency',
+            text: "Currency (Ar)",
+            align: "center",
+            value: "ar.currency",
             sortable: false,
           },
           {
-            text: 'Currency (En)',
-            align: 'center',
-            value: 'en.currency',
+            text: "Currency (En)",
+            align: "center",
+            value: "en.currency",
             sortable: false,
           },
           {
-            text: 'Actions',
-            value: 'actions',
+            text: "Actions",
+            value: "actions",
             sortable: false,
-            align: 'center',
+            align: "center",
           },
-        ]
+        ];
       }
     },
   },
@@ -337,102 +335,102 @@ export default {
     // ===== Search Method =====
     filterClick(word) {
       if (!this.loading) {
-        this.search = word
-        this.helper_filterSearch()
+        this.search = word;
+        this.helper_filterSearch();
       }
     },
 
     // img Model
     show_model_1(e) {
-      this.model_1.itemToShow = e
-      this.model_1.show_model = true
+      this.model_1.itemToShow = e;
+      this.model_1.show_model = true;
     },
 
     // ==================== Start CRUD ====================
     addItem() {
-      this.$router.push({ path: '/packages/add' })
+      this.$router.push({ path: "/packages/add" });
     },
     showItem(item) {
-      let obj = {}
+      let obj = {};
       for (const [key, value] of Object.entries(item)) {
-        if (key != 'id') {
-          obj[key] = value
+        if (key != "id") {
+          obj[key] = value;
         }
       }
-      this.model_1.itemToShow = obj
-      this.model_1.show_model = true
+      this.model_1.itemToShow = obj;
+      this.model_1.show_model = true;
     },
     editItem(item) {
-      this.$router.push({ path: '/packages/edit/' + item.id })
+      this.$router.push({ path: "/packages/edit/" + item.id });
     },
     // ===== Delete
     deleteItem(item) {
-      this.dialogDelete = true
-      this.itemtoDelete = item
+      this.dialogDelete = true;
+      this.itemtoDelete = item;
     },
     deleteItemConfirm() {
       this.$axios({
-        method: 'DELETE',
+        method: "DELETE",
         url: `packages/${this.itemtoDelete.id}`,
       })
         .then(() => {
           this.rows = this.rows.filter((item) => {
-            return item.id != this.itemtoDelete.id
-          })
-          this.dialogDelete = false
+            return item.id != this.itemtoDelete.id;
+          });
+          this.dialogDelete = false;
           this.$iziToast.success({
             timeout: 2000,
-            message: this.$t('deleteSuccess'),
-            position: 'bottomRight',
-          })
+            message: this.$t("deleteSuccess"),
+            position: "bottomRight",
+          });
         })
         .catch((err) => {
-          this.dialogDelete = false
+          this.dialogDelete = false;
           this.$iziToast.error({
             timeout: 2000,
             message: err.response.data.message,
-            position: 'bottomRight',
-          })
-        })
+            position: "bottomRight",
+          });
+        });
     },
     // ==================== End CRUD ====================
 
     // Set Rows
     setRows() {
-      this.loading = true
-      this.loaderPage = true
+      this.loading = true;
+      this.loaderPage = true;
       this.$axios({
-        method: 'GET',
-        url: 'packages',
+        method: "GET",
+        url: "packages",
         params: { page: this.paginations.current_page },
       })
         .then((res) => {
-          this.paginations.last_page = res.data.meta?.last_page
-          this.paginations.items_per_page = res.data.meta?.per_page
-          this.rows = res.data.data
-          this.statisticsItem = res.data.meta?.total || 0
-          this.loaderPage = false
-          this.loading = false
+          this.paginations.last_page = res.data.meta?.last_page;
+          this.paginations.items_per_page = res.data.meta?.per_page;
+          this.rows = res.data.data;
+          this.statisticsItem = res.data.meta?.total || 0;
+          this.loaderPage = false;
+          this.loading = false;
         })
         .catch((err) => {
-          this.loading = false
-          this.loaderPage = false
-        })
+          this.loading = false;
+          this.loaderPage = false;
+        });
     },
     fetchData(e) {
-      this.$router.replace({ query: { page: e } })
-      this.setRows()
+      this.$router.replace({ query: { page: e } });
+      this.setRows();
     },
   },
   created() {
     if (this.$route.query.page) {
-      this.paginations.current_page = +this.$route.query.page
+      this.paginations.current_page = +this.$route.query.page;
     }
-    this.setRows()
+    this.setRows();
   },
 
   // ======= hooks
-}
+};
 </script>
 
 <style lang="scss" scoped></style>

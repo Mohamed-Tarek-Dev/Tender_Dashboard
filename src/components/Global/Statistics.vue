@@ -20,11 +20,11 @@ export default {
       deafult: 0,
     },
     icon: {
-      default: 'fal fa-analytics',
+      default: "fal fa-analytics",
     },
     title: {
-      deafult: 'title',
+      deafult: "title",
     },
   },
-}
+};
 </script>
